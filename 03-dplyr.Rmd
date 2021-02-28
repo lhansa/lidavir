@@ -1,0 +1,900 @@
+# Working with tables
+
+The main library we'll use is dplyr. We are also using readr for reading files onto R.
+
+```{r message=FALSE}
+library(dplyr)
+library(readr)
+```
+
+## Creating and selecting columns
+
+### mtcars dataset
+
+Let us begin creating columns or redefining existing ones. For this, we use the `mutate()` function. It receives a data frame or tibble (mainly via the _pipe_ operator, `%>%`) and performs a formula for calculating new or existing columns. 
+
+We read the data with the `read_csv()` function from the `readr` package. 
+
+```{r}
+df_mtcars <- read_csv("data/mtcars.csv")
+```
+
+The data has been obtained from R base and you can read the documentation with `? mtcars`.
+
+`read_csv()` gives us some information about the reading. We can see that all columns belong to class `numeric`. We can have a more detailed look at the tibble with `glimpse()`, which shows us the first rows and some info.
+
+```{r}
+df_mtcars %>% glimpse()
+```
+
+**Exercise.** What are the differences between `glimpse(df_mtcars)` and `df_mtcars %>% glimpse()`? 
+
+With the first rows we can confirm that all the columns are numerical but we can detect some differences among them. For instance, `cyl` and the last ones are integer numbers, so they can represent countings, or even categories, since values at `vs` or `am` seem only 0 and 1. 
+
+We can have more numerical information with `summary()`, from R base.
+
+```{r}
+summary(df_mtcars)
+```
+
+For calculating new or existing rows we use `mutate()`, as mentiobed before. If we only use `mutate()`, R shows us the data frame with the new calculations on the console, but does not overwrite it. We need to assing the result to the data frame to overwrite the result.
+
+For intance, the weight is given in 1000 lbs. Let's change the units.
+
+First, we can have a look at the first rows of this column with the function `select()`.
+
+```{r}
+df_mtcars %>% 
+  select(wt)
+```
+
+Now let's make the calculation.
+
+```{r}
+df_mtcars %>% 
+  mutate(wt = wt * 1000)
+```
+
+If there are too many columns is uncomfortable seeing the results. We can use `select()` and make the pipeline longer.
+
+```{r}
+df_mtcars %>% 
+  mutate(wt = wt * 1000) %>% 
+  select(wt)
+```
+
+The calculation seems correct. Now, instead of showing the result on the console, we overwrite the result (we don't use `select()` now because we want the entire tibble).
+
+```{r}
+df_mtcars <- df_mtcars %>% 
+  mutate(wt = wt * 1000)
+```
+
+We don't see anything on the screen but R has changed the column `wt`. Had we made a mistake and wanted to go back, we would have to execute again the reading of the file or make the opposite calculation. 
+
+```{r}
+df_mtcars %>% 
+  mutate(wt = wt / 1000) %>% 
+  select(wt)
+```
+
+The documentation explains that `vs` represents the shape of the engine. It is 0 or 1. Imagine you don't like this numbers and you want to use 1 and 2. You can easily add 1 to the column.
+
+```{r}
+mtcars %>% 
+  mutate(vs = vs + 1) %>% 
+  select(vs)
+```
+
+**Remark.** Remember to assign the result to the tibble with ` <- ` if you want to keep the results. Don't forget to erase `select()` in this case.
+
+This change on the column may not seem very useful. It can be more interesting changing the numbers with the real meaning: V-shaped and straight. For this, we need the column to be a character, but it is numeric.
+
+```{r}
+class(df_mtcars$vs)
+```
+
+We want to assign these meaning to the numbers and, therefore, the column will be a character, but R will take care of this for us. For changing the values, we use `if_else()`. We want to say: 'if vs equals 0, then it will equal "V-shaped", else "straight"'. We can create and auxiliar column `vs_aux` for making the change more clear.
+
+```{r}
+df_mtcars %>% 
+  mutate(vs_aux = if_else(vs == 0, "V-shaped", "straight")) %>% 
+  select(vs, vs_aux)
+```
+
+**Remark.** Choose whatever names you want for the columns: it is not necessary to call the auxiliar one `vs_aux`. And you can overwrite the tibble or not: you are programming, you can always run everything again! =D
+
+The idea of keeping the numbers instead of the character column is that numbers require less space on your computer's memory. So storing the shape with a numerical code is more efficient. In fact, you have already checked that the column is numerical but it would be better if it were integer.
+
+**Exercise.** Decide what columns can be stored as integer without losing information and change them. For changing the type of an object or vector you can use `as.integer()`. For instance:
+
+```{r}
+class(c(4, 6, 1))
+class(as.integer(4, 6, 1))
+```
+
+```{r}
+df_mtcars %>% 
+  mutate(
+    cyl = as.integer(cyl), 
+    vs = as.integer(vs), 
+    am = as.integer(am), 
+    gear = as.integer(gear), 
+    carb = as.integer(carb)
+  )
+```
+
+
+### Invented dataset
+
+#### Why this is useful
+
+Being able to simulate some random data is useful when you are developing some code but you haven't receive the final data yet. Nonetheless, because of the project's timing, you need to keep on working so that you'll have some code already prepared when you're data arrives and you don't need to begin from scratch by then. 
+
+#### Simulating data
+
+This branch of Statistics takes several months at University to studying it. But for our purpose we just need some basics concepts. 
+
+<!-- **Question.** Have you already seen `ALEATORIO()` function in Excel? -->
+
+Imaging you are betting on something and you need a coin. You can use a calculator or R to simulate the results. There is always some function that allows you to get a _random_ number between 0 and 1 (I emphasized _random_ because it requires some time to explain what that means, since nothing is random but controlled by the laws of physics, except maybe the location of an electron). Mathematically, you can use to simulate the results of a coin flip.
+
+```{r}
+runif(10)
+```
+
+If you run that on your computer, you're results will be different (because they are random). Long story short, we can get the same numbers if we fix one thing called seed:
+
+```{r}
+set.seed(1234)
+runif(10)
+```
+
+Now you can say that lower than 0.5 results will represent tails and the rest, heads:
+
+```{r}
+set.seed(1234)
+results <- runif(10)
+
+library(dplyr)
+if_else(results < 0.5, "tails", "heads")
+```
+
+#### Creating a data frame
+
+You should know that what we have just created is a vector. And vectors can be used as columns on a data frame or tibble. Therefore, we'll invent some data following this methodology and take advantage of the data for some calculations. 
+
+Imagine we have 20 stores, with two dimensions, length and width, the number of customers we receive per day, the daily income and the colors of the walls (between green, red, blue and white (yes, wonderful colors for walls)). Let's simulate this.
+
+For creating a tibble we use the function `tibble()`, from the tibble package but available on dplyr. Inside the function we will introduce the vectors with the simulations and the names of the columns. First, the vectors.
+
+```{r}
+number_of_stores <- 20
+
+indices <- 1:number_of_stores # Index: 1, 2, 3, 4, ..., 20
+
+# For the random data we can do the seed thing so that the results will be the same
+# for all of us
+set.seed(2718)
+
+length_sim <- rnorm(number_of_stores, mean = 7, sd = 1.5)
+width_sim <- rnorm(number_of_stores, mean = 10, sd = 2.1)
+
+# For the customers, we assume that the average will be 50. 
+# You'll learn what a Poisson distribution is later on
+customers_daily <- rpois(number_of_stores, lambda = 50)
+
+income_daily <- rnorm(number_of_stores, mean = 2000, sd = 100)
+
+colors <- sample(c("green", "blue", "red", "white"), 
+                 size = number_of_stores, replace = TRUE)
+
+
+df_inventado <- tibble(
+  ind = indices, 
+  long = length_sim, 
+  ancho = width_sim, 
+  clientes = customers_daily, 
+  euros = income_daily, 
+  col = colors
+)
+```
+
+```{r}
+glimpse(df_inventado)
+```
+
+**Exercises.** Now you make some calculations. You will need `mutate()`. Remember what has already been explained above. You can decide when to overwrite the data frame with the new calculations or just print them on the console.
+
+1. Compute the total area of each store.
+
+2. Calculate how many euros each customer spends, per store.
+
+3. Calculate how many euros each customer spends on average, in total. _Hint._ For doing this, `summarise()` is very useful and you can read the documentation for learning how to use it. However, you can also use an approach with vectors using `$` and the functions `sum()` or `mean()`.
+
+4. If the store is white or blue, reduce its length in 5 meters; else, increase it 10 meters. _Hint._ `? if_else()`. You should also write the condition with `%in%`. For learning how to do this, play in the console with `"white" %in% c("white", "blue")` or `"red" %in% c("white", "blue")` and try to understand what's happening and how you can use it inside `mutate()`.
+
+5. If all the customers in a day went to the store at the same time, how many squared meters per customer would there be in each store?
+
+**Solutions.**
+
+```{r eval=FALSE}
+# Exercise 1
+df_inventado %>% 
+  mutate(area = ancho * long)
+
+# Exercise 2
+df_inventado %>% 
+  mutate(euros / clientes)
+
+# Exercise 3
+df_inventado %>% 
+  summarise(sum(euros) / sum(clientes))
+
+sum(df_inventado$euros) / sum(df_inventado$clientes)
+
+
+# Exercise 4
+df_inventado %>% 
+  mutate(nueva_long = if_else(col %in%  c("white", "blue"), long - 5, long + 10)) %>% 
+  select(nueva_long, long)
+
+# Exercise 5
+df_inventado %>% 
+  mutate(area = long * ancho, sqm_per_cust = area / clientes) %>% 
+  select(clientes, area, sqm_per_cust)
+```
+
+## Filtering rows
+
+You may know how to apply filters in Excel. In R you can do this too. The goal is to access the rows of a data frame that fulfill certain conditions. We'll work with an example. 
+
+**If you have already run `library(dplyr)`**, you will be able to use the `starwars` data frame. You can have a look a it with `glimpse()` (as you should know by now). 
+
+```{r}
+glimpse(starwars)
+```
+
+**Exercise.**
+
+- What are the names of the columns?
+- What are the classes of each column?
+- What are the dimensions of the data frame (number of rows and columns)?
+
+**Remark.** Remember to use `? starwars` to access the documentation. 
+
+We can set a condition a take only the rows under this condition. For instance, we want all the character taller than 175cms. You may remember from vector that you can do create a logical vector with this condition doing something like this: 
+
+```{r}
+starwars$height > 175
+```
+
+Now we could see the names of the characters whose associated value in this vector is `TRUE`. The names of the characters are stored on the first column, `name`.
+
+```{r}
+starwars$name[starwars$height > 175]
+```
+
+Yes, there are some `NA` things. We'll talk about than in a few minutes.
+
+Working with vector is efficient but the sintax is verbose. dplyr provide us with a different sintax, data frame - orientated (remember that when doing statistics, data will be mainly stored in tables, therefore we love data frames and working with them <3).
+
+Let's see how to do this with data frames. 
+
+```{r}
+starwars %>% 
+  filter(height > 175)
+```
+
+Doing this we keep all the information about the characters: we have only removed the rows about characters we're not interested on because of their height.
+
+We can also extend the pipeline and also select only the column of names. 
+
+```{r}
+starwars %>% 
+  filter(height > 175) %>% 
+  select(name)
+```
+
+**Remark.** Note that we haven't used the `$` notation here. When working with dplyr, R knows where to look for the columns: it knows they are in the data frame. Thus, there is no need to write the name of the data frame followed by `$` for accessing columns. Careful with this: it is not a mistake doing it, but works differently and it can lead to errors in some situations. Best practice: don't do it. Never.
+
+For numerical columns you can use all the comparisons you know: `>`, `>=`, `<`, `<=`, `==` and `!=` (for distinct). Notice that you cannot use one single equal sign for comparing. It is very common this mistake but dplyr will properly warn you: just read the messages.
+
+Another example:
+
+```{r}
+starwars %>% 
+  filter(height != 202) %>% 
+  nrow()
+```
+
+You can work with character columns:
+
+```{r}
+starwars %>% 
+  filter(hair_color == "brown")
+```
+
+And you can combine rules. With commas if you want to have all the rules at the same time: _'people whose skin color is light and height is greater or equal than 165:'_
+
+```{r}
+starwars %>% 
+  filter(skin_color == "light", height >= 165)
+```
+
+If you want say _'or'_ you need to use the `|` symbol: _'people whose skin color is light or whose height is lower than 100:'_
+
+```{r}
+starwars %>% 
+  filter(skin_color == "light" | height < 100)
+```
+
+## Distinct
+
+In Excel you can easily get the different values from a column when selecting it. Imaging that you want all the hair colors available in the Starwars universe, no matter whose hair it is. In this case, you would be interested on the distinct values of the `hair_color` of the data frame. 
+
+There are two ways of doing this: the vectorial way and the dplyr way. Depending on the situation you will need one or the other, so learn both. 
+
+### R base
+
+**Exercise.** Get the unique values for the `hair_color` columns. Remember to use the `$` notation for getting the vector and then apply the function `unique()` to it. You will have a vector with no repeated values.
+
+```{r}
+unique(starwars$hair_color)
+```
+
+Don't worry too much about that `NA` thing: we'll get into that in the next section.
+
+### dplyr
+
+As you have seen, applying `unique()` to a vector you obtain a vector of the different values of the input. But when dealing with exploratory analysis you may want to preserve the tabular format, since it is easy to glance through it as well as export to Excel. For doing this, we use the dplyr function `distinct()`, which receives a data frame or tibble via the pipe ` %>% ` and the name of the columns whose unique values we want to obtain within the brackets.
+
+```{r}
+starwars %>% 
+  distinct(hair_color)
+```
+
+We can do the same with several columns at the same time:
+
+```{r}
+starwars %>% 
+  distinct(hair_color, skin_color)
+```
+
+In this data frame you have all the different existing combinations between `hair_color` and `skin_color`. There is no way of doing this only with `unique()`, in a vectorial way. 
+
+**Exercise (also for readr).** Get the distinct combinations between `eye_color` and `gender` and create a data frame with them. Export this data frame or tibble to a csv file using a function from the readr library. _Hint._ After running `library(readr)`, write on the console or the script `write_` and let the autocompletion propose you some alternatives. Decide which function you should use. _Another hint._ There are several solutions for exporting the file. Anyway, remember to use `?` for reading the help of a function.
+
+```{r eval=FALSE}
+new_df <- starwars %>% 
+  distinct(eye_color, gender)
+
+library(readr)
+write_csv(new_df, "new_file_super_cool.csv")
+```
+
+
+
+## Some comments about `NA`
+
+When having a look at the values of `hair_color` you can see there is something written like `NA`. This is a symbol used for specifying the generally named missing values and its direct meaning is _not available_. In several programming languages, like R, this symbol is very important because R works with it in a particular way.
+
+Missing values cannot easily be replace by some other because it will often have meaning. We will mention some examples during the sessions.
+
+Let's extract the distinct values of that column. 
+
+```{r}
+unique_hair_color <- unique(starwars$hair_color)
+unique_hair_color
+```
+
+This `NA` is the only value not written within `"`. But the vector is a character vector. 
+```{r}
+class(unique_hair_color)
+```
+
+If take the first value of the vector, `"blonde"`, it is a character:
+
+```{r}
+class(unique_hair_color[1])
+```
+
+What about the second, which is `NA`?
+
+```{r}
+class(unique_hair_color[2])
+```
+
+**Exercise.** Repeat the same procedure with `height` column and see what class `NA` belong to this time. 
+
+**Exercise.** Apply the `class()` function to `NA` and see the result.
+
+**This is very important. `NA` class is not fixed and can lead you to a lot of problems when reading data.**
+
+It is mandatory knowing how to deal with `NA` values since it can change everything you analyse. For instance, let's calculate the average height of the characters from Starwars. 
+
+```{r}
+mean(starwars$height)
+```
+
+The result of that calculation is `NA` because when operating with `NA` the result is always `NA`, even the most simple thing:
+
+```{r}
+1 + NA
+```
+
+**You cannot operate with `NA`** so you need to get rid of it. Some R functions allow you to exclude them adding some commands:
+
+```{r}
+mean(starwars$height, na.rm = TRUE)
+```
+
+We will now focus on dealing with them in dplyr. 
+
+`is.na()` is a R base function that allows us detecting `NA` values. Simple example:
+
+```{r}
+vector_with_NA <- c(1, NA, 3)
+is.na(vector_with_NA)
+```
+
+You can also work denying it, in logical terms:
+
+```{r}
+!is.na(vector_with_NA)
+```
+
+Working with dplyr is similar:
+
+```{r}
+starwars %>% 
+  filter(is.na(height))
+```
+
+The contrary:
+
+```{r}
+starwars %>% 
+  filter(!is.na(height))
+```
+
+It is possible to combine rules, as we previously saw.
+
+```{r}
+starwars %>% 
+  filter(is.na(height) | is.na(hair_color))
+```
+
+This is useful for making sure that you have all the information you need for an analysis. Suppose you are asked to calculate the BMI (explained during the second session). You need both the height and the mass, so you should check both columns are available. 
+
+**Exercise.** Keep only the rows with both height and mass available and create a new column with the BMI ($m / h^2$). Finally select the name of the character and the new column.
+
+```{r}
+starwars %>% 
+  filter(!is.na(height), !is.na(mass)) %>% 
+  mutate(mass / (height ^ 2))
+```
+
+
+**Exercise.** Read the help of `na.omit()` function for removing all the rows with at least one `NA` value from the `starwars` data frame. Create a new dataframe with the data. Export the new data frame to a csv file (separated with **comma**).
+
+## Row numbers
+
+Another way for selecting rows is using a numerical index instead of conditions. Thus, you could access directly the first, third and fifth column of a data frame. This can be done with `slice()` (also with R base, but we're not getting into that). 
+
+```{r}
+iris %>% 
+  slice(1:3, 100:103)
+```
+
+## Exercises 
+
+1. Read the file `volpre2019.csv` and create a data frame with its data. Name it however you like. It stores data about the volume and the price of lots of products at MercaMadrid. 
+
+2. Call the library janitor (install it if needed) and use the `clean_names()` function on the data frame (overwrite it). 
+
+3. Explore the data frame with the functions you know. `nrow`, `ncol` (you can use `dim()` instead), `glimpse()`. Remember to use `summary()` too. 
+
+4. Count how many `NA` values there are in the `fecha_desde` column. _Hint._ For now it is OK if you just use `is.na()` for building a logical vector and then `sum()` for adding the number of cases with `NA`. 
+
+5. Exclude the cases with `fecha_desde` as `NA` and overwrite the data frame. 
+
+6. Get the distinct origins (`desc_origin` column) of `"VACUNO"` productos (`desc_variedad_2`).
+
+7. Select four products from the `desc_variedad_2` column and extract the months when they are available (`fecha_desde`) and the origin. Do it separately for each of them. The final data frame for each product should have two columns. Arrange that data frame by `desc_origin`. The function you need is `arrange()`. _Suggestion._ For selecting the products, I used `distinct()` on the column and then `sample_n(4)`, everything linked with pipes ` %>% `. Read the documentation on `sample_n()` if needed.
+
+**Solutions.**
+
+```{r}
+# Exercise 1
+library(readr)
+df_merca <- read_csv2("data/volpre2019.csv")
+
+# Exercise 2
+library(janitor)
+df_merca <- clean_names(df_merca)
+
+# Exercise 4
+sum(is.na(df_merca$fecha_desde))
+
+# Exercise 5
+df_merca <- df_merca %>% 
+  filter(!is.na(fecha_desde))
+
+# Exercise 6
+df_merca %>% 
+  filter(desc_variedad_2 == "VACUNO") %>% 
+  distinct(desc_origen)
+
+# Exercise 7
+df_merca %>% 
+  distinct(desc_variedad_2) %>% 
+  sample_n(4)
+
+df_merca %>% 
+  filter(desc_variedad_2 == "CONCHA") %>% 
+  select(fecha_desde, desc_origen) %>% 
+  arrange(desc_origen)
+```
+
+## Summarizing tables
+
+The main library we'll use is dplyr.
+
+```{r message=FALSE}
+library(dplyr)
+```
+
+```{r include=FALSE}
+readr::write_tsv(select(storms, -lat, -long), "data/storms.txt")
+```
+
+We will be working with the storm dataset, stored on the `storms.txt` file. 
+
+```{r}
+library(readr)
+df_storms <- read_tsv("data/storms.txt", 
+                      col_types = cols(
+                        name = col_character(), 
+                        year = col_double(), 
+                        month = col_double(), 
+                        day = col_double(), 
+                        hour = col_double(), 
+                        status = col_character(), 
+                        category = col_factor(), 
+                        wind = col_integer(), 
+                        pressure = col_integer(), 
+                        ts_diameter = col_double(), 
+                        hu_diameter = col_double()
+                      ))
+
+glimpse(df_storms)
+```
+
+### Exercises
+
+1. What can you learn applying `summary()` to the tibble?
+2. Which are the different values at the `name` column? These are the storms and hurricanes we wil be working with. Create a tibble with one column containing this unique names. 
+3. Which are the different available status? Don't create the tibble: just print it on the console. 
+4. Which are the different combinations between status and pressure?
+
+## Aggregating the data
+
+**Exercise 1.** How would you calculate the average wind for each status?
+
+```{r echo=FALSE}
+df_tropical_depression <- df_storms %>% 
+  filter(status == "tropical depression")
+print(paste0("Tropical depression: ", mean(df_tropical_depression$wind)))
+
+df_tropical_storm <- df_storms %>% 
+  filter(status == "tropical storm")
+print(paste0("Tropical storm: ", mean(df_tropical_storm$wind)))
+
+
+df_hurricane <- df_storms %>% 
+  filter(status == "hurricane")
+print(paste0("Hurricane: ", mean(df_hurricane$wind)))
+```
+
+Taking into account only what has been studied so far about dplyr, we would need to jump into vectors again to calculate the mean for these cases. However we have another function in dplyr for simplifying this: `summarise()`. 
+
+```{r}
+df_storms %>% 
+  filter(status == "tropical depression") %>% 
+  summarise(avg_wind = mean(wind))
+
+df_storms %>% 
+  filter(status == "tropical storm") %>% 
+  summarise(avg_wind = mean(wind))
+
+df_storms %>% 
+  filter(status == "hurricane") %>% 
+  summarise(avg_wind = mean(wind))
+```
+
+You can calculate several columns on the fly.
+
+```{r}
+df_storms %>% 
+  filter(status == "hurricane") %>% 
+  summarise(avg_wind = mean(wind), 
+            sd_wind = sd(wind))
+```
+
+
+```{r}
+glimpse(df_storms)
+```
+
+**Exercise 2.** For the storms, depressions and hurricanes that took place between 1975 and 1980, create a new column with the mean and standard deviation of the wind. Create a new column substacting the mean from wind and then divide by the standard deviation. Calculate with `summarise()` the mean and the standard deviation of this new column. What happened?
+
+```{r echo=FALSE, eval=TRUE}
+df_storms %>% 
+  filter(year >= 1975, year <= 1980) %>% 
+  mutate(mean_wind = mean(wind), 
+         sd_wind = sd(wind), 
+         new_column = (wind - mean_wind) / sd_wind) %>% 
+  summarise(mean(new_column), sd(new_column))
+```
+
+
+**Exercise 3.** 
+
+1. For the registers where `hu_diameter` is not `NA`, calculate the minimun pressure, the median, the average and the maximum
+
+```{r echo=FALSE}
+df_storms_pressure <- df_storms %>% 
+  filter(!is.na(hu_diameter)) %>% 
+  summarise(
+    min = min(pressure), 
+    media = mean(pressure),
+    mediana = median(pressure), 
+    max = max(pressure)
+  )
+df_storms_pressure
+```
+
+2. Are there more registers below the average or above?
+
+```{r echo=FALSE}
+df_storms %>% 
+  filter(!is.na(hu_diameter)) %>% 
+  mutate(presion_media = mean(pressure)) %>% 
+  summarise(above_avg = sum(pressure >= presion_media), 
+            below_avg = sum(pressure < presion_media))
+```
+
+**Exercise 4.** For the hurricane, calculate the average `ts_diameter`. _Hint._ It is not `NA`.
+
+```{r echo=FALSE}
+df_storms %>% 
+  filter(status == "hurricane") %>% 
+  summarise(media = mean(ts_diameter, na.rm=TRUE))
+```
+
+
+## A summary
+
+We are now working with an example from the official dplyr documentation, available on [the tidyverse site](https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations). This notes are just a summary of that page, consisting mainly in copy-pasted paragraphs. The original website may be too technical for our purposes.
+
+The data will used is a dataset containing all 336776 flights that departed from New York City in 2013. The data comes from the US Bureau of Transportation Statistics, it is available in the `nycflights13` package and is documented in `? nycflights13`.
+
+```{r message=FALSE}
+library(dplyr)
+library(nycflights13)
+
+dim(flights)
+
+flights
+```
+
+## Dplyr verbs
+
+Dplyr aims to provide a function for each basic verb of data manipulation:
+
+- `filter()` to select cases based on their values.
+- `arrange()` to reorder the cases.
+- `select()` and `rename()` to select variables based on their names.
+- `mutate()` and `transmute()` to add new variables that are functions of existing variables.
+- `summarise()` to condense multiple values to a single value.
+- `sample_n()` and `sample_frac()` to take random samples.
+
+### Filter rows with filter()
+
+`filter()` allows you to select a subset of rows in a data frame. Firstly, the function receives a tibble (we are doing during the sessions via the ` %>% ` command but it is not necessary). Then we also have to write inside the brackets the expression used for rows selection. This expression will be `TRUE` for the selected rows.
+
+**Exercise 1.** Select all flights on January 1st. 
+
+```{r echo=FALSE}
+flights %>% filter(month == 1, day == 1)
+```
+
+**Exercise 2.** How many flights departed from JFK airport?
+
+```{r echo=FALSE}
+flights %>% 
+  filter(origin == "JFK") %>% 
+  nrow()
+```
+
+**Exercise 3.** How many delayed flights were there?
+
+```{r echo=FALSE}
+flights %>% 
+  filter(arr_delay > 0) %>% 
+  nrow()
+```
+
+**Exercise 4.** Select the flights with no NA data on the `dep_delay` column.
+
+```{r echo=FALSE}
+flights %>% 
+  filter(!is.na(dep_delay))
+```
+
+
+### Arrange rows with `arrange()`
+
+`arrange()` reorders the rows. It takes a data frame, and a set of column names to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns. 
+
+```{r}
+flights %>% arrange(year, month, day)
+```
+
+```{r}
+flights %>% arrange(desc(arr_delay))
+```
+
+### Select columns with `select()`
+
+Often you work with large datasets with many columns but only a few are actually of interest to you. `select()` allows you to rapidly zoom in on a useful subset, even using operations.
+
+```{r}
+flights %>% select(year, month, day)
+
+flights %>% select(year:day) # Everything between year and day
+
+flights %>% select(-(year:day)) # Everything except year, day and what is in the middle
+```
+
+There are a number of helper functions you can use within `select()`, like `starts_with()`, `ends_with()` and `contains()`. These let you quickly match larger blocks of variables that meet some criterion. See ?select for more details.
+
+```{r}
+iris %>% select(starts_with("Petal"))
+```
+
+**Exercise 5.** From `flights` tibble, select all the columns related to delays (containing something about delays in the name).
+
+```{r echo=FALSE}
+flights %>% select(contains("delay"))
+```
+
+</br> 
+
+You can rename columns while selecting:
+
+```{r}
+flights %>% select(tail_num = tailnum)
+```
+
+But this is not useful when you want to keep all the variables. For just renaming we use `rename()`.
+
+```{r}
+flights %>% names()
+
+flights %>% 
+  rename(tail_num = tailnum) %>% 
+  names()
+```
+
+### Add new columns with `mutate()`
+
+The job of `mutate()` is redefining existing columns or adding new ones.
+
+**Exercise 6.** 
+
+- Define a new column called gain, consisting on substracting `dep_delay` to `arr_delay`. 
+- Define another one as the average speed (`distance` divided by `air_time`). Multiply it by 60 to have the result in minutes. 
+
+```{r echo=FALSE}
+flights %>% 
+  mutate(gain = arr_delay - dep_delay, 
+         speed = distance / air_time * 60)
+```
+ 
+`mutate()` allows you to refer to columns that you’ve just created:
+
+```{r}
+flights %>% 
+  mutate(
+    gain = arr_delay - dep_delay,
+    gain_per_hour = gain / (air_time / 60)
+)
+```
+
+### Summarise values with `summarise()`
+
+The last verb is `summarise()`. It collapses a data frame to a single row.
+
+**Exercise 7.** Calculate the mean of the delay in the departure. Mind the NAs.
+
+```{r echo=FALSE}
+flights %>% 
+  summarise(delay = mean(dep_delay, na.rm = TRUE))
+```
+
+This is very powerful when combined with `group_by()`, not seen yet.
+
+### Randomly sample rows with `sample_n()` and `sample_frac()`
+
+You can use `sample_n()` and `sample_frac()` to take a random sample of rows: use `sample_n()` for a fixed number and `sample_frac()` for a fixed fraction.
+
+```{r}
+flights %>% sample_n(10)
+flights %>% sample_frac(0.01)
+```
+
+### Commonalities
+
+Notice that all the functions return data frames. Therefore, you can link them all with ` %>% `. 
+
+```{r}
+flights %>%
+  select(arr_delay, dep_delay) %>%
+  filter(arr_delay > 30 | dep_delay > 30) %>% 
+  summarise(
+    arr = mean(arr_delay, na.rm = TRUE),
+    dep = mean(dep_delay, na.rm = TRUE)
+  )
+```
+
+## Grouped operations
+
+The dplyr verbs are useful on their own, but they become even more powerful when you apply them to groups of observations within a dataset. In dplyr, you do this with the `group_by()` function. It breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied “by group”.
+
+Grouping affects the verbs as follows:
+
+- grouped `select()` is the same as ungrouped `select()`, except that grouping variables are always retained.
+- grouped `arrange()` is the same as ungrouped; unless you set `.by_group = TRUE`, in which case it orders first by the grouping variables
+- `mutate()` and `filter()` are most useful in conjunction with window functions (like `rank()`, or `min(x) == x`). They are described in detail in `vignette("window-functions")`.
+- `sample_n()` and `sample_frac()` sample the specified number/fraction of rows in each group.
+- `summarise()` computes the summary for each group.
+
+**Exercise 7.** Split the complete dataset into individual planes (`tailnum`) and then summarise each plane by counting the number of flights (`count = n()`) and computing the average distance (`distance`) and arrival delay (`arr_delay`). Create a tibble with that result and then use the provided ggplot code to make a plot with the distribution.
+
+```{r echo=FALSE}
+delay <- flights %>% 
+  group_by(tailnum) %>% 
+  summarise(count = n(),
+            dist = mean(distance, na.rm = TRUE),
+            delay = mean(arr_delay, na.rm = TRUE)) %>% 
+  filter(count > 20, dist < 2000)
+```
+
+```{r}
+library(ggplot2)
+ggplot(delay, aes(dist, delay)) +
+  geom_point(aes(size = count), alpha = 1/2) +
+  geom_smooth() +
+  scale_size_area()
+```
+
+
+You use `summarise()` with aggregate functions, which take a vector of values and return a single number. There are many useful examples of such functions in base R like `min()`, `max()`, `mean()`, `sum()`, `sd()`, `median()`, and `IQR()`. dplyr provides a handful of others:
+
+- `n()`: the number of observations in the current group
+- `n_distinct(x)`:the number of unique values in x.
+- `first(x)`, `last(x)` and `nth(x, n)` - these work similarly to `x[1]`, `x[length(x)]`, and `x[n]` but give you more control over the result if the value is missing.
+
+**Exercise 8.** Find the number of planes and the number of flights that go to each possible destination (`dest`).
+
+```{r echo=FALSE}
+flights %>% 
+  group_by(dest) %>% 
+  summarise(planes = n_distinct(tailnum),
+            flights = n())
+```
+
+> There is more information about dplyr on the website but it may be too advanced for what we need in the course.
+
