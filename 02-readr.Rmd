@@ -36,6 +36,7 @@ df_accis_2009 <- read_excel("data/01_ ACCIDENTES POR TIPO EN  DISTRITOS.xls",
 ```
 
 **Exercises.** 
+
 - Read the rest of the sheets of the Excel file. You should find some trouble with one of the years if you just copy and paste what I typed. Fix it. 
 - Create one data frame for each sheet. How many rows and columns each one has? _Hint._ `nrow()`, `ncol()` and `dim()` may help. 
 - What is the average number of accidents per type in 2009? And the standard deviation? _Hint._ You should use the `$` notation.
