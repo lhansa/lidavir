@@ -73,7 +73,7 @@ newton
 
 **Exercises.**
 
-- Change the values of `acc` and `mass` (make sure on the upper right corner of RStudio that you have actually changed them). Write on the console `newton`. Try to understand what is necessary for successfully getting that change. 
+- Change the values of `acc` and `mass` (make sure on the upper right corner of RStudio that you have actually changed them). Write on the console `newton`. Try to understand what is necessary for successfully getting that changed. 
 
 - What happens if you use `=` instead of `<-`? We will get into this by the end of the course. The idea right now is that the former is the one chosen as a good-practice standard. 
 

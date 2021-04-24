@@ -2,7 +2,7 @@
 
 ## Excel
 
-Unfortunately, Excel is used worldwide in a lot of sectors and along with several technologies to store and analyze data. But it has limitations in scalability, generalization (you could use Visual Basics to solve this), license... R is a solution for all this. If you need to analyse some data stored in Excel, you can read it from R and start working with this programming language. 
+Unfortunately, Excel is used worldwide in a lot of sectors and along with several technologies to store and analyze data. But it has limitations in scalability, generalization, license... R is a solution for all this. If you need to analyse some data stored in Excel, you can read it from R and start working with this programming language. 
 
 In the `data` folder you have the `iris` dataset exported as an Excel file (watch out! you also have it with a different format, but will not be used yet). You can open it with Excel or other spreadsheet software such as Numbers, LibreOffice or Google Sheets. To work with it in R, we need to load it on memory as a data frame or tibble (we are going to work with the latter). There is no way of doing this with R base, but there are a few options on different libraries. For reading, we'll use `readxl`. 
 
