@@ -1,6 +1,6 @@
 --- 
-title: "Introduction to R"
-subtitle: "Maybe especially useful for Excel users"
+title: "LiDaViR"
+subtitle: "An introduction to R. Maybe especially useful for Excel users"
 author: "Leonardo Hansa"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
