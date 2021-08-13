@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Reading data with readr | LiDaViR</title>
+  <title>LiDaViR</title>
   <meta name="description" content="R contents and material for classes. Excel users may be the target." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Reading data with readr | LiDaViR" />
+  <meta property="og:title" content="LiDaViR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Reading data with readr | LiDaViR" />
+  <meta name="twitter:title" content="LiDaViR" />
   
   <meta name="twitter:description" content="R contents and material for classes. Excel users may be the target." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="first-steps.html"/>
-<link rel="next" href="working-with-tables.html"/>
+
+<link rel="next" href="first-steps.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -287,235 +287,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reading-data-with-readr" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Reading data with readr</h1>
-<div id="excel" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Excel</h2>
-<p>Unfortunately, Excel is used worldwide in a lot of sectors and along with several technologies to store and analyze data. But it has limitations in scalability, generalization, license… R is a solution for all this. If you need to analyse some data stored in Excel, you can read it from R and start working with this programming language.</p>
-<p>In the <code>data</code> folder you have the <code>iris</code> dataset exported as an Excel file (watch out! you also have it with a different format, but will not be used yet). You can open it with Excel or other spreadsheet software such as Numbers, LibreOffice or Google Sheets. To work with it in R, we need to load it on memory as a data frame or tibble (we are going to work with the latter). There is no way of doing this with R base, but there are a few options on different libraries. For reading, we’ll use <code>readxl</code>.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="reading-data-with-readr.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb214-2"><a href="reading-data-with-readr.html#cb214-2" aria-hidden="true" tabindex="-1"></a>iris_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/iris.xlsx&quot;</span>)</span></code></pre></div>
-<p>The function <code>read_excel()</code> receives a path in your computer to the file you want to read. We will explain in class the concept of relative and absolute path (in the example, the path is relative, since we have read a file inside the working directory, which you can verify with <code>getwd()</code>).</p>
-<p>We can print <code>iris_excel</code> on the console and check that the info is an already known tibble.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="reading-data-with-readr.html#cb215-1" aria-hidden="true" tabindex="-1"></a>iris_excel</span></code></pre></div>
-<pre><code>## # A tibble: 150 x 5
-##    sepal_length sepal_width petal_length petal_width species
-##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  
-##  1          5.1         3.5          1.4         0.2 setosa 
-##  2          4.9         3            1.4         0.2 setosa 
-##  3          4.7         3.2          1.3         0.2 setosa 
-##  4          4.6         3.1          1.5         0.2 setosa 
-##  5          5           3.6          1.4         0.2 setosa 
-##  6          5.4         3.9          1.7         0.4 setosa 
-##  7          4.6         3.4          1.4         0.3 setosa 
-##  8          5           3.4          1.5         0.2 setosa 
-##  9          4.4         2.9          1.4         0.2 setosa 
-## 10          4.9         3.1          1.5         0.1 setosa 
-## # … with 140 more rows</code></pre>
-<p></br></p>
-<p>You have been provided with another Excel file, <code>"01_ ACCIDENTES POR TIPO EN  DISTRITOS.xls"</code>. If you open it, you will see that there are several sheets and that the data don’t begin on the first row. If you use the code above to read it into R, you will not get a data frame as you would like.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="reading-data-with-readr.html#cb217-1" aria-hidden="true" tabindex="-1"></a>datos_mal <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/01_ ACCIDENTES POR TIPO EN  DISTRITOS.xls&quot;</span>)</span></code></pre></div>
-<pre><code>## New names:
-## * `` -&gt; ...2
-## * `` -&gt; ...3
-## * `` -&gt; ...4
-## * `` -&gt; ...5
-## * `` -&gt; ...6
-## * ...</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="reading-data-with-readr.html#cb219-1" aria-hidden="true" tabindex="-1"></a>datos_mal</span></code></pre></div>
-<pre><code>## # A tibble: 29 x 12
-##    `01. ACCIDENTES … ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10 ...11
-##    &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  2 &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  3 &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  4 &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  5 Indicadores       Nº A… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  6 Año               2009  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  7 DISTRITO_ACCIDEN… COLI… COLI… CHOQ… ATRO… VUEL… CAÍD… CAÍD… CAÍD… CAÍD… OTRA…
-##  8 ARGANZUELA        389   54    126   75    9     43    9     4     5     8    
-##  9 BARAJAS           89    6     53    21    &lt;NA&gt;  12    2     1     2     2    
-## 10 CARABANCHEL       375   44    171   137   8     36    13    6     9     8    
-## # … with 19 more rows, and 1 more variable: ...12 &lt;chr&gt;</code></pre>
-<p>We need to consider two parameters in <code>read_excel()</code> function: the row number where we want to begin the reading and the sheet we want to read.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="reading-data-with-readr.html#cb221-1" aria-hidden="true" tabindex="-1"></a>df_accis_2009 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/01_ ACCIDENTES POR TIPO EN  DISTRITOS.xls&quot;</span>, </span>
-<span id="cb221-2"><a href="reading-data-with-readr.html#cb221-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">skip =</span> <span class="dv">7</span>, <span class="at">sheet =</span> <span class="st">&quot;2009&quot;</span>)</span></code></pre></div>
-<pre><code>## New names:
-## * `` -&gt; ...12</code></pre>
-<p><strong>Exercises.</strong></p>
+<div id="header">
+<h1 class="title">LiDaViR</h1>
+<h2 class="subtitle"><em>An introduction to R. Maybe especially useful for Excel users</em></h2>
+<p class="author"><em>Leonardo Hansa</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-13</em></p>
+</div>
+<div id="el-enfoque" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> El enfoque</h1>
+<p>En el texto se expone una introducción del lenguaje de programación R orientada a un lector caracterizado por dos puntos:</p>
 <ul>
-<li>Read the rest of the sheets of the Excel file. You should find some trouble with one of the years if you just copy and paste what I typed. Fix it.</li>
-<li>Create one data frame for each sheet. How many rows and columns each one has? <em>Hint.</em> <code>nrow()</code>, <code>ncol()</code> and <code>dim()</code> may help.</li>
-<li>What is the average number of accidents per type in 2009? And the standard deviation? <em>Hint.</em> You should use the <code>$</code> notation.</li>
-<li>What are the names of the columns? Do you consider them appropriate? <em>Hint.</em> <code>names()</code>.</li>
+<li>Si tiene experiencia en datos, la tiene principalmente trabajando con Excel.</li>
+<li>Está más interesado en el análisis de datos que en la ciencia de datos. Esta distinción puede dar quebraderos de cabeza, pero la idea es que no se modeliza en estas páginas. Nada. Ni se predice, ni se hace <em>big data</em>. Solo se hacen la mayoría de las cosas que se hacen en un trabajo con datos, pero nada de humo.</li>
 </ul>
-<div id="about-the-names" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> About the names</h3>
-<p>In R there is some freedom about the names of the columns of a data frame but it is recommeded some guidance, similar to the one of creating objects:</p>
-<ul>
-<li>Use only letters (I only use lowercase), numbers and <code>_</code>.</li>
-<li>Separate each word in the name with a <code>_</code>.</li>
-<li>Begin only with letters.</li>
-</ul>
-<p>There is a function that helps a lot fixing the names of columns. It is especially orientated to problems related with Excel files. The function is <code>clean_names()</code> and you can find it in the <code>janitor</code> package.</p>
-<p><strong>Exercise.</strong></p>
-<ul>
-<li>Install the <code>janitor</code> package and load it. <em>Hint.</em> <code>library()</code>.</li>
-<li>Use <code>clean_names()</code> on your data frames to fix their names. <em>Hint.</em> Bear in mind that if you just type <code>clean_names(mi_data_frame_guay_recien_creado)</code>, R will show you on the console the result, but the names won’t be overwritten. You need to assign that result to the data frame with <code>&lt;-</code>.</li>
-</ul>
-</div>
-</div>
-<div id="what-is-a-csv-file" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> What is a csv file</h2>
-<p>Excel is commonly used for working with tabular data. Excel files allow not only keeping data but also working with them, with formulas and plots. However, when working with too many rows or columns becomes herculean or even impossible (today, Excel doesn’t even allow two million rows). When dealing with these not so large datasets, other formats will be needed for saving the data. However, while Excel has a set of tools for data analysis, these alternatives are only for saving data; for analyzing it, we need R (or other programming language and data software).</p>
-<p>Structure data is usually stored in a tabular format, i.e., in tables. One of the most commong tabular formats is csv (comma separated values). During the sessions we’ll get into details on what a csv file looks like but, from a general point of view, what we need to know is that it is plain text: you can generate a csv file from scratch with the notepad.</p>
-<p>Imagine you have the already known <code>iris</code> dataset on a csv file (this file will have a name, as every file, but the extension will be <code>.csv</code>). It will look something like this:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="reading-data-with-readr.html#cb223-1" aria-hidden="true" tabindex="-1"></a>Sepal.Length,Sepal.With,Petal.Length,Petal.Width,Species</span>
-<span id="cb223-2"><a href="reading-data-with-readr.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fl">5.1</span>,<span class="fl">3.5</span>,<span class="fl">1.4</span>,<span class="fl">0.2</span>,setosa</span>
-<span id="cb223-3"><a href="reading-data-with-readr.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="fl">4.9</span>,<span class="fl">3.0</span>,<span class="fl">1.4</span>,<span class="fl">0.2</span>,setosa</span>
-<span id="cb223-4"><a href="reading-data-with-readr.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="fl">4.7</span>,<span class="fl">3.2</span>,<span class="fl">1.3</span>,<span class="fl">0.2</span>,setosa</span></code></pre></div>
-<p>Since it is not aligned, it is not intuitive realizing that we have three rows of the dataset. There are four rows but the first one is the titles of the columns. Each column is separated with a comma (this is the reason of the name of the format). For every new row, we press Enter at the end of the line.</p>
-<p>We will now get into how to read this with R, so that such a file on our hard drive can be read onto memory (from disk to RAM, which is where R <em>almost always</em> works).</p>
-</div>
-<div id="reading-a-csv" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Reading a csv</h2>
-<p>On the <code>data</code> folder you have another file with the <code>iris</code> dataset, this time in csv format.</p>
-<p>There are some functions in R base for reading csv files but we won’t use them. We will apply the <code>read_csv()</code>, from the <code>readr</code> package.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="reading-data-with-readr.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb224-2"><a href="reading-data-with-readr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>iris_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   sepal_length = col_double(),
-##   sepal_width = col_double(),
-##   petal_length = col_double(),
-##   petal_width = col_double(),
-##   species = col_character()
-## )</code></pre>
-<p><strong>Exercise.</strong></p>
-<ul>
-<li>How many columns are there on the tibble?</li>
-<li>How many rows?</li>
-<li>What are the types of the columns? <em>Hint.</em> Use <code>class()</code>.</li>
-</ul>
-<p>Depending on your computer’s configuration, if you export a file from Excel to csv, the columns may be separated by commas or semicolon, and the decimal mark for numbers may be a point or a comma, respectively.</p>
-<p><strong>Exercise.</strong>
-- Read the <code>iris2.csv</code> file with the <code>read_csv()</code> function.
-- How many columns are there? Which are their names? Does it make any sense?</p>
-</div>
-<div id="reading-other-tabular-data" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Reading other tabular data</h2>
-<div id="another-csv" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Another csv</h3>
-<p>Not always the character for separating columns will be a comma. In some countries, Spain for example, because of the format we usually use for numbers, instead of separating the columns of a csv file with commas, we use semicolons. Thus, we avoid issues with decimal numbers, since we use a comma for separating the integer and decimal part (in other countries, a point is used).</p>
-<p>This file format is also called csv, but an alternative on the code must be typed:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="reading-data-with-readr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>iris_csv <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;data/iris2.csv&quot;</span>) </span></code></pre></div>
-<pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Sepal.Length = col_double(),
-##   Sepal.Width = col_double(),
-##   Petal.Length = col_double(),
-##   Petal.Width = col_double(),
-##   Species = col_character()
-## )</code></pre>
-</div>
-<div id="tsv" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> tsv</h3>
-<p>Another typical way of separating columns is using tab. It is not exactly a space for the computer, though our eyes may no detect many differences. The extension for these files usually is <code>.tsv.</code>.</p>
-<p>In <code>readr</code> we can use <code>read_tsv()</code> function for this format.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="reading-data-with-readr.html#cb229-1" aria-hidden="true" tabindex="-1"></a>iris_tsv <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/iris.tsv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Sepal.Length = col_double(),
-##   Sepal.Width = col_double(),
-##   Petal.Length = col_double(),
-##   Petal.Width = col_double(),
-##   Species = col_character()
-## )</code></pre>
-</div>
-<div id="release-your-imagination" class="section level3" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Release your imagination</h3>
-<p>You have complete freedom when choosing a character for separating columns. A very typical one is <code>|</code>. For these alternatives, there is a general function in the <code>readr</code> package that allows you manually select the character that should be used: <code>read_delim()</code>. This function has two mandatory parameters: the path where you have the file stored and the character used for separations.</p>
-<p><strong>Remark.</strong> For this file, the extension will usually be <code>.txt</code>, but you can invent it (e.g., <code>.sal</code>, for output in Spanish) or even nothing.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="reading-data-with-readr.html#cb231-1" aria-hidden="true" tabindex="-1"></a>iris_nuevo <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="at">file =</span> <span class="st">&quot;data/iris.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;|&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Sepal.Length = col_double(),
-##   Sepal.Width = col_double(),
-##   Petal.Length = col_double(),
-##   Petal.Width = col_double(),
-##   Species = col_character()
-## )</code></pre>
-<p><strong>Exercise.</strong> On the <code>data</code> folder there is a file with no extension. Figure out the character used of separating the columns and read it.</p>
-</div>
-</div>
-<div id="more-things" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> More things</h2>
-<p>Files don’t have to be on your local computer always. You can also read files stored somewhere on the web.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="reading-data-with-readr.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;https://github.com/tidyverse/readr/raw/master/inst/extdata/mtcars.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   mpg = col_double(),
-##   cyl = col_double(),
-##   disp = col_double(),
-##   hp = col_double(),
-##   drat = col_double(),
-##   wt = col_double(),
-##   qsec = col_double(),
-##   vs = col_double(),
-##   am = col_double(),
-##   gear = col_double(),
-##   carb = col_double()
-## )</code></pre>
-<pre><code>## # A tibble: 32 x 11
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # … with 22 more rows</code></pre>
-<p>This dataset is very common in data analysis courses, such as <em>iris</em>. It contains information about a set of cars. You can read the details in the documentation: <code>? mtcars</code>.</p>
-<p><strong>Exercise.</strong> Check the classes of all the columns.</p>
-<p>Some columns have been considered by R as numeric but don’t have decimal numbers. We should convert them to integer, since this type of object needs less space in memory than real numbers. We don’t know yet how to change the columns of a data frame or tibble, but we can do these changed directly when reading the file.</p>
-<p>All the family of functions <code>read_*()</code> from the <code>readr</code> package guess the types of the columns (this may be explained during the sessions) but there is a way of forcing it: the <code>col_types</code> parameter.</p>
-<p>There are a couple of ways of specifying these types. Here is an example for one. We use a character vector with one letter for each columns. The letters will represent the types: in this case, <code>n</code> for <code>numerical</code>, <code>i</code> for <code>integer</code> and <code>l</code> for <code>logical</code>.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="reading-data-with-readr.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;https://github.com/tidyverse/readr/raw/master/inst/extdata/mtcars.csv&quot;</span>, <span class="at">col_types =</span> <span class="st">&quot;ninnnnnilii&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 32 x 11
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs am     gear  carb
-##    &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;lgl&gt; &lt;int&gt; &lt;int&gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0 TRUE      4     4
-##  2  21       6  160    110  3.9   2.87  17.0     0 TRUE      4     4
-##  3  22.8     4  108     93  3.85  2.32  18.6     1 TRUE      4     1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1 FALSE     3     1
-##  5  18.7     8  360    175  3.15  3.44  17.0     0 FALSE     3     2
-##  6  18.1     6  225    105  2.76  3.46  20.2     1 FALSE     3     1
-##  7  14.3     8  360    245  3.21  3.57  15.8     0 FALSE     3     4
-##  8  24.4     4  147.    62  3.69  3.19  20       1 FALSE     4     2
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1 FALSE     4     2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1 FALSE     4     4
-## # … with 22 more rows</code></pre>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="first-steps.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="first-steps.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

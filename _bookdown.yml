@@ -1,1 +1,4 @@
+book_filename: "lidavir"
+delete_merged_file: true
+new_session: yes
 output_dir: "docs"
