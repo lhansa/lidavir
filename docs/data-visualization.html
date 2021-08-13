@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Data visualization | LiDaViR</title>
+  <meta name="description" content="R contents and material for classes. Excel users may be the target." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Data visualization | LiDaViR" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R contents and material for classes. Excel users may be the target." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Data visualization | LiDaViR" />
+  
+  <meta name="twitter:description" content="R contents and material for classes. Excel users may be the target." />
+  
+
+<meta name="author" content="Leonardo Hansa" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="working-with-tables.html"/>
+<link rel="next" href="programming-concepts.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="first-steps.html"><a href="first-steps.html"><i class="fa fa-check"></i><b>1</b> First steps</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="first-steps.html"><a href="first-steps.html#programming-in-r"><i class="fa fa-check"></i><b>1.1</b> Programming in R</a></li>
+<li class="chapter" data-level="1.2" data-path="first-steps.html"><a href="first-steps.html#r-as-a-calculator"><i class="fa fa-check"></i><b>1.2</b> R as a calculator</a></li>
+<li class="chapter" data-level="1.3" data-path="first-steps.html"><a href="first-steps.html#simple-types-of-objects"><i class="fa fa-check"></i><b>1.3</b> Simple types of objects</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="first-steps.html"><a href="first-steps.html#numeric"><i class="fa fa-check"></i><b>1.3.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.3.2" data-path="first-steps.html"><a href="first-steps.html#character"><i class="fa fa-check"></i><b>1.3.2</b> Character</a></li>
+<li class="chapter" data-level="1.3.3" data-path="first-steps.html"><a href="first-steps.html#logical"><i class="fa fa-check"></i><b>1.3.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="first-steps.html"><a href="first-steps.html#sets-of-elements"><i class="fa fa-check"></i><b>1.4</b> Sets of elements</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="first-steps.html"><a href="first-steps.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="first-steps.html"><a href="first-steps.html#matrix"><i class="fa fa-check"></i><b>1.4.2</b> Matrix</a></li>
+<li class="chapter" data-level="1.4.3" data-path="first-steps.html"><a href="first-steps.html#data-frames"><i class="fa fa-check"></i><b>1.4.3</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="first-steps.html"><a href="first-steps.html#extending-r-with-libraries"><i class="fa fa-check"></i><b>1.5</b> Extending R with libraries</a></li>
+<li class="chapter" data-level="1.6" data-path="first-steps.html"><a href="first-steps.html#installation"><i class="fa fa-check"></i><b>1.6</b> Installation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html"><i class="fa fa-check"></i><b>2</b> Reading data with readr</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#excel"><i class="fa fa-check"></i><b>2.1</b> Excel</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#about-the-names"><i class="fa fa-check"></i><b>2.1.1</b> About the names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#what-is-a-csv-file"><i class="fa fa-check"></i><b>2.2</b> What is a csv file</a></li>
+<li class="chapter" data-level="2.3" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#reading-a-csv"><i class="fa fa-check"></i><b>2.3</b> Reading a csv</a></li>
+<li class="chapter" data-level="2.4" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#reading-other-tabular-data"><i class="fa fa-check"></i><b>2.4</b> Reading other tabular data</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#another-csv"><i class="fa fa-check"></i><b>2.4.1</b> Another csv</a></li>
+<li class="chapter" data-level="2.4.2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#tsv"><i class="fa fa-check"></i><b>2.4.2</b> tsv</a></li>
+<li class="chapter" data-level="2.4.3" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#release-your-imagination"><i class="fa fa-check"></i><b>2.4.3</b> Release your imagination</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#more-things"><i class="fa fa-check"></i><b>2.5</b> More things</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-tables.html"><a href="working-with-tables.html"><i class="fa fa-check"></i><b>3</b> Working with tables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="working-with-tables.html"><a href="working-with-tables.html#creating-and-selecting-columns"><i class="fa fa-check"></i><b>3.1</b> Creating and selecting columns</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="working-with-tables.html"><a href="working-with-tables.html#mtcars-dataset"><i class="fa fa-check"></i><b>3.1.1</b> mtcars dataset</a></li>
+<li class="chapter" data-level="3.1.2" data-path="working-with-tables.html"><a href="working-with-tables.html#invented-dataset"><i class="fa fa-check"></i><b>3.1.2</b> Invented dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="working-with-tables.html"><a href="working-with-tables.html#filtering-rows"><i class="fa fa-check"></i><b>3.2</b> Filtering rows</a></li>
+<li class="chapter" data-level="3.3" data-path="working-with-tables.html"><a href="working-with-tables.html#distinct"><i class="fa fa-check"></i><b>3.3</b> Distinct</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="working-with-tables.html"><a href="working-with-tables.html#r-base"><i class="fa fa-check"></i><b>3.3.1</b> R base</a></li>
+<li class="chapter" data-level="3.3.2" data-path="working-with-tables.html"><a href="working-with-tables.html#dplyr"><i class="fa fa-check"></i><b>3.3.2</b> dplyr</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="working-with-tables.html"><a href="working-with-tables.html#some-comments-about-na"><i class="fa fa-check"></i><b>3.4</b> Some comments about <code>NA</code></a></li>
+<li class="chapter" data-level="3.5" data-path="working-with-tables.html"><a href="working-with-tables.html#row-numbers"><i class="fa fa-check"></i><b>3.5</b> Row numbers</a></li>
+<li class="chapter" data-level="3.6" data-path="working-with-tables.html"><a href="working-with-tables.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="working-with-tables.html"><a href="working-with-tables.html#summarizing-tables"><i class="fa fa-check"></i><b>3.7</b> Summarizing tables</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="working-with-tables.html"><a href="working-with-tables.html#exercises-1"><i class="fa fa-check"></i><b>3.7.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="working-with-tables.html"><a href="working-with-tables.html#aggregating-the-data"><i class="fa fa-check"></i><b>3.8</b> Aggregating the data</a></li>
+<li class="chapter" data-level="3.9" data-path="working-with-tables.html"><a href="working-with-tables.html#a-summary"><i class="fa fa-check"></i><b>3.9</b> A summary</a></li>
+<li class="chapter" data-level="3.10" data-path="working-with-tables.html"><a href="working-with-tables.html#dplyr-verbs"><i class="fa fa-check"></i><b>3.10</b> Dplyr verbs</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="working-with-tables.html"><a href="working-with-tables.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>3.10.1</b> Filter rows with filter()</a></li>
+<li class="chapter" data-level="3.10.2" data-path="working-with-tables.html"><a href="working-with-tables.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>3.10.2</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.10.3" data-path="working-with-tables.html"><a href="working-with-tables.html#select-columns-with-select"><i class="fa fa-check"></i><b>3.10.3</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="working-with-tables.html"><a href="working-with-tables.html#add-new-columns-with-mutate"><i class="fa fa-check"></i><b>3.10.4</b> Add new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.10.5" data-path="working-with-tables.html"><a href="working-with-tables.html#summarise-values-with-summarise"><i class="fa fa-check"></i><b>3.10.5</b> Summarise values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.10.6" data-path="working-with-tables.html"><a href="working-with-tables.html#randomly-sample-rows-with-sample_n-and-sample_frac"><i class="fa fa-check"></i><b>3.10.6</b> Randomly sample rows with <code>sample_n()</code> and <code>sample_frac()</code></a></li>
+<li class="chapter" data-level="3.10.7" data-path="working-with-tables.html"><a href="working-with-tables.html#commonalities"><i class="fa fa-check"></i><b>3.10.7</b> Commonalities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="working-with-tables.html"><a href="working-with-tables.html#grouped-operations"><i class="fa fa-check"></i><b>3.11</b> Grouped operations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>4</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualization.html"><a href="data-visualization.html#first-steps-into-dataviz"><i class="fa fa-check"></i><b>4.1</b> First steps into dataviz</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2"><i class="fa fa-check"></i><b>4.1.1</b> ggplot2</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-visualization.html"><a href="data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>4.1.2</b> Scatter plot</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-visualization.html"><a href="data-visualization.html#columns"><i class="fa fa-check"></i><b>4.1.3</b> Columns</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-visualization.html"><a href="data-visualization.html#lines"><i class="fa fa-check"></i><b>4.1.4</b> Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-visualization.html"><a href="data-visualization.html#exercises-about-scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Exercises about scatter plots</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise-1"><i class="fa fa-check"></i><b>4.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualization.html"><a href="data-visualization.html#exercise-2"><i class="fa fa-check"></i><b>4.2.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualization.html"><a href="data-visualization.html#exercise-3"><i class="fa fa-check"></i><b>4.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualization.html"><a href="data-visualization.html#exercise-4"><i class="fa fa-check"></i><b>4.2.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualization.html"><a href="data-visualization.html#exercises-about-line-plots"><i class="fa fa-check"></i><b>4.3</b> Exercises about line plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise-1-1"><i class="fa fa-check"></i><b>4.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-visualization.html"><a href="data-visualization.html#exercise-2-1"><i class="fa fa-check"></i><b>4.3.2</b> Exercise 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-visualization.html"><a href="data-visualization.html#columns-and-boxplots"><i class="fa fa-check"></i><b>4.4</b> Columns and boxplots</a></li>
+<li class="chapter" data-level="4.5" data-path="data-visualization.html"><a href="data-visualization.html#preparing-the-data"><i class="fa fa-check"></i><b>4.5</b> Preparing the data</a></li>
+<li class="chapter" data-level="4.6" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i><b>4.6</b> Bar plots</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>4.7</b> Histograms</a></li>
+<li class="chapter" data-level="4.8" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>4.8</b> Boxplots</a></li>
+<li class="chapter" data-level="4.9" data-path="data-visualization.html"><a href="data-visualization.html#some-improvements"><i class="fa fa-check"></i><b>4.9</b> Some improvements</a></li>
+<li class="chapter" data-level="4.10" data-path="data-visualization.html"><a href="data-visualization.html#mixing-data"><i class="fa fa-check"></i><b>4.10</b> Mixing data</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise"><i class="fa fa-check"></i><b>4.10.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="data-visualization.html"><a href="data-visualization.html#facets-the-basics"><i class="fa fa-check"></i><b>4.11</b> Facets: The basics</a></li>
+<li class="chapter" data-level="4.12" data-path="data-visualization.html"><a href="data-visualization.html#many-variables-in-just-one-plot"><i class="fa fa-check"></i><b>4.12</b> Many variables in just one plot</a></li>
+<li class="chapter" data-level="4.13" data-path="data-visualization.html"><a href="data-visualization.html#something-more"><i class="fa fa-check"></i><b>4.13</b> Something more</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="data-visualization.html"><a href="data-visualization.html#pivoting-data"><i class="fa fa-check"></i><b>4.13.1</b> Pivoting data</a></li>
+<li class="chapter" data-level="4.13.2" data-path="data-visualization.html"><a href="data-visualization.html#basic-scatter-plot"><i class="fa fa-check"></i><b>4.13.2</b> Basic scatter plot</a></li>
+<li class="chapter" data-level="4.13.3" data-path="data-visualization.html"><a href="data-visualization.html#facet-rows-accoding-to-vore"><i class="fa fa-check"></i><b>4.13.3</b> Facet rows accoding to vore</a></li>
+<li class="chapter" data-level="4.13.4" data-path="data-visualization.html"><a href="data-visualization.html#specify-scale-and-space-arguments-to-free-up-rows"><i class="fa fa-check"></i><b>4.13.4</b> Specify scale and space arguments to free up rows</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="data-visualization.html"><a href="data-visualization.html#united-nations-life-expectancy-data"><i class="fa fa-check"></i><b>4.14</b> United Nations life expectancy data</a></li>
+<li class="chapter" data-level="4.15" data-path="data-visualization.html"><a href="data-visualization.html#life-expectancy-of-men-vs.-women-by-country"><i class="fa fa-check"></i><b>4.15</b> Life expectancy of men vs. women by country</a></li>
+<li class="chapter" data-level="4.16" data-path="data-visualization.html"><a href="data-visualization.html#visualize-i"><i class="fa fa-check"></i><b>4.16</b> Visualize (I)</a></li>
+<li class="chapter" data-level="4.17" data-path="data-visualization.html"><a href="data-visualization.html#reference-lines-i"><i class="fa fa-check"></i><b>4.17</b> Reference lines (I)</a></li>
+<li class="chapter" data-level="4.18" data-path="data-visualization.html"><a href="data-visualization.html#plot-titles-and-axis-labels"><i class="fa fa-check"></i><b>4.18</b> Plot titles and axis labels</a></li>
+<li class="chapter" data-level="4.19" data-path="data-visualization.html"><a href="data-visualization.html#highlighting-remarkable-countries-i"><i class="fa fa-check"></i><b>4.19</b> Highlighting remarkable countries (I)</a></li>
+<li class="chapter" data-level="4.20" data-path="data-visualization.html"><a href="data-visualization.html#gif"><i class="fa fa-check"></i><b>4.20</b> GIF</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-concepts.html"><a href="programming-concepts.html"><i class="fa fa-check"></i><b>5</b> Programming concepts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programming-concepts.html"><a href="programming-concepts.html#purpose-of-functions"><i class="fa fa-check"></i><b>5.1</b> Purpose of functions</a></li>
+<li class="chapter" data-level="5.2" data-path="programming-concepts.html"><a href="programming-concepts.html#the-arguments"><i class="fa fa-check"></i><b>5.2</b> The arguments</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="programming-concepts.html"><a href="programming-concepts.html#order-of-the-arguments"><i class="fa fa-check"></i><b>5.2.1</b> Order of the arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="programming-concepts.html"><a href="programming-concepts.html#the-value"><i class="fa fa-check"></i><b>5.3</b> The value</a></li>
+<li class="chapter" data-level="5.4" data-path="programming-concepts.html"><a href="programming-concepts.html#your-own-functions"><i class="fa fa-check"></i><b>5.4</b> Your own functions</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-concepts.html"><a href="programming-concepts.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="programming-concepts.html"><a href="programming-concepts.html#conditions"><i class="fa fa-check"></i><b>5.6</b> Conditions</a></li>
+<li class="chapter" data-level="5.7" data-path="programming-concepts.html"><a href="programming-concepts.html#joining-data-frames-with-dplyr"><i class="fa fa-check"></i><b>5.7</b> Joining data frames with dplyr</a></li>
+<li class="chapter" data-level="5.8" data-path="programming-concepts.html"><a href="programming-concepts.html#binding-data-frames"><i class="fa fa-check"></i><b>5.8</b> Binding data frames</a></li>
+<li class="chapter" data-level="5.9" data-path="programming-concepts.html"><a href="programming-concepts.html#exercises-3"><i class="fa fa-check"></i><b>5.9</b> Exercises</a></li>
+<li class="chapter" data-level="5.10" data-path="programming-concepts.html"><a href="programming-concepts.html#applying-the-same-function-to-several-elements-i"><i class="fa fa-check"></i><b>5.10</b> Applying the same function to several elements (I)</a></li>
+<li class="chapter" data-level="5.11" data-path="programming-concepts.html"><a href="programming-concepts.html#lists"><i class="fa fa-check"></i><b>5.11</b> Lists</a></li>
+<li class="chapter" data-level="5.12" data-path="programming-concepts.html"><a href="programming-concepts.html#applying-the-same-function-to-several-elements-ii"><i class="fa fa-check"></i><b>5.12</b> Applying the same function to several elements (II)</a></li>
+<li class="chapter" data-level="5.13" data-path="programming-concepts.html"><a href="programming-concepts.html#exercise-5"><i class="fa fa-check"></i><b>5.13</b> Exercise</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">LiDaViR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Data visualization</h1>
+<div id="first-steps-into-dataviz" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> First steps into dataviz</h2>
+<p>When dealing with a very small set of data, a table can be enough for understanding it. But increasing the amount of data, even just a few rows, a proper plot can really help getting some information. Visualization is key in explaining data.</p>
+<p>There exist several tools for visualizing data. Every stats software will provide you some packages for visualizing. There are even tools especially prepared for them, such as Qlik or PowerBI (the most typical aren’t open software).</p>
+<p>With R base we can make lots of plots, mainly via the <code>plot()</code> function. It is important knowing this functions, since it interacts differently with the object it receives, depending on its class. For instance:</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-visualization.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="data-visualization.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-156-2.png" width="672" /></p>
+<p>However, we are going to work with ggplot2, the most common library for visualization in R. R base is usually said to be ugly for data visualization: this is too subjective. What’s true is the potential of ggplot2 is incredibly higher than base’s one.</p>
+<div id="ggplot2" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> ggplot2</h3>
+<p>The <em>gg</em> in ggplot2 stands for <em>grammar of graphics</em>. ggplot2 provides us with a sintaxis for developing plots based on adding layers to a plot. A plot in ggplot is an object: a data frame is an object, a number is an object,… now a plot is an object too. Therefore, we can operate with it, in a especial way.</p>
+<p>We begin calling the library (install it if you haven’t yet).</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="data-visualization.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>A plot object can be created with the <code>ggplot()</code> function.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="data-visualization.html#cb408-1" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb408-2"><a href="data-visualization.html#cb408-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-3"><a href="data-visualization.html#cb408-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(P)</span></code></pre></div>
+<pre><code>## [1] &quot;gg&quot;     &quot;ggplot&quot;</code></pre>
+<p>If we try to show , we won’t see anything interesting.</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data-visualization.html#cb410-1" aria-hidden="true" tabindex="-1"></a>P</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p>That’s because we have to fill it with:</p>
+<ul>
+<li>Data</li>
+<li>The axis</li>
+<li>Aesthetics</li>
+<li>Labelling</li>
+<li>Distribution on the board</li>
+<li>…</li>
+</ul>
+<p>ggplot2 belongs to the tidyverse environment, therefore it is especially appropriate working with data frames. The data frames or tibbles will be the objects we’ll use for providing the plot with data. Then we’ll use the rest of the ggplot2 grammar to take advantage of this data and use it for visualizing.</p>
+</div>
+<div id="scatter-plot" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Scatter plot</h3>
+<p>The scatter plot consists on several points on the plane. It is the most typical type plot for representing two dimensions from continuous (numerical) data: height vs. weight, income vs. age, …</p>
+<p>We’ve already seen that <code>ggplot()</code> generates a plot object. It can also receive the data frame we’ll take the info from. But still, only indicating the data frame is not enough to plot anything.</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="data-visualization.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p>We must indicate specific info depending on the type of plot. For scatter plots, we add a layer of points with <code>geom_point()</code>, saying what the x axis represents and what the y axis represents.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="data-visualization.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> </span>
+<span id="cb412-2"><a href="data-visualization.html#cb412-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p>We can also relate more things with the available data. For instance, we can color each point depending on some other column from the data frame.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="data-visualization.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> </span>
+<span id="cb413-2"><a href="data-visualization.html#cb413-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">colour =</span> Species))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<p>Notice that all this info we have used (x axis, y axis and colour) is inside the <code>aes()</code> function. If we tried to write this info outside the function we would get an error.</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-visualization.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> </span>
+<span id="cb414-2"><a href="data-visualization.html#cb414-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width), <span class="at">colour =</span> Species)</span>
+<span id="cb414-3"><a href="data-visualization.html#cb414-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomPoint, : object &#39;Species&#39; not found</span></span></code></pre></div>
+<p>Outside <code>aes()</code> we can only include information for the graphic that doesn’t depend on the data. For instance, if we wanted to colour all the points equally:</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="data-visualization.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> </span>
+<span id="cb415-2"><a href="data-visualization.html#cb415-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width), <span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p>Or increase its size:</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-visualization.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> </span>
+<span id="cb416-2"><a href="data-visualization.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">colour =</span> Species), <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+</div>
+<div id="columns" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Columns</h3>
+<p>If we are working with just one numerical dimension, points may not be the best choice. Imagine you want to compare the average value of some metric at different groups. Plots or bars are good alternatives.</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="data-visualization.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb417-2"><a href="data-visualization.html#cb417-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb417-3"><a href="data-visualization.html#cb417-3" aria-hidden="true" tabindex="-1"></a>iris2plot <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb417-4"><a href="data-visualization.html#cb417-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb417-5"><a href="data-visualization.html#cb417-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_petal_length =</span> <span class="fu">mean</span>(Petal.Length), </span>
+<span id="cb417-6"><a href="data-visualization.html#cb417-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">avg_petal_width =</span> <span class="fu">mean</span>(Petal.Width))</span>
+<span id="cb417-7"><a href="data-visualization.html#cb417-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb417-8"><a href="data-visualization.html#cb417-8" aria-hidden="true" tabindex="-1"></a>iris2plot</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   Species    avg_petal_length avg_petal_width
+##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;
+## 1 setosa                 1.46           0.246
+## 2 versicolor             4.26           1.33 
+## 3 virginica              5.55           2.03</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="data-visualization.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris2plot) <span class="sc">+</span> </span>
+<span id="cb419-2"><a href="data-visualization.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> avg_petal_length))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>Similarly to the previous situation, you can decide whether extracting information from the data frame or using the same parameters for all the columns.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data-visualization.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris2plot) <span class="sc">+</span> </span>
+<span id="cb420-2"><a href="data-visualization.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> avg_petal_length), </span>
+<span id="cb420-3"><a href="data-visualization.html#cb420-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&quot;#F47C00&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+</div>
+<div id="lines" class="section level3" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Lines</h3>
+<p>Line plots are associated with time series. Let’s have a look at the economic dataset (details with <code>? economics</code>).</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-visualization.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(economics)</span></code></pre></div>
+<pre><code>## Rows: 574
+## Columns: 6
+## $ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …
+## $ pce      &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…
+## $ pop      &lt;dbl&gt; 198712, 198911, 199113, 199311, 199498, 199657, 199808, 19992…
+## $ psavert  &lt;dbl&gt; 12.6, 12.6, 11.9, 12.9, 12.8, 11.8, 11.7, 12.3, 11.7, 12.3, 1…
+## $ uempmed  &lt;dbl&gt; 4.5, 4.7, 4.6, 4.9, 4.7, 4.8, 5.1, 4.5, 4.1, 4.6, 4.4, 4.4, 4…
+## $ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 2709, 2…</code></pre>
+<p>When using a x axis of <code>Date</code> class, ggplot2 knows how to work with it and will try to find proper labels for the axis.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="data-visualization.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice that you can include the aes() functions inside geom_line() or ggplot()</span></span>
+<span id="cb423-2"><a href="data-visualization.html#cb423-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb423-3"><a href="data-visualization.html#cb423-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(date, unemploy)) <span class="sc">+</span> </span>
+<span id="cb423-4"><a href="data-visualization.html#cb423-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p>Now we want to plot the median duration of unemployment (<code>unempmed</code>) along with the unemployment. With ggplot2 we just have to add more layers.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data-visualization.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics) <span class="sc">+</span> </span>
+<span id="cb424-2"><a href="data-visualization.html#cb424-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, unemploy)) <span class="sc">+</span> </span>
+<span id="cb424-3"><a href="data-visualization.html#cb424-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, uempmed))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p>The problem here is that the scales of the variables are too different. One solution for solving this is rescaling the data. Google Trends, for example, divides all the data by the maximum. For transforming the data we use dplyr.</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-visualization.html#cb425-1" aria-hidden="true" tabindex="-1"></a>scaled_economics <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span> </span>
+<span id="cb425-2"><a href="data-visualization.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy, uempmed) <span class="sc">%&gt;%</span> </span>
+<span id="cb425-3"><a href="data-visualization.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unemploy =</span> unemploy <span class="sc">/</span> <span class="fu">max</span>(unemploy), </span>
+<span id="cb425-4"><a href="data-visualization.html#cb425-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">uempmed =</span> uempmed <span class="sc">/</span> <span class="fu">max</span>(uempmed))</span>
+<span id="cb425-5"><a href="data-visualization.html#cb425-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb425-6"><a href="data-visualization.html#cb425-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(scaled_economics) <span class="sc">+</span> </span>
+<span id="cb425-7"><a href="data-visualization.html#cb425-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, unemploy)) <span class="sc">+</span> </span>
+<span id="cb425-8"><a href="data-visualization.html#cb425-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, uempmed))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p>We should use different colors for each series. And include a legend. Too much work. Imagine if we had to plot all the series from the data frame. Too much code. Let’s simplify this.</p>
+<p>We need the data in a different format. Have a look at the <code>economics_long</code> data frame. It contains the same information as the previous one but it has more rows and less columns. We’ll learn how to make these changes to a data frame later on but for now it is enough just using this one already prepared.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data-visualization.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(economics_long)</span></code></pre></div>
+<pre><code>## Rows: 2,870
+## Columns: 4
+## $ date     &lt;date&gt; 1967-07-01, 1967-08-01, 1967-09-01, 1967-10-01, 1967-11-01, …
+## $ variable &lt;chr&gt; &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;, &quot;pce&quot;…
+## $ value    &lt;dbl&gt; 506.7, 509.8, 515.6, 512.2, 517.4, 525.1, 530.9, 533.6, 544.3…
+## $ value01  &lt;dbl&gt; 0.0000000000, 0.0002652497, 0.0007615234, 0.0004706043, 0.000…</code></pre>
+<p>On the x axis we still want the date. On the y axis, the value that each variable gets. But if just write this, we will see that something is not working correctly.</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data-visualization.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_long) <span class="sc">+</span></span>
+<span id="cb428-2"><a href="data-visualization.html#cb428-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value01))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p>For obtaining the separation we want, we need to indicate that the values are separated in variables. We can do this with the <code>group=</code> parameter.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-visualization.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_long) <span class="sc">+</span></span>
+<span id="cb429-2"><a href="data-visualization.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value01, <span class="at">group =</span> variable))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>Or directly with the <code>colour=</code> parameter, which also provides us with a legend, mandatory in such a case.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data-visualization.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics_long) <span class="sc">+</span></span>
+<span id="cb430-2"><a href="data-visualization.html#cb430-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value01, <span class="at">colour =</span> variable))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercises-about-scatter-plots" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Exercises about scatter plots</h2>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="data-visualization.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb431-2"><a href="data-visualization.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div id="exercise-1" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Exercise 1</h3>
+<div id="a" class="section level4" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> 1a</h4>
+<p>Have a look at the <code>mtcars</code> data frame with <code>glimpse()</code> and <code>? mtcars</code>. Then create a scatter plot of the miles per gallon (on the y axis) and the weight (on the x axis). For creating the plot, just fill in the dots in the next code.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data-visualization.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb432-2"><a href="data-visualization.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+</div>
+<div id="b" class="section level4" number="4.2.1.2">
+<h4><span class="header-section-number">4.2.1.2</span> 1b</h4>
+<p>Repeat the previous plot, colouring all the points from the previous plot in red. Notice that since the color doesn’t depend on the data frame, it is typed outside the <code>aes()</code> function.</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="data-visualization.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb433-2"><a href="data-visualization.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(...), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+</div>
+<div id="c" class="section level4" number="4.2.1.3">
+<h4><span class="header-section-number">4.2.1.3</span> 1c</h4>
+<p>Repeat the same plot but colouring the dots based on their displacement value (<code>disp</code> column).</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="data-visualization.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb434-2"><a href="data-visualization.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> ..., <span class="at">y =</span> ..., <span class="at">colour =</span> ...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+</div>
+<div id="d" class="section level4" number="4.2.1.4">
+<h4><span class="header-section-number">4.2.1.4</span> 1d</h4>
+<p>Instead of colouring the dots in different colours, make them have a different size depending again on the <code>disp</code> variable.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="data-visualization.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb435-2"><a href="data-visualization.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercise-2" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Exercise 2</h3>
+<div id="a-1" class="section level4" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> 2a</h4>
+<p>Scatter plots can also be used for non continuous data. In R, when dealing with continuous data, we usually use the <code>numeric</code> class (weight, heights, incomes,…). But there are some variables that are written with numbers but aren’t continuous (age, number of cylinders, identificators). What is the class of the number of cylinders in the <code>mtcars</code> data frame? Remember to use <code>? mtcars</code> if you don’t know the name of the column in the data frame.</p>
+</div>
+<div id="b-1" class="section level4" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> 2b</h4>
+<p>What are its unique values. Fill in the gap:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="data-visualization.html#cb436-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(...)</span></code></pre></div>
+</div>
+<div id="c-1" class="section level4" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> 2c</h4>
+<p>Based on the distinct values, the class of the column it’s not the best. Try to plot a scatter plot the miles per gallon (y axis) versus the number of cylinders.</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="data-visualization.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb437-2"><a href="data-visualization.html#cb437-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p>In general, nothing wrong. But the x axis shows values that are not possible (5 and 7). This is because the number of cylinders should be a categorical variable and not a numerical one. Let’s fix it.</p>
+</div>
+<div id="d-1" class="section level4" number="4.2.2.4">
+<h4><span class="header-section-number">4.2.2.4</span> 2d</h4>
+<p>In R, categorial variables belong to a new class: <code>factor</code>. We can easily convert some variables to the factor class with the <code>as.factor()</code> function.</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="data-visualization.html#cb438-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb438-2"><a href="data-visualization.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl))</span></code></pre></div>
+<p>Fill in the gaps for plotting the same scatter plot as before and compare the result.</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="data-visualization.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb439-2"><a href="data-visualization.html#cb439-2" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercise-3" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Exercise 3</h3>
+<div id="a-2" class="section level4" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> 3a</h4>
+<p>With ggplot2 you have available the <code>diamonds</code> data frame. Have a look at its info with <code>? diamonds</code> and <code>glimpse(diamonds)</code>.</p>
+</div>
+<div id="b-2" class="section level4" number="4.2.3.2">
+<h4><span class="header-section-number">4.2.3.2</span> 3b</h4>
+<p>Create a scatter plot with the price of the diamonds (y axis) vs the weight of the diamond (x axis). There are more than 50,000 diamonds, so it may take longer than expected plotting the plot.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="data-visualization.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> </span>
+<span id="cb440-2"><a href="data-visualization.html#cb440-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="fu">aes</span>(...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+</div>
+<div id="c-2" class="section level4" number="4.2.3.3">
+<h4><span class="header-section-number">4.2.3.3</span> 3c</h4>
+<p>There are too many dots, therefore they overlap and the result is a cloud of data not very comfortable to look at. Let’s fix it. First, reduce the size of all the points. Try with <code>size = 0.5</code>.</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="data-visualization.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span> </span>
+<span id="cb441-2"><a href="data-visualization.html#cb441-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="fu">aes</span>(...), ...)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+</div>
+<div id="d-2" class="section level4" number="4.2.3.4">
+<h4><span class="header-section-number">4.2.3.4</span> 3d</h4>
+<p>One more thing to improve it. We can give some transparency to the points. This will help us seeing where there are too many points together. The parameter used for this is called <code>alpha</code> (very common not only in R but also in other programming languages that deal with color, such as CSS). This parameter takes values from 0 (invisible) to 1 (opaque). Set this value to 0.1, alongside the already defined size. This time, you write the code from scratch, but remember that copy-pasting is key when programming.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="data-visualization.html#cb442-1" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+</div>
+<div id="e" class="section level4" number="4.2.3.5">
+<h4><span class="header-section-number">4.2.3.5</span> 3e</h4>
+<p>Now we are giving some color to the plot. This color will be based on the clarity of the diamonds, which is a column from the data frame. We are setting the transparency to 0.4, to make that overlapping easier to see.</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="data-visualization.html#cb443-1" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercise-4" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Exercise 4</h3>
+<p>Let us create a data frame from the <code>countries_of_the_world.csv</code> file you used for Assessment 1. We will use the <code>clean_names()</code> function from the janitor library to simplify the names of the columns. We are also removing all the rows with some <code>NA</code> value.</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="data-visualization.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb444-2"><a href="data-visualization.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb444-3"><a href="data-visualization.html#cb444-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb444-4"><a href="data-visualization.html#cb444-4" aria-hidden="true" tabindex="-1"></a>df_countries <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/countries_of_the_world.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb444-5"><a href="data-visualization.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb444-6"><a href="data-visualization.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   Country = col_character(),
+##   Region = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="data-visualization.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_countries)</span></code></pre></div>
+<pre><code>## Rows: 179
+## Columns: 20
+## $ country                          &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, …
+## $ region                           &lt;chr&gt; &quot;ASIA (EX. NEAR EAST)&quot;, &quot;EASTERN EURO…
+## $ population                       &lt;dbl&gt; 31056997, 3581655, 32930091, 13477, 6…
+## $ area_sq_mi                       &lt;dbl&gt; 647500, 28748, 2381740, 102, 443, 276…
+## $ pop_density_per_sq_mi            &lt;dbl&gt; 48.0, 124.6, 13.8, 132.1, 156.0, 14.4…
+## $ coastline_coast_area_ratio       &lt;dbl&gt; 0.00, 1.26, 0.04, 59.80, 34.54, 0.18,…
+## $ net_migration                    &lt;dbl&gt; 23.06, -4.93, -0.39, 10.76, -6.15, 0.…
+## $ infant_mortality_per_1000_births &lt;dbl&gt; 163.07, 21.52, 31.00, 21.03, 19.46, 1…
+## $ gdp_per_capita                   &lt;dbl&gt; 700, 4500, 6000, 8600, 11000, 11200, …
+## $ literacy_percent                 &lt;dbl&gt; 36.0, 86.5, 70.0, 95.0, 89.0, 97.1, 9…
+## $ phones_per_1000                  &lt;dbl&gt; 3.2, 71.2, 78.1, 460.0, 549.9, 220.4,…
+## $ arable_percent                   &lt;dbl&gt; 12.13, 21.09, 3.22, 0.00, 18.18, 12.3…
+## $ crops_percent                    &lt;dbl&gt; 0.22, 4.42, 0.25, 0.00, 4.55, 0.48, 2…
+## $ other_percent                    &lt;dbl&gt; 87.65, 74.49, 96.53, 100.00, 77.27, 8…
+## $ climate                          &lt;dbl&gt; 1.0, 3.0, 1.0, 2.0, 2.0, 3.0, 4.0, 2.…
+## $ birthrate                        &lt;dbl&gt; 46.60, 15.11, 17.14, 14.17, 16.93, 16…
+## $ deathrate                        &lt;dbl&gt; 20.34, 5.22, 4.61, 5.34, 5.37, 7.55, …
+## $ agriculture                      &lt;dbl&gt; 0.380, 0.232, 0.101, 0.040, 0.038, 0.…
+## $ industry                         &lt;dbl&gt; 0.240, 0.188, 0.600, 0.180, 0.220, 0.…
+## $ service                          &lt;dbl&gt; 0.380, 0.579, 0.298, 0.780, 0.743, 0.…</code></pre>
+<div id="a-3" class="section level4" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> 4a</h4>
+<p>Plot the <code>phones_per_1000</code> columns against the <code>literacy_percent</code> column, with a scatter plot.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+</div>
+<div id="b-3" class="section level4" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> 4b</h4>
+<p>In the same plot, colour each point based on its region.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+</div>
+<div id="c-3" class="section level4" number="4.2.4.3">
+<h4><span class="header-section-number">4.2.4.3</span> 4c</h4>
+<p>Make scatter plot of the <code>service</code> columns vs. the <code>agriculture</code> column. Change the size of each point depending on each population and color all of them in <code>"darkblue"</code>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="exercises-about-line-plots" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Exercises about line plots</h2>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="data-visualization.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb448-2"><a href="data-visualization.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div id="exercise-1-1" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Exercise 1</h3>
+<div id="a-4" class="section level4" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> 1a</h4>
+<p>From the <code>economics</code> data frame plot <code>unemploy</code> vs <code>date</code> using a line plot. You will need <code>geom_line()</code>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+</div>
+<div id="b-4" class="section level4" number="4.3.1.2">
+<h4><span class="header-section-number">4.3.1.2</span> 1b</h4>
+<p>Using dplyr, calculate a new column as the unemployment rate (umemployment divided by the population). Plot this column as a time series, in a similar way you did before.</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="data-visualization.html#cb449-1" aria-hidden="true" tabindex="-1"></a>economics_new <span class="ot">&lt;-</span> ... <span class="sc">%&gt;%</span> </span>
+<span id="cb449-2"><a href="data-visualization.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="at">unemployment_rate =</span> ...)</span>
+<span id="cb449-3"><a href="data-visualization.html#cb449-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-4"><a href="data-visualization.html#cb449-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for the plot:</span></span>
+<span id="cb449-5"><a href="data-visualization.html#cb449-5" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
+</div>
+<div id="c-4" class="section level4" number="4.3.1.3">
+<h4><span class="header-section-number">4.3.1.3</span> 1c</h4>
+<p>Something comfortable about ggplot2 is that it is also able to make some calculations. For intance, in the previous plot, it wasn’t necessary that dplyr step. We can calculate the unemployment rate on the fly. Try to use the formula <code>umemploy / pop</code> when specifying the y axis.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="data-visualization.html#cb450-1" aria-hidden="true" tabindex="-1"></a>... <span class="sc">+</span> </span>
+<span id="cb450-2"><a href="data-visualization.html#cb450-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="fu">...</span>(<span class="at">x =</span> ..., <span class="at">y =</span> ...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercise-2-1" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Exercise 2</h3>
+<div id="a-5" class="section level4" number="4.3.2.1">
+<h4><span class="header-section-number">4.3.2.1</span> 2a</h4>
+<p>From the <code>ChickWeight</code> data frame, create a lines plot with the evolution over Time of the <code>weight</code> variable. Take into account that we need a different line for each <code>Chick</code>. For achieving this, map the <code>Chick</code> column to the <code>group=</code> parameter, inside the <code>aes()</code> function.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="data-visualization.html#cb451-1" aria-hidden="true" tabindex="-1"></a>... <span class="sc">+</span> </span>
+<span id="cb451-2"><a href="data-visualization.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="fu">aes</span>(<span class="at">x =</span> ..., <span class="at">y =</span> ..., <span class="at">group =</span> ...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+</div>
+<div id="b-5" class="section level4" number="4.3.2.2">
+<h4><span class="header-section-number">4.3.2.2</span> 2b</h4>
+<p>Now colour each line depending on the <code>Diet</code> the chick has received.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="data-visualization.html#cb452-1" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="columns-and-boxplots" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Columns and boxplots</h2>
+</div>
+<div id="preparing-the-data" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Preparing the data</h2>
+<p>We will study a breast cancer dataset, very common on data analysis. It contains several cases of benign and malign cases of breast cancer with information about the biopsies. It is often used as an example for supervised modelling: the goal would be predicting whether the case is benign or malign from the rest of the variables.</p>
+<p>We won’t get through the modelling steps but we will see how to get some insights about the relation among the explanatory variables and the <em>target</em> variable.</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="data-visualization.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb453-2"><a href="data-visualization.html#cb453-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb453-3"><a href="data-visualization.html#cb453-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb453-4"><a href="data-visualization.html#cb453-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<p>We read the csv file and make some name cleaning.</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="data-visualization.html#cb454-1" aria-hidden="true" tabindex="-1"></a>df_cancer <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/breast_cancer_data.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   X1 = col_double(),
+##   X2 = col_double(),
+##   X3 = col_double(),
+##   X4 = col_double(),
+##   X5 = col_double(),
+##   X6 = col_double(),
+##   X7 = col_double(),
+##   X8 = col_double(),
+##   X9 = col_double(),
+##   X10 = col_double(),
+##   X11 = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="data-visualization.html#cb456-1" aria-hidden="true" tabindex="-1"></a>df_cancer <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df_cancer)</span>
+<span id="cb456-2"><a href="data-visualization.html#cb456-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb456-3"><a href="data-visualization.html#cb456-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_cancer)</span></code></pre></div>
+<pre><code>## Rows: 699
+## Columns: 11
+## $ x1  &lt;dbl&gt; 1000025, 1002945, 1015425, 1016277, 1017023, 1017122, 1018099, 101…
+## $ x2  &lt;dbl&gt; 5, 5, 3, 6, 4, 8, 1, 2, 2, 4, 1, 2, 5, 1, 8, 7, 4, 4, 10, 6, 7, 10…
+## $ x3  &lt;dbl&gt; 1, 4, 1, 8, 1, 10, 1, 1, 1, 2, 1, 1, 3, 1, 7, 4, 1, 1, 7, 1, 3, 5,…
+## $ x4  &lt;dbl&gt; 1, 4, 1, 8, 1, 10, 1, 2, 1, 1, 1, 1, 3, 1, 5, 6, 1, 1, 7, 1, 2, 5,…
+## $ x5  &lt;dbl&gt; 1, 5, 1, 1, 3, 8, 1, 1, 1, 1, 1, 1, 3, 1, 10, 4, 1, 1, 6, 1, 10, 3…
+## $ x6  &lt;dbl&gt; 2, 7, 2, 3, 2, 7, 2, 2, 2, 2, 1, 2, 2, 2, 7, 6, 2, 2, 4, 2, 5, 6, …
+## $ x7  &lt;dbl&gt; 1, 10, 2, 4, 1, 10, 10, 1, 1, 1, 1, 1, 3, 3, 9, 1, 1, 1, 10, 1, 10…
+## $ x8  &lt;dbl&gt; 3, 3, 3, 3, 3, 9, 3, 3, 1, 2, 3, 2, 4, 3, 5, 4, 2, 3, 4, 3, 5, 7, …
+## $ x9  &lt;dbl&gt; 1, 2, 1, 7, 1, 7, 1, 1, 1, 1, 1, 1, 4, 1, 5, 3, 1, 1, 1, 1, 4, 10,…
+## $ x10 &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 4, 1, 1, 1, 2, 1, 4, 1, …
+## $ x11 &lt;dbl&gt; 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 4, 2, 4, 4, 2, 2, 4, 2, 4, 4, …</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="data-visualization.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_cancer) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;clump&quot;</span>, <span class="st">&quot;unif_size&quot;</span>, <span class="st">&quot;unif_shape&quot;</span>, <span class="st">&quot;adhesion&quot;</span>, </span>
+<span id="cb458-2"><a href="data-visualization.html#cb458-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;epithelial_size&quot;</span>, <span class="st">&quot;nuclei&quot;</span>, <span class="st">&quot;bland_chromatin&quot;</span>, </span>
+<span id="cb458-3"><a href="data-visualization.html#cb458-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;normal_nucleoli&quot;</span>, <span class="st">&quot;mitoses&quot;</span>, <span class="st">&quot;class&quot;</span>)</span>
+<span id="cb458-4"><a href="data-visualization.html#cb458-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb458-5"><a href="data-visualization.html#cb458-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_cancer)</span></code></pre></div>
+<pre><code>## Rows: 699
+## Columns: 11
+## $ id              &lt;dbl&gt; 1000025, 1002945, 1015425, 1016277, 1017023, 1017122, …
+## $ clump           &lt;dbl&gt; 5, 5, 3, 6, 4, 8, 1, 2, 2, 4, 1, 2, 5, 1, 8, 7, 4, 4, …
+## $ unif_size       &lt;dbl&gt; 1, 4, 1, 8, 1, 10, 1, 1, 1, 2, 1, 1, 3, 1, 7, 4, 1, 1,…
+## $ unif_shape      &lt;dbl&gt; 1, 4, 1, 8, 1, 10, 1, 2, 1, 1, 1, 1, 3, 1, 5, 6, 1, 1,…
+## $ adhesion        &lt;dbl&gt; 1, 5, 1, 1, 3, 8, 1, 1, 1, 1, 1, 1, 3, 1, 10, 4, 1, 1,…
+## $ epithelial_size &lt;dbl&gt; 2, 7, 2, 3, 2, 7, 2, 2, 2, 2, 1, 2, 2, 2, 7, 6, 2, 2, …
+## $ nuclei          &lt;dbl&gt; 1, 10, 2, 4, 1, 10, 10, 1, 1, 1, 1, 1, 3, 3, 9, 1, 1, …
+## $ bland_chromatin &lt;dbl&gt; 3, 3, 3, 3, 3, 9, 3, 3, 1, 2, 3, 2, 4, 3, 5, 4, 2, 3, …
+## $ normal_nucleoli &lt;dbl&gt; 1, 2, 1, 7, 1, 7, 1, 1, 1, 1, 1, 1, 4, 1, 5, 3, 1, 1, …
+## $ mitoses         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 4, 1, 1, 1, …
+## $ class           &lt;dbl&gt; 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 4, 2, 4, 4, 2, 2, …</code></pre>
+</div>
+<div id="bar-plots" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Bar plots</h2>
+<p>Bar plots are comfortable for seeing whether a variable changes depending on the level. We can have a quick look at how cases there are for a variable, for instances, <code>unif_size</code>.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="data-visualization.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer) <span class="sc">+</span> </span>
+<span id="cb460-2"><a href="data-visualization.html#cb460-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> unif_size))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p>Note that the x axis shows values as if the variable were numeric. In fact, it is categorical (this is easy to see if look up some documentation about the dataset online), since there are ten classes, not ten numbers, even though these classes are represented by 1, 2, 3…. Since we don’t have a dictionary for the classes, we can transform the variable directly into a categorical one, taking the numbers as the names. This can be done with dplyr but also with ggplot.</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="data-visualization.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer) <span class="sc">+</span> </span>
+<span id="cb461-2"><a href="data-visualization.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(unif_size)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>The same problem will we have if we try to plot the classes of the target variable.</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="data-visualization.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer) <span class="sc">+</span> </span>
+<span id="cb462-2"><a href="data-visualization.html#cb462-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<p>Again, we change it to a <code>factor</code> variable.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="data-visualization.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer) <span class="sc">+</span> </span>
+<span id="cb463-2"><a href="data-visualization.html#cb463-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(class)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p>Instead of working with the numeric labels, we can work with a <code>character</code> column and then create the <code>factor</code> column.</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="data-visualization.html#cb464-1" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="ot">&lt;-</span> df_cancer <span class="sc">%&gt;%</span> </span>
+<span id="cb464-2"><a href="data-visualization.html#cb464-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">if_else</span>(class <span class="sc">==</span> <span class="dv">2</span>, <span class="st">&quot;benign&quot;</span>, <span class="st">&quot;malign&quot;</span>))</span>
+<span id="cb464-3"><a href="data-visualization.html#cb464-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb464-4"><a href="data-visualization.html#cb464-4" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="sc">%&gt;%</span></span>
+<span id="cb464-5"><a href="data-visualization.html#cb464-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(class)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 1
+##   class 
+##   &lt;chr&gt; 
+## 1 benign
+## 2 malign</code></pre>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="data-visualization.html#cb466-1" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="ot">&lt;-</span> df_cancer <span class="sc">%&gt;%</span> </span>
+<span id="cb466-2"><a href="data-visualization.html#cb466-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">factor</span>(class))</span>
+<span id="cb466-3"><a href="data-visualization.html#cb466-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-4"><a href="data-visualization.html#cb466-4" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="sc">%&gt;%</span></span>
+<span id="cb466-5"><a href="data-visualization.html#cb466-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(class)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 1
+##   class
+##   &lt;fct&gt;
+## 1 2    
+## 2 4</code></pre>
+<p>Other way around is defining directly the factor with the proper labels.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="data-visualization.html#cb468-1" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="ot">&lt;-</span> df_cancer <span class="sc">%&gt;%</span> </span>
+<span id="cb468-2"><a href="data-visualization.html#cb468-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">factor</span>(class, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;benign&quot;</span>, <span class="st">&quot;malign&quot;</span>)))</span>
+<span id="cb468-3"><a href="data-visualization.html#cb468-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb468-4"><a href="data-visualization.html#cb468-4" aria-hidden="true" tabindex="-1"></a>df_cancer_new <span class="sc">%&gt;%</span></span>
+<span id="cb468-5"><a href="data-visualization.html#cb468-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(class)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 1
+##   class 
+##   &lt;fct&gt; 
+## 1 benign
+## 2 malign</code></pre>
+<p>In any case, the x axis now shows the correct labels.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="data-visualization.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer_new) <span class="sc">+</span> </span>
+<span id="cb470-2"><a href="data-visualization.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p>Let’s mix some info. Here we plot the number of cases (the distribution) of <code>epithelial_size</code>.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="data-visualization.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer_new) <span class="sc">+</span> </span>
+<span id="cb471-2"><a href="data-visualization.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> epithelial_size))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p>But we can tell ggplot to include the number of cases for the target variable. We want it to fill part of the column in one color and the rest in other color, depending on the number of malign and benign cases.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="data-visualization.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer_new) <span class="sc">+</span> </span>
+<span id="cb472-2"><a href="data-visualization.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(epithelial_size), <span class="at">fill =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p>Note that we used <code>fill=</code>. <code>col=</code> works differently.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="data-visualization.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer_new) <span class="sc">+</span> </span>
+<span id="cb473-2"><a href="data-visualization.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(epithelial_size), <span class="at">col =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p>Take also into account that we are writing this statements (<code>fill=</code>) inside the <code>aes()</code> function, since we want to use information from the data frame for colouring. If we wanted to change the color of all the bars uniformly, we would write outside the <code>aes()</code> function something like <code>fill = "darkblue"</code>.</p>
+<p>By default, ggplot plots the columns stacked, one on top of the other for the same class indicated in the <code>x=</code> atribute. Having them at the same level is called <em>dodge</em> and this can be achieved with the <code>position=</code> atribute. It doesn’t depend on the data frame, so we write it outside the <code>aes()</code> function. By default, ggplot takes <code>position = "dodge"</code>. We can change it:</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="data-visualization.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_cancer_new) <span class="sc">+</span> </span>
+<span id="cb474-2"><a href="data-visualization.html#cb474-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(epithelial_size), <span class="at">fill =</span> class), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+</div>
+<div id="histograms" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Histograms</h2>
+<p>Histograms are one of the most common plots for visualizing the distribution of one continuous variable (income, age, height, population,…). The <code>geom</code> used is <code>geom_histogram()</code> and the main parameter for the <code>aes()</code> function is <code>x=</code>, though you can also include some of the parameters available for <code>geom_bar()</code>. Have a look at the documentation for histograms.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="data-visualization.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb475-2"><a href="data-visualization.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> hwy))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>When plotting a histogram, we’ll receive a message saying the number of bins (columns) used by the default. For avoiding it, we need to set a number of bins or, more appropriate, their width (in relation to the variable whose distribution we are studying).</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="data-visualization.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb477-2"><a href="data-visualization.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> hwy), <span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p>The plot changes a lot depending on this parameter, so be careful: a histogram with too many bins can be useless because it may not show differences among the values, but with too few can hide nuances.</p>
+<p>Histograms are useful for getting an idea of the general distribution of a variable but not for specific values.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="data-visualization.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb478-2"><a href="data-visualization.html#cb478-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb478-3"><a href="data-visualization.html#cb478-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb478-4"><a href="data-visualization.html#cb478-4" aria-hidden="true" tabindex="-1"></a>df_countries <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/countries_of_the_world.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb478-5"><a href="data-visualization.html#cb478-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb478-6"><a href="data-visualization.html#cb478-6" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   Country = col_character(),
+##   Region = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="data-visualization.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_countries)</span></code></pre></div>
+<pre><code>## Rows: 179
+## Columns: 20
+## $ country                          &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, …
+## $ region                           &lt;chr&gt; &quot;ASIA (EX. NEAR EAST)&quot;, &quot;EASTERN EURO…
+## $ population                       &lt;dbl&gt; 31056997, 3581655, 32930091, 13477, 6…
+## $ area_sq_mi                       &lt;dbl&gt; 647500, 28748, 2381740, 102, 443, 276…
+## $ pop_density_per_sq_mi            &lt;dbl&gt; 48.0, 124.6, 13.8, 132.1, 156.0, 14.4…
+## $ coastline_coast_area_ratio       &lt;dbl&gt; 0.00, 1.26, 0.04, 59.80, 34.54, 0.18,…
+## $ net_migration                    &lt;dbl&gt; 23.06, -4.93, -0.39, 10.76, -6.15, 0.…
+## $ infant_mortality_per_1000_births &lt;dbl&gt; 163.07, 21.52, 31.00, 21.03, 19.46, 1…
+## $ gdp_per_capita                   &lt;dbl&gt; 700, 4500, 6000, 8600, 11000, 11200, …
+## $ literacy_percent                 &lt;dbl&gt; 36.0, 86.5, 70.0, 95.0, 89.0, 97.1, 9…
+## $ phones_per_1000                  &lt;dbl&gt; 3.2, 71.2, 78.1, 460.0, 549.9, 220.4,…
+## $ arable_percent                   &lt;dbl&gt; 12.13, 21.09, 3.22, 0.00, 18.18, 12.3…
+## $ crops_percent                    &lt;dbl&gt; 0.22, 4.42, 0.25, 0.00, 4.55, 0.48, 2…
+## $ other_percent                    &lt;dbl&gt; 87.65, 74.49, 96.53, 100.00, 77.27, 8…
+## $ climate                          &lt;dbl&gt; 1.0, 3.0, 1.0, 2.0, 2.0, 3.0, 4.0, 2.…
+## $ birthrate                        &lt;dbl&gt; 46.60, 15.11, 17.14, 14.17, 16.93, 16…
+## $ deathrate                        &lt;dbl&gt; 20.34, 5.22, 4.61, 5.34, 5.37, 7.55, …
+## $ agriculture                      &lt;dbl&gt; 0.380, 0.232, 0.101, 0.040, 0.038, 0.…
+## $ industry                         &lt;dbl&gt; 0.240, 0.188, 0.600, 0.180, 0.220, 0.…
+## $ service                          &lt;dbl&gt; 0.380, 0.579, 0.298, 0.780, 0.743, 0.…</code></pre>
+<p>If we don’t control a bit the values, the plot won’t be useful. For instance, histograms are very sensitive to extreme values.</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="data-visualization.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries) <span class="sc">+</span> </span>
+<span id="cb482-2"><a href="data-visualization.html#cb482-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> population))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="data-visualization.html#cb484-1" aria-hidden="true" tabindex="-1"></a>df_countries_redux <span class="ot">&lt;-</span> df_countries <span class="sc">%&gt;%</span> </span>
+<span id="cb484-2"><a href="data-visualization.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(!country %in% c(&quot;China&quot;, &quot;India&quot;)) %&gt;% </span></span>
+<span id="cb484-3"><a href="data-visualization.html#cb484-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(population <span class="sc">&lt;=</span> <span class="dv">100000000</span>)</span>
+<span id="cb484-4"><a href="data-visualization.html#cb484-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb484-5"><a href="data-visualization.html#cb484-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb484-6"><a href="data-visualization.html#cb484-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> population))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<p>From the plot, could you say what is the mean of the population?</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="data-visualization.html#cb486-1" aria-hidden="true" tabindex="-1"></a>df_media <span class="ot">&lt;-</span> df_countries_redux <span class="sc">%&gt;%</span> </span>
+<span id="cb486-2"><a href="data-visualization.html#cb486-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(population), </span>
+<span id="cb486-3"><a href="data-visualization.html#cb486-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(population), </span>
+<span id="cb486-4"><a href="data-visualization.html#cb486-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(population, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb486-5"><a href="data-visualization.html#cb486-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(population, <span class="at">probs =</span> <span class="fl">0.75</span>))</span>
+<span id="cb486-6"><a href="data-visualization.html#cb486-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb486-7"><a href="data-visualization.html#cb486-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb486-8"><a href="data-visualization.html#cb486-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> population), <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb486-9"><a href="data-visualization.html#cb486-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>media, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+<p>Would you say than the median is higher or lower?</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="data-visualization.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb487-2"><a href="data-visualization.html#cb487-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> population), <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb487-3"><a href="data-visualization.html#cb487-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>media, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb487-4"><a href="data-visualization.html#cb487-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>mediana, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<p>The mean is very sensitive to outliers. The median is usually a better aggregation measure when the distribution is not symmetrical.</p>
+<p>We can also include the quartiles.</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="data-visualization.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb488-2"><a href="data-visualization.html#cb488-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> population), <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb488-3"><a href="data-visualization.html#cb488-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>media, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb488-4"><a href="data-visualization.html#cb488-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>mediana, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb488-5"><a href="data-visualization.html#cb488-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>q1, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb488-6"><a href="data-visualization.html#cb488-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> df_media<span class="sc">$</span>q3, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<p>Between the two green lines there are 50% of the countries (after excluding the largest ones).</p>
+<p>So, the histogram allows us seeing some general properties of the distribution (outliers, asymmetrical distribution, lots of observations concentrated around a particular value) but it’s not comfortable for detecting some typical statistics.</p>
+</div>
+<div id="boxplots" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Boxplots</h2>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="data-visualization.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb489-2"><a href="data-visualization.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> population))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="data-visualization.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb490-2"><a href="data-visualization.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
+</div>
+<div id="some-improvements" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Some improvements</h2>
+<p>Not the best option here, but useful sometimes:</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="data-visualization.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb491-2"><a href="data-visualization.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb491-3"><a href="data-visualization.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="data-visualization.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb492-2"><a href="data-visualization.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb492-3"><a href="data-visualization.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p>Some changes in the labels:</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="data-visualization.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb493-2"><a href="data-visualization.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb493-3"><a href="data-visualization.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Región&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Población&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribución de población&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb493-4"><a href="data-visualization.html#cb493-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<p>We can also set a white rectangle, instead of grey.</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="data-visualization.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb494-2"><a href="data-visualization.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb494-3"><a href="data-visualization.html#cb494-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Región&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Población&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribución de población&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb494-4"><a href="data-visualization.html#cb494-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb494-5"><a href="data-visualization.html#cb494-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p>Changing the format of the numbers is a bit tricky (espcially for the Spanish format: we show here the English format).</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="data-visualization.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_countries_redux) <span class="sc">+</span> </span>
+<span id="cb495-2"><a href="data-visualization.html#cb495-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb495-3"><a href="data-visualization.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Región&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Población&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribución de población&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb495-4"><a href="data-visualization.html#cb495-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb495-5"><a href="data-visualization.html#cb495-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>number) <span class="sc">+</span> </span>
+<span id="cb495-6"><a href="data-visualization.html#cb495-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<p>Data visualization good practices recommend arranging the data. In some cases this can be achieved easily with ggplot, but in this boxplot case we will need dplyr and the factor class.</p>
+<p>There are several approaches: this is just one.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="data-visualization.html#cb496-1" aria-hidden="true" tabindex="-1"></a>df_regiones_ordenadas <span class="ot">&lt;-</span> df_countries_redux <span class="sc">%&gt;%</span> </span>
+<span id="cb496-2"><a href="data-visualization.html#cb496-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-3"><a href="data-visualization.html#cb496-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mediana =</span> <span class="fu">median</span>(population)) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-4"><a href="data-visualization.html#cb496-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mediana) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-5"><a href="data-visualization.html#cb496-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(region))</span>
+<span id="cb496-6"><a href="data-visualization.html#cb496-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb496-7"><a href="data-visualization.html#cb496-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb496-8"><a href="data-visualization.html#cb496-8" aria-hidden="true" tabindex="-1"></a>df_countries_redux <span class="sc">%&gt;%</span> </span>
+<span id="cb496-9"><a href="data-visualization.html#cb496-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region, <span class="at">levels =</span> df_regiones_ordenadas<span class="sc">$</span>region)) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-10"><a href="data-visualization.html#cb496-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb496-11"><a href="data-visualization.html#cb496-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> population)) <span class="sc">+</span> </span>
+<span id="cb496-12"><a href="data-visualization.html#cb496-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Región&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Población&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribución de población&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb496-13"><a href="data-visualization.html#cb496-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb496-14"><a href="data-visualization.html#cb496-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>number) <span class="sc">+</span> </span>
+<span id="cb496-15"><a href="data-visualization.html#cb496-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+</div>
+<div id="mixing-data" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Mixing data</h2>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="data-visualization.html#cb497-1" aria-hidden="true" tabindex="-1"></a>df_countries <span class="sc">%&gt;%</span> </span>
+<span id="cb497-2"><a href="data-visualization.html#cb497-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">literacy_percent_90 =</span> literacy_percent <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb497-3"><a href="data-visualization.html#cb497-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb497-4"><a href="data-visualization.html#cb497-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> literacy_percent_90, <span class="at">y =</span> gdp_per_capita, <span class="at">fill =</span> region))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<div id="exercise" class="section level3" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Exercise</h3>
+<p>Generate a column plot similar to the previous boxplot, but comparing the average of the gpd_per_capita. <em>Hint.</em> Have a look at the documentation of <code>geom_col()</code> for learning how to set a dodge position in the columns.</p>
+<pre><code>## `summarise()` has grouped output by &#39;region&#39;. You can override using the `.groups` argument.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+</div>
+</div>
+<div id="facets-the-basics" class="section level2" number="4.11">
+<h2><span class="header-section-number">4.11</span> Facets: The basics</h2>
+<p>Firstly, we create a scatter plot comparing the miles per gallon variable against the weight of the car, from the <code>mtcars</code> data frame.</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="data-visualization.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb499-2"><a href="data-visualization.html#cb499-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-3"><a href="data-visualization.html#cb499-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb499-4"><a href="data-visualization.html#cb499-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p>We know want to see what happens when we take into account the categorical variable Transmission type <code>am</code>. We could try plotting the points with different colors or shapes depending on their <code>am</code> value but, when possible, the best way is comparing their position on different plots that have the same axis.</p>
+<p>We would like to do something like these two plots (we combine dplyr and ggplot2):</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="data-visualization.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb500-2"><a href="data-visualization.html#cb500-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb500-3"><a href="data-visualization.html#cb500-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb500-4"><a href="data-visualization.html#cb500-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb500-5"><a href="data-visualization.html#cb500-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb500-6"><a href="data-visualization.html#cb500-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="data-visualization.html#cb501-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb501-2"><a href="data-visualization.html#cb501-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(am <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb501-3"><a href="data-visualization.html#cb501-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb501-4"><a href="data-visualization.html#cb501-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-248-2.png" width="672" /></p>
+<p>But they don’t have the same axis and are not disposed in a proper way, so comparing them for understanding the differences between the two distributions is not comfortable. ggplot2 may help.</p>
+<p>We are going to create two scatter plots: one per each value of the <code>am</code> column. Both they’ll have the same axis, so it’ll be easier comparing the relative position of the dots, which is the easiest way of getting differences between the values of a continuous variable.</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="data-visualization.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb502-2"><a href="data-visualization.html#cb502-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb502-3"><a href="data-visualization.html#cb502-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(am <span class="sc">~</span> .)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<p>In the plot is easy to see that automatic cars (<code>am == 0</code>) heavier (x axis) and that manual cars are associated with more miles per gallon (y axis).</p>
+<p>Let’s have a look at the sintax. The <code>ggplot()</code> and the <code>geom_point()</code> have already been study. What we are doing is adding a new layer, a faceting layer. What we achieve is that we will repeat the plot generated with the <code>ggplot() + geom_point()</code> schema, for each value in the <code>am</code> column. The <code>facet_grid()</code> function creates a grid for all the desired plot. It receives a formula based on the <code>~</code> sintax. Before the <code>~</code> we include the variable whose values will define the rows of the grid; after the <code>~</code>, we write the variable for defining the columns. A <code>.</code> is written when no difference is made.</p>
+<p><strong>Remember.</strong> For comparing a continuous variable for several observations, focusing on the position is more comfortable than changing the colors or the shape.</p>
+<p>Let’s try the same comparison with different colors for each point, depending on their transmission.</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="data-visualization.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">as.factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb503-2"><a href="data-visualization.html#cb503-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<p>Or the shape.</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="data-visualization.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">shape =</span> <span class="fu">as.factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb504-2"><a href="data-visualization.html#cb504-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<p>Now we want to include a new variable: the number of cylinders. Let’s assume that we preferred the previous plot with the shape aesthetic. Let’s add the color for understanding differences between the <code>cyl</code> variable.</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="data-visualization.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">shape =</span> <span class="fu">as.factor</span>(am), <span class="at">color =</span> <span class="fu">as.factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb505-2"><a href="data-visualization.html#cb505-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+<p>A mess. Again, it is better taking advantage of the spatial distribution, since our eye understand better differences on the position.</p>
+<p>For doing this, facets:</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="data-visualization.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb506-2"><a href="data-visualization.html#cb506-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb506-3"><a href="data-visualization.html#cb506-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(am <span class="sc">~</span> cyl)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p>Here, we define the grid from the <code>am</code> variable and the <code>cyl</code> variable for the columns.</p>
+</div>
+<div id="many-variables-in-just-one-plot" class="section level2" number="4.12">
+<h2><span class="header-section-number">4.12</span> Many variables in just one plot</h2>
+<p>Know, an extreme example is shown. The next pieces of codes will help us creating a plot where up to 7 variables are studied.</p>
+<p>First we create the set of color that we’ll use for the points. We define a special object we haven’t used yet: a matrix. It will contain character elements with the desired colors (instead of names of color, hexadecimal codes are used). The blue colors will be associated with the automatic cars and the red colors, with the manual cars. Lighter colors will be related to lower number of cylinders (for this transparency, the <code>brewer.pal()</code> will take care of it).</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="data-visualization.html#cb507-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb507-2"><a href="data-visualization.html#cb507-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl_am =</span> <span class="fu">paste</span>(cyl, am, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
+<span id="cb507-3"><a href="data-visualization.html#cb507-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-4"><a href="data-visualization.html#cb507-4" aria-hidden="true" tabindex="-1"></a>myCol <span class="ot">&lt;-</span> <span class="fu">rbind</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;Blues&quot;</span>)[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>)],</span>
+<span id="cb507-5"><a href="data-visualization.html#cb507-5" aria-hidden="true" tabindex="-1"></a>               RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;Reds&quot;</span>)[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>)])</span>
+<span id="cb507-6"><a href="data-visualization.html#cb507-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb507-7"><a href="data-visualization.html#cb507-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot, add color scale:</span></span>
+<span id="cb507-8"><a href="data-visualization.html#cb507-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">col =</span> cyl_am)) <span class="sc">+</span></span>
+<span id="cb507-9"><a href="data-visualization.html#cb507-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb507-10"><a href="data-visualization.html#cb507-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> myCol)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p>Now we also include a visualization for getting differences considering <code>gear</code> and <code>vs</code>. This can be done with facets.</p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="data-visualization.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">col =</span> cyl_am)) <span class="sc">+</span></span>
+<span id="cb508-2"><a href="data-visualization.html#cb508-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb508-3"><a href="data-visualization.html#cb508-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> myCol)<span class="sc">+</span></span>
+<span id="cb508-4"><a href="data-visualization.html#cb508-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gear <span class="sc">~</span> vs)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p>Finally, we include information about <code>disp</code>, mapping it to the size of the points.</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="data-visualization.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">col =</span> cyl_am, <span class="at">size =</span> disp)) <span class="sc">+</span></span>
+<span id="cb509-2"><a href="data-visualization.html#cb509-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb509-3"><a href="data-visualization.html#cb509-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> myCol) <span class="sc">+</span></span>
+<span id="cb509-4"><a href="data-visualization.html#cb509-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gear<span class="sc">~</span>vs)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+</div>
+<div id="something-more" class="section level2" number="4.13">
+<h2><span class="header-section-number">4.13</span> Something more</h2>
+<div id="pivoting-data" class="section level3" number="4.13.1">
+<h3><span class="header-section-number">4.13.1</span> Pivoting data</h3>
+<p>Data will often be in such a format that cannot be properly used for visualization. The packages on the <em>tidyverse</em> environment can help us dealing with this.</p>
+<p>On the <code>msleep</code> dataset we have information about how much time some mammals sleep. About this time, there are two columns: <code>sleep_total</code> and <code>sleep_rem</code>. We want to visualize both times depending on the animal. How can we visualize this two variables at the same time, if they are two columns?</p>
+<p>A first approach could be using two layers of points.</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="data-visualization.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(msleep) <span class="sc">+</span> </span>
+<span id="cb510-2"><a href="data-visualization.html#cb510-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleep_total, <span class="at">y =</span> name), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb510-3"><a href="data-visualization.html#cb510-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleep_rem, <span class="at">y =</span> name), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 22 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p>Things we don’t like about this plot:</p>
+<ul>
+<li>There is no legend (it can be added but with more code).</li>
+<li>We had to decide the colors explicitally (ggplot2 usually knows how to decide what color is the best).</li>
+<li>If we would like to work with more categories, we would have to add one more like per category (and decide a color).</li>
+<li>The x axis has the label of the first layer. It can be changed but, again, is one more line.</li>
+</ul>
+<p>Instead of this, we would like to specify ggplot that it has to create a plot of the name of the mammal against the sleeping time. This <em>time</em> unit is divided into several categories (rem and total), and we will use these categories for coloring the points. To sum up, right now in the data frame we have one row per mammal, and two columns about the sleeping time. We want to redefine the data frame so that we will have two rows per mammal: one for the total time and one for the rem time.</p>
+<p>This is called pivoting. Let’s have a look at the actual data (we select only the columns that will be used):</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="data-visualization.html#cb512-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> </span>
+<span id="cb512-2"><a href="data-visualization.html#cb512-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vore, name, sleep_total, sleep_rem) <span class="sc">%&gt;%</span> </span>
+<span id="cb512-3"><a href="data-visualization.html#cb512-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   vore  name                       sleep_total sleep_rem
+##   &lt;chr&gt; &lt;chr&gt;                            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 carni Cheetah                           12.1      NA  
+## 2 omni  Owl monkey                        17         1.8
+## 3 herbi Mountain beaver                   14.4       2.4
+## 4 omni  Greater short-tailed shrew        14.9       2.3
+## 5 herbi Cow                                4         0.7
+## 6 herbi Three-toed sloth                  14.4       2.2</code></pre>
+<p>What we want to achieve is this:</p>
+<pre><code>## # A tibble: 12 x 4
+##    vore  name                       sleep        time
+##    &lt;chr&gt; &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt;
+##  1 carni Cheetah                    sleep_total  12.1
+##  2 carni Cheetah                    sleep_rem    NA  
+##  3 omni  Owl monkey                 sleep_total  17  
+##  4 omni  Owl monkey                 sleep_rem     1.8
+##  5 herbi Mountain beaver            sleep_total  14.4
+##  6 herbi Mountain beaver            sleep_rem     2.4
+##  7 omni  Greater short-tailed shrew sleep_total  14.9
+##  8 omni  Greater short-tailed shrew sleep_rem     2.3
+##  9 herbi Cow                        sleep_total   4  
+## 10 herbi Cow                        sleep_rem     0.7
+## 11 herbi Three-toed sloth           sleep_total  14.4
+## 12 herbi Three-toed sloth           sleep_rem     2.2</code></pre>
+<p>The information is the same on both tables, but the second one has a long format (more rows) and the first one has a wide format (more columns). Depending on what you are doing, you will prefer one or the other. For instance, for statistical modelling, the wide format may be preferred; for data visualization, the longer one is preferred (at least, for this example).</p>
+<p>Changing a data frame between this two formats is called pivoting. In R, there lots of tools for achieving this. As usual, we show one:</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="data-visualization.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb515-2"><a href="data-visualization.html#cb515-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-3"><a href="data-visualization.html#cb515-3" aria-hidden="true" tabindex="-1"></a>mamsleep <span class="ot">&lt;-</span> msleep <span class="sc">%&gt;%</span> </span>
+<span id="cb515-4"><a href="data-visualization.html#cb515-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vore, name, sleep_total, sleep_rem) <span class="sc">%&gt;%</span> </span>
+<span id="cb515-5"><a href="data-visualization.html#cb515-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">&quot;sleep_total&quot;</span>, <span class="st">&quot;sleep_rem&quot;</span>)), <span class="at">names_to =</span> <span class="st">&quot;sleep&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb515-6"><a href="data-visualization.html#cb515-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-7"><a href="data-visualization.html#cb515-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mamsleep)</span></code></pre></div>
+<pre><code>## Rows: 166
+## Columns: 4
+## $ vore  &lt;chr&gt; &quot;carni&quot;, &quot;carni&quot;, &quot;omni&quot;, &quot;omni&quot;, &quot;herbi&quot;, &quot;herbi&quot;, &quot;omni&quot;, &quot;omn…
+## $ name  &lt;chr&gt; &quot;Cheetah&quot;, &quot;Cheetah&quot;, &quot;Owl monkey&quot;, &quot;Owl monkey&quot;, &quot;Mountain beav…
+## $ sleep &lt;chr&gt; &quot;sleep_total&quot;, &quot;sleep_rem&quot;, &quot;sleep_total&quot;, &quot;sleep_rem&quot;, &quot;sleep_t…
+## $ time  &lt;dbl&gt; 12.1, NA, 17.0, 1.8, 14.4, 2.4, 14.9, 2.3, 4.0, 0.7, 14.4, 2.2, …</code></pre>
+</div>
+<div id="basic-scatter-plot" class="section level3" number="4.13.2">
+<h3><span class="header-section-number">4.13.2</span> Basic scatter plot</h3>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="data-visualization.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mamsleep,<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> name, <span class="at">col =</span> sleep)) <span class="sc">+</span></span>
+<span id="cb517-2"><a href="data-visualization.html#cb517-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 22 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
+</div>
+<div id="facet-rows-accoding-to-vore" class="section level3" number="4.13.3">
+<h3><span class="header-section-number">4.13.3</span> Facet rows accoding to vore</h3>
+<p>Now we separate the plot in several parts, depending on what the mammals eat. We will prepare a grid, as we did before, using facets.</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="data-visualization.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mamsleep, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> name, <span class="at">col =</span> sleep)) <span class="sc">+</span></span>
+<span id="cb519-2"><a href="data-visualization.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb519-3"><a href="data-visualization.html#cb519-3" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_grid</span>(vore <span class="sc">~</span> .)</span></code></pre></div>
+<pre><code>## Warning: Removed 22 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<p>It is as if we had made for plots: a first one having <code>vore == "carni"</code>, a second one with <code>vore == "herbi"</code>, etc.</p>
+</div>
+<div id="specify-scale-and-space-arguments-to-free-up-rows" class="section level3" number="4.13.4">
+<h3><span class="header-section-number">4.13.4</span> Specify scale and space arguments to free up rows</h3>
+<p>The x axis must be common for all the plots, because it is the most comfortable way for comparing the <code>time</code> value among the different points, even if they are on different parts of the grid. However, there is no need on having the same y axis on all of them, because it’s not that what we are comparing. We can free the y axis, so that it shows only the important values for each plot.</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="data-visualization.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mamsleep, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> name, <span class="at">col =</span> sleep ))<span class="sc">+</span></span>
+<span id="cb521-2"><a href="data-visualization.html#cb521-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb521-3"><a href="data-visualization.html#cb521-3" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_grid</span>(vore <span class="sc">~</span> ., <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">space =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 22 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
+<p>For gaining some space, we can set the legend on the bottom of the plot.</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="data-visualization.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mamsleep, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> name, <span class="at">col =</span> sleep )) <span class="sc">+</span></span>
+<span id="cb523-2"><a href="data-visualization.html#cb523-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb523-3"><a href="data-visualization.html#cb523-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(vore <span class="sc">~</span> ., <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">space =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb523-4"><a href="data-visualization.html#cb523-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 22 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
+<p>This exercise, except the last section, has been downloaded from Datacamp and it is a project created by Antonio Sánchez Chinchón, data scientist at Telefonica.</p>
+</div>
+</div>
+<div id="united-nations-life-expectancy-data" class="section level2" number="4.14">
+<h2><span class="header-section-number">4.14</span> United Nations life expectancy data</h2>
+<p>Life expectancy at birth is a measure of the average a living being is expected to live. It takes into account several demographic factors like gender, country, or year of birth.</p>
+<p>Life expectancy at birth can vary along time or between countries because of many causes: the evolution of medicine, the degree of development of countries, or the effect of armed conflicts. Life expectancy varies between gender, as well. The data shows that women live longer that men. Why? Several potential factors, including biological reasons and the theory that women tend to be more health conscious.</p>
+<p>Let’s create some plots to explore the inequalities about life expectancy at birth around the world. We will use a dataset from the United Nations Statistics Division, which is available <a href="http://data.un.org/Data.aspx?d=GenderStat&amp;f=inID:37&amp;c=1,2,3,4,5,6&amp;s=crEngName:asc,sgvEngName:asc,timeEngName:desc&amp;v=1">here</a>.</p>
+<p>For doing this:</p>
+<ul>
+<li>Load the readr, dplyr, tidyr and ggplot2 packages.</li>
+<li>Read <code>UNdata.csv</code> into a data frame and name it <code>life_expectancy</code>.</li>
+<li>Print the first few rows of life_expectancy.</li>
+<li>Have a look at the first rows with <code>head()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="data-visualization.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This sets plot images to a nice size</span></span>
+<span id="cb525-2"><a href="data-visualization.html#cb525-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">6</span>, <span class="at">repr.plot.height =</span> <span class="dv">6</span>)</span>
+<span id="cb525-3"><a href="data-visualization.html#cb525-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-4"><a href="data-visualization.html#cb525-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading packages</span></span>
+<span id="cb525-5"><a href="data-visualization.html#cb525-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(...)</span>
+<span id="cb525-6"><a href="data-visualization.html#cb525-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(...)</span>
+<span id="cb525-7"><a href="data-visualization.html#cb525-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(...)</span>
+<span id="cb525-8"><a href="data-visualization.html#cb525-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(...)</span>
+<span id="cb525-9"><a href="data-visualization.html#cb525-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-10"><a href="data-visualization.html#cb525-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading data</span></span>
+<span id="cb525-11"><a href="data-visualization.html#cb525-11" aria-hidden="true" tabindex="-1"></a>... <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(...)</span>
+<span id="cb525-12"><a href="data-visualization.html#cb525-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-13"><a href="data-visualization.html#cb525-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Taking a look at the first few rows</span></span>
+<span id="cb525-14"><a href="data-visualization.html#cb525-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(life_expectancy)</span></code></pre></div>
+<pre><code>##   Country.or.Area Subgroup      Year
+## 1     Afghanistan   Female 2000-2005
+## 2     Afghanistan   Female 1995-2000
+## 3     Afghanistan   Female 1990-1995
+## 4     Afghanistan   Female 1985-1990
+## 5     Afghanistan     Male 2000-2005
+## 6     Afghanistan     Male 1995-2000
+##                                                          Source  Unit Value
+## 1 UNPD_World Population Prospects_2006 (International estimate) Years    42
+## 2 UNPD_World Population Prospects_2006 (International estimate) Years    42
+## 3 UNPD_World Population Prospects_2006 (International estimate) Years    42
+## 4 UNPD_World Population Prospects_2006 (International estimate) Years    41
+## 5 UNPD_World Population Prospects_2006 (International estimate) Years    42
+## 6 UNPD_World Population Prospects_2006 (International estimate) Years    42
+##   Value.Footnotes
+## 1              NA
+## 2              NA
+## 3              NA
+## 4              NA
+## 5              NA
+## 6              NA</code></pre>
+</div>
+<div id="life-expectancy-of-men-vs.-women-by-country" class="section level2" number="4.15">
+<h2><span class="header-section-number">4.15</span> Life expectancy of men vs. women by country</h2>
+<p>Let’s manipulate the data to make our exploration easier. We will build the dataset for our first plot in which we will represent the average life expectancy of men and women across countries for the last period recorded in our data (2000-2005).</p>
+<p>Task: manipulate the dataset to contain male and female life expectancy for each country.</p>
+<ul>
+<li>Filter <code>life_expectancy</code> to obtain all records such as Year is equal to <code>"2000-2005"</code>.</li>
+<li>Subset the dataset to include just three columns: <code>Country.or.Area</code>, <code>Subgroup</code>, and <code>Value</code>.</li>
+<li>Have a look at how <code>pivot_wider()</code> from the tidyr package is used for converting <code>Subgroup</code> into two other columns called <code>Female</code> and <code>Male</code>, reshaping dataset from long to wide. Try to understand what it’s doing. There’s nothing to write. Maybe printing the number for rows and columns before and after pivoting will help seeing how the data frame is transformed.</li>
+<li>Print the first rows of the resulting dataset.</li>
+</ul>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="data-visualization.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting and reshaping the life expectancy data</span></span>
+<span id="cb527-2"><a href="data-visualization.html#cb527-2" aria-hidden="true" tabindex="-1"></a>subdata <span class="ot">&lt;-</span> life_expectancy  <span class="sc">%&gt;%</span> </span>
+<span id="cb527-3"><a href="data-visualization.html#cb527-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span> </span>
+<span id="cb527-4"><a href="data-visualization.html#cb527-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(...) <span class="sc">%&gt;%</span></span>
+<span id="cb527-5"><a href="data-visualization.html#cb527-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Subgroup, <span class="at">values_from =</span> Value)</span>
+<span id="cb527-6"><a href="data-visualization.html#cb527-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-7"><a href="data-visualization.html#cb527-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Taking a look at the first few rows</span></span>
+<span id="cb527-8"><a href="data-visualization.html#cb527-8" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   Country.or.Area Female  Male
+##   &lt;chr&gt;            &lt;int&gt; &lt;int&gt;
+## 1 Afghanistan         42    42
+## 2 Albania             79    73
+## 3 Algeria             72    70
+## 4 Angola              43    39
+## 5 Argentina           78    71
+## 6 Armenia             75    68</code></pre>
+</div>
+<div id="visualize-i" class="section level2" number="4.16">
+<h2><span class="header-section-number">4.16</span> Visualize (I)</h2>
+<p>A scatter plot is a useful way to visualize the relationship between two variables. It is a simple plot in which points are arranged on two axes, each of which represents one of those variables.</p>
+<p>Let’s create a scatter plot using ggplot2 to represent life expectancy of males (on the x-axis) against females (on the y-axis). We will create a straightforward plot in this task, without many details. We will take care of these kinds of things shortly.</p>
+<p>For creating a basic scatter plot for male vs. female life expectancy:</p>
+<ul>
+<li>Use the <code>ggplot()</code> function to initialize a ggplot object. Declare <code>subdata</code> as the input data frame and set the aesthetics to represent <code>Male</code> on the x-axis and <code>Female</code> on the y-axis.</li>
+<li>Add a layer to represent observations with points using <code>geom_point()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="data-visualization.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting male and female life expectancy</span></span>
+<span id="cb529-2"><a href="data-visualization.html#cb529-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(..., <span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb529-3"><a href="data-visualization.html#cb529-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
+</div>
+<div id="reference-lines-i" class="section level2" number="4.17">
+<h2><span class="header-section-number">4.17</span> Reference lines (I)</h2>
+<p>A good plot must be easy to understand. There are many tools in ggplot2 to achieve this goal and we will explore some of them now. Starting from the previous plot, let’s set the same limits for both axes as well as place a diagonal line for reference. After doing this, the difference between men and women across countries will be easier to interpret.</p>
+<p>After completing this task, we will see how most of the points are arranged above the diagonal and how there is a significant dispersion among them. <strong>What does this all mean?</strong></p>
+<p>Tasks:</p>
+<ul>
+<li>Copy your previous scatter plot code.</li>
+<li>Add a dashed diagonal line that passes by (0, 0) with slope equal to 1.</li>
+<li>Set limit of x-axis from 35 to 85.</li>
+<li>Set limit of y-axis from 35 to 85.</li>
+</ul>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="data-visualization.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(..., <span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb530-2"><a href="data-visualization.html#cb530-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>() <span class="sc">+</span> </span>
+<span id="cb530-3"><a href="data-visualization.html#cb530-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb530-4"><a href="data-visualization.html#cb530-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...))<span class="sc">+</span></span>
+<span id="cb530-5"><a href="data-visualization.html#cb530-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+</div>
+<div id="plot-titles-and-axis-labels" class="section level2" number="4.18">
+<h2><span class="header-section-number">4.18</span> Plot titles and axis labels</h2>
+<p>A key point to make a plot understandable is placing clear labels on it. Let’s add titles, axis labels, and a caption to refer to the source of data. Let’s also change the appearance to make it clearer.</p>
+<p>Tasks for adding plot titles and axis labels.</p>
+<ul>
+<li>Add the plot title: <code>"Life Expectancy at Birth by Country"</code>.</li>
+<li>Add the next caption: <code>"Source: United Nations Statistics Division"</code>.</li>
+<li>Set the x-axis label to <code>"Males"</code>.</li>
+<li>Set the y-axis label to <code>"Females"</code>.</li>
+<li>Have a look at the changes that can be made to the points, in order to improve the plot a bit (that’s done inside the geom_point() call). Make sure you understand the parameters.</li>
+<li>Note that the points can have color and filling if we give them <code>shape = 21</code>, which means than it is not just a point, but a circle or bubble, with border and area. This is useful for plotting several variables at the same time with the <code>aes()</code> function (one would be mapped to <code>colour=</code> and the other to <code>fill=</code>).</li>
+</ul>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="data-visualization.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding labels to previous plot</span></span>
+<span id="cb531-2"><a href="data-visualization.html#cb531-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(..., <span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb531-3"><a href="data-visualization.html#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;chartreuse3&quot;</span>, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">alpha=</span>.<span class="dv">55</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb531-4"><a href="data-visualization.html#cb531-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb531-5"><a href="data-visualization.html#cb531-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...)) <span class="sc">+</span></span>
+<span id="cb531-6"><a href="data-visualization.html#cb531-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...)) <span class="sc">+</span></span>
+<span id="cb531-7"><a href="data-visualization.html#cb531-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> ...,</span>
+<span id="cb531-8"><a href="data-visualization.html#cb531-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> ...,</span>
+<span id="cb531-9"><a href="data-visualization.html#cb531-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> ...,</span>
+<span id="cb531-10"><a href="data-visualization.html#cb531-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> ...,</span>
+<span id="cb531-11"><a href="data-visualization.html#cb531-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ...)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
+</div>
+<div id="highlighting-remarkable-countries-i" class="section level2" number="4.19">
+<h2><span class="header-section-number">4.19</span> Highlighting remarkable countries (I)</h2>
+<p>Now, we will label some points of our plot with the name of its corresponding country. We want to draw attention to some special countries where the gap in life expectancy between men and women is significantly high. These will be the final touches on this first plot.</p>
+<p>Tasks:</p>
+<ul>
+<li>Modify the <code>ggplot(...)</code> function to set the label parameter to Country.or.Area.</li>
+<li>Add a label to countries defined by <code>top_male</code> (the data frame is built for you). Note that this consists on adding a new layer to the plot.</li>
+<li>Add a label to countries defined by <code>top_female</code> (the data frame is built for you). Note that this consists on adding a new layer to the plot.</li>
+<li>Change the plot theme to <code>theme_bw()</code>. Note that this consists on adding a new layer to the plot. The plot will be lighter, with less elements.</li>
+<li>Make sure you copy and paste anything missing from the previous plot.</li>
+</ul>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="data-visualization.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subseting data to obtain countries of interest</span></span>
+<span id="cb532-2"><a href="data-visualization.html#cb532-2" aria-hidden="true" tabindex="-1"></a>top_male <span class="ot">&lt;-</span> subdata <span class="sc">%&gt;%</span> </span>
+<span id="cb532-3"><a href="data-visualization.html#cb532-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Male<span class="sc">-</span>Female) <span class="sc">%&gt;%</span> </span>
+<span id="cb532-4"><a href="data-visualization.html#cb532-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb532-5"><a href="data-visualization.html#cb532-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-6"><a href="data-visualization.html#cb532-6" aria-hidden="true" tabindex="-1"></a>top_female <span class="ot">&lt;-</span> subdata <span class="sc">%&gt;%</span> </span>
+<span id="cb532-7"><a href="data-visualization.html#cb532-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Female<span class="sc">-</span>Male) <span class="sc">%&gt;%</span> </span>
+<span id="cb532-8"><a href="data-visualization.html#cb532-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb532-9"><a href="data-visualization.html#cb532-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-10"><a href="data-visualization.html#cb532-10" aria-hidden="true" tabindex="-1"></a>top_male</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   Country.or.Area    Female  Male
+##   &lt;chr&gt;               &lt;int&gt; &lt;int&gt;
+## 1 Russian Federation     72    58
+## 2 Belarus                75    63
+## 3 Estonia                77    65</code></pre>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="data-visualization.html#cb534-1" aria-hidden="true" tabindex="-1"></a>top_female</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   Country.or.Area Female  Male
+##   &lt;chr&gt;            &lt;int&gt; &lt;int&gt;
+## 1 Niger               54    55
+## 2 Afghanistan         42    42
+## 3 Maldives            66    66</code></pre>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="data-visualization.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding text to the previous plot to label countries of interest</span></span>
+<span id="cb536-2"><a href="data-visualization.html#cb536-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(..., <span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb536-3"><a href="data-visualization.html#cb536-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">...</span>(<span class="at">... =</span> <span class="st">&quot;white&quot;</span>, <span class="at">... =</span> <span class="st">&quot;chartreuse3&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">alpha =</span> .<span class="dv">55</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb536-4"><a href="data-visualization.html#cb536-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb536-5"><a href="data-visualization.html#cb536-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> top_male) <span class="sc">+</span> </span>
+<span id="cb536-6"><a href="data-visualization.html#cb536-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(<span class="at">data =</span> ...) <span class="sc">+</span> </span>
+<span id="cb536-7"><a href="data-visualization.html#cb536-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...)) <span class="sc">+</span></span>
+<span id="cb536-8"><a href="data-visualization.html#cb536-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(..., ...)) <span class="sc">+</span></span>
+<span id="cb536-9"><a href="data-visualization.html#cb536-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> ...,</span>
+<span id="cb536-10"><a href="data-visualization.html#cb536-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> ...,</span>
+<span id="cb536-11"><a href="data-visualization.html#cb536-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> ...,</span>
+<span id="cb536-12"><a href="data-visualization.html#cb536-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> ...,</span>
+<span id="cb536-13"><a href="data-visualization.html#cb536-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> ...) <span class="sc">+</span> </span>
+<span id="cb536-14"><a href="data-visualization.html#cb536-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
+</div>
+<div id="gif" class="section level2" number="4.20">
+<h2><span class="header-section-number">4.20</span> GIF</h2>
+<p>We can also include information about the evolution over time of these data. There are several periods of five years, so we are going to generate a plot per period, so that we have like a movie of plots.</p>
+<p>The easy way of doing this is using the gganimate package, but it only works with numerical data or dates. Here we have a character for the <code>Year</code> column, with data in this format: <code>"1990-1995"</code>. We will trick this a bit so that we can take advantage from the library. We transform the data frame with dplyr and tidyr.</p>
+<p>Remember that before using the data frame for the plot, we have to transform it into a wide format. Again, we do this with tidyr and its <code>pivot_wider()</code> function. Then, we use <code>mutate()</code> for changing the <code>Year</code> column. We use <code>stringr</code> for getting the first year of the period (originally, the column is a factor but we can work with it as if it were a character). Then we change it to numeric. This code has been provided for you.</p>
+<p>Finally, we crate a data frame just with the Spanish data. We will use this for tracking Spain during all the evolution.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="data-visualization.html#cb537-1" aria-hidden="true" tabindex="-1"></a>df_subdata2 <span class="ot">&lt;-</span> life_expectancy <span class="sc">%&gt;%</span></span>
+<span id="cb537-2"><a href="data-visualization.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country.or.Area, Subgroup, Year, Value) <span class="sc">%&gt;%</span> </span>
+<span id="cb537-3"><a href="data-visualization.html#cb537-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Subgroup <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb537-4"><a href="data-visualization.html#cb537-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> ..., <span class="at">values_from =</span> ...) <span class="sc">%&gt;%</span> </span>
+<span id="cb537-5"><a href="data-visualization.html#cb537-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> stringr<span class="sc">::</span><span class="fu">str_sub</span>(Year, <span class="dv">1</span>, <span class="dv">4</span>), </span>
+<span id="cb537-6"><a href="data-visualization.html#cb537-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Year =</span> <span class="fu">as.numeric</span>(Year))</span>
+<span id="cb537-7"><a href="data-visualization.html#cb537-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb537-8"><a href="data-visualization.html#cb537-8" aria-hidden="true" tabindex="-1"></a>df_country_selection <span class="ot">&lt;-</span> df_subdata2 <span class="sc">%&gt;%</span> </span>
+<span id="cb537-9"><a href="data-visualization.html#cb537-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...)</span></code></pre></div>
+<p>Now the data frame has been created, we use it as input for the plot.</p>
+<ul>
+<li>First, we call the library gganimate. It includes a function <code>transition_time()</code>, which is used a new layer in the plot. It receives the column of the data frame that will be used as time. In this function, even though we are using a column from the data frame, <strong>we don’t use the <code>aes()</code> function.</strong></li>
+<li>We replicate the previous plot. The only change is that we are only using one <code>geom_text()</code> layer, for the Spanish data. It should receive the <code>df_country_selection</code> data frame in the <code>data=</code> parameter.</li>
+<li>Have a look a the <code>subtitle=</code> label. Instead of writing the same as before, we now want it to vary depending on the year. The <code>transition_time()</code> creates a variable called <code>frame_time</code> that will indicate which <code>Year</code> is using for each frame. The original format it generates is ugly, so we adapt it with the <code>scales::number()</code> function. The curly brackets <code>{</code> are important in order to indicate R that what is within them must be evaluated. If we didn’t use them, R would understand that operation as a simple character. For a better understanding on how the curly bracktes work, try not writing them.</li>
+<li>The <code>transition_time()</code> receives the column used for the time evolution, <code>Time</code> in this case. Remember, without <code>aes()</code> function.</li>
+</ul>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="data-visualization.html#cb538-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(...)</span>
+<span id="cb538-2"><a href="data-visualization.html#cb538-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb538-3"><a href="data-visualization.html#cb538-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(...)<span class="sc">+</span></span>
+<span id="cb538-4"><a href="data-visualization.html#cb538-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(...) <span class="sc">+</span> <span class="co"># points</span></span>
+<span id="cb538-5"><a href="data-visualization.html#cb538-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(...) <span class="sc">+</span> <span class="co"># line</span></span>
+<span id="cb538-6"><a href="data-visualization.html#cb538-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(<span class="at">data =</span> ...) <span class="sc">+</span> <span class="co"># text</span></span>
+<span id="cb538-7"><a href="data-visualization.html#cb538-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_...</span>(...) <span class="sc">+</span></span>
+<span id="cb538-8"><a href="data-visualization.html#cb538-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_...</span>(...) <span class="sc">+</span></span>
+<span id="cb538-9"><a href="data-visualization.html#cb538-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Life Expectancy at Birth by Country&quot;</span>,</span>
+<span id="cb538-10"><a href="data-visualization.html#cb538-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Years. Period: {scales::number(frame_time)}. Average.&quot;</span>,</span>
+<span id="cb538-11"><a href="data-visualization.html#cb538-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: United Nations Statistics Division&quot;</span>,</span>
+<span id="cb538-12"><a href="data-visualization.html#cb538-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Males&quot;</span>,</span>
+<span id="cb538-13"><a href="data-visualization.html#cb538-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Females&quot;</span>)<span class="sc">+</span></span>
+<span id="cb538-14"><a href="data-visualization.html#cb538-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb538-15"><a href="data-visualization.html#cb538-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(...)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="working-with-tables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programming-concepts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

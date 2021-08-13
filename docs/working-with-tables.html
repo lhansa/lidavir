@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Working with tables | LiDaViR</title>
+  <meta name="description" content="R contents and material for classes. Excel users may be the target." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Working with tables | LiDaViR" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R contents and material for classes. Excel users may be the target." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Working with tables | LiDaViR" />
+  
+  <meta name="twitter:description" content="R contents and material for classes. Excel users may be the target." />
+  
+
+<meta name="author" content="Leonardo Hansa" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reading-data-with-readr.html"/>
+<link rel="next" href="data-visualization.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="first-steps.html"><a href="first-steps.html"><i class="fa fa-check"></i><b>1</b> First steps</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="first-steps.html"><a href="first-steps.html#programming-in-r"><i class="fa fa-check"></i><b>1.1</b> Programming in R</a></li>
+<li class="chapter" data-level="1.2" data-path="first-steps.html"><a href="first-steps.html#r-as-a-calculator"><i class="fa fa-check"></i><b>1.2</b> R as a calculator</a></li>
+<li class="chapter" data-level="1.3" data-path="first-steps.html"><a href="first-steps.html#simple-types-of-objects"><i class="fa fa-check"></i><b>1.3</b> Simple types of objects</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="first-steps.html"><a href="first-steps.html#numeric"><i class="fa fa-check"></i><b>1.3.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.3.2" data-path="first-steps.html"><a href="first-steps.html#character"><i class="fa fa-check"></i><b>1.3.2</b> Character</a></li>
+<li class="chapter" data-level="1.3.3" data-path="first-steps.html"><a href="first-steps.html#logical"><i class="fa fa-check"></i><b>1.3.3</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="first-steps.html"><a href="first-steps.html#sets-of-elements"><i class="fa fa-check"></i><b>1.4</b> Sets of elements</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="first-steps.html"><a href="first-steps.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="first-steps.html"><a href="first-steps.html#matrix"><i class="fa fa-check"></i><b>1.4.2</b> Matrix</a></li>
+<li class="chapter" data-level="1.4.3" data-path="first-steps.html"><a href="first-steps.html#data-frames"><i class="fa fa-check"></i><b>1.4.3</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="first-steps.html"><a href="first-steps.html#extending-r-with-libraries"><i class="fa fa-check"></i><b>1.5</b> Extending R with libraries</a></li>
+<li class="chapter" data-level="1.6" data-path="first-steps.html"><a href="first-steps.html#installation"><i class="fa fa-check"></i><b>1.6</b> Installation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html"><i class="fa fa-check"></i><b>2</b> Reading data with readr</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#excel"><i class="fa fa-check"></i><b>2.1</b> Excel</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#about-the-names"><i class="fa fa-check"></i><b>2.1.1</b> About the names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#what-is-a-csv-file"><i class="fa fa-check"></i><b>2.2</b> What is a csv file</a></li>
+<li class="chapter" data-level="2.3" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#reading-a-csv"><i class="fa fa-check"></i><b>2.3</b> Reading a csv</a></li>
+<li class="chapter" data-level="2.4" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#reading-other-tabular-data"><i class="fa fa-check"></i><b>2.4</b> Reading other tabular data</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#another-csv"><i class="fa fa-check"></i><b>2.4.1</b> Another csv</a></li>
+<li class="chapter" data-level="2.4.2" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#tsv"><i class="fa fa-check"></i><b>2.4.2</b> tsv</a></li>
+<li class="chapter" data-level="2.4.3" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#release-your-imagination"><i class="fa fa-check"></i><b>2.4.3</b> Release your imagination</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="reading-data-with-readr.html"><a href="reading-data-with-readr.html#more-things"><i class="fa fa-check"></i><b>2.5</b> More things</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-tables.html"><a href="working-with-tables.html"><i class="fa fa-check"></i><b>3</b> Working with tables</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="working-with-tables.html"><a href="working-with-tables.html#creating-and-selecting-columns"><i class="fa fa-check"></i><b>3.1</b> Creating and selecting columns</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="working-with-tables.html"><a href="working-with-tables.html#mtcars-dataset"><i class="fa fa-check"></i><b>3.1.1</b> mtcars dataset</a></li>
+<li class="chapter" data-level="3.1.2" data-path="working-with-tables.html"><a href="working-with-tables.html#invented-dataset"><i class="fa fa-check"></i><b>3.1.2</b> Invented dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="working-with-tables.html"><a href="working-with-tables.html#filtering-rows"><i class="fa fa-check"></i><b>3.2</b> Filtering rows</a></li>
+<li class="chapter" data-level="3.3" data-path="working-with-tables.html"><a href="working-with-tables.html#distinct"><i class="fa fa-check"></i><b>3.3</b> Distinct</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="working-with-tables.html"><a href="working-with-tables.html#r-base"><i class="fa fa-check"></i><b>3.3.1</b> R base</a></li>
+<li class="chapter" data-level="3.3.2" data-path="working-with-tables.html"><a href="working-with-tables.html#dplyr"><i class="fa fa-check"></i><b>3.3.2</b> dplyr</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="working-with-tables.html"><a href="working-with-tables.html#some-comments-about-na"><i class="fa fa-check"></i><b>3.4</b> Some comments about <code>NA</code></a></li>
+<li class="chapter" data-level="3.5" data-path="working-with-tables.html"><a href="working-with-tables.html#row-numbers"><i class="fa fa-check"></i><b>3.5</b> Row numbers</a></li>
+<li class="chapter" data-level="3.6" data-path="working-with-tables.html"><a href="working-with-tables.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="working-with-tables.html"><a href="working-with-tables.html#summarizing-tables"><i class="fa fa-check"></i><b>3.7</b> Summarizing tables</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="working-with-tables.html"><a href="working-with-tables.html#exercises-1"><i class="fa fa-check"></i><b>3.7.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="working-with-tables.html"><a href="working-with-tables.html#aggregating-the-data"><i class="fa fa-check"></i><b>3.8</b> Aggregating the data</a></li>
+<li class="chapter" data-level="3.9" data-path="working-with-tables.html"><a href="working-with-tables.html#a-summary"><i class="fa fa-check"></i><b>3.9</b> A summary</a></li>
+<li class="chapter" data-level="3.10" data-path="working-with-tables.html"><a href="working-with-tables.html#dplyr-verbs"><i class="fa fa-check"></i><b>3.10</b> Dplyr verbs</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="working-with-tables.html"><a href="working-with-tables.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>3.10.1</b> Filter rows with filter()</a></li>
+<li class="chapter" data-level="3.10.2" data-path="working-with-tables.html"><a href="working-with-tables.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>3.10.2</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.10.3" data-path="working-with-tables.html"><a href="working-with-tables.html#select-columns-with-select"><i class="fa fa-check"></i><b>3.10.3</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="3.10.4" data-path="working-with-tables.html"><a href="working-with-tables.html#add-new-columns-with-mutate"><i class="fa fa-check"></i><b>3.10.4</b> Add new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.10.5" data-path="working-with-tables.html"><a href="working-with-tables.html#summarise-values-with-summarise"><i class="fa fa-check"></i><b>3.10.5</b> Summarise values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.10.6" data-path="working-with-tables.html"><a href="working-with-tables.html#randomly-sample-rows-with-sample_n-and-sample_frac"><i class="fa fa-check"></i><b>3.10.6</b> Randomly sample rows with <code>sample_n()</code> and <code>sample_frac()</code></a></li>
+<li class="chapter" data-level="3.10.7" data-path="working-with-tables.html"><a href="working-with-tables.html#commonalities"><i class="fa fa-check"></i><b>3.10.7</b> Commonalities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="working-with-tables.html"><a href="working-with-tables.html#grouped-operations"><i class="fa fa-check"></i><b>3.11</b> Grouped operations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>4</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualization.html"><a href="data-visualization.html#first-steps-into-dataviz"><i class="fa fa-check"></i><b>4.1</b> First steps into dataviz</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2"><i class="fa fa-check"></i><b>4.1.1</b> ggplot2</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-visualization.html"><a href="data-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>4.1.2</b> Scatter plot</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-visualization.html"><a href="data-visualization.html#columns"><i class="fa fa-check"></i><b>4.1.3</b> Columns</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-visualization.html"><a href="data-visualization.html#lines"><i class="fa fa-check"></i><b>4.1.4</b> Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-visualization.html"><a href="data-visualization.html#exercises-about-scatter-plots"><i class="fa fa-check"></i><b>4.2</b> Exercises about scatter plots</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise-1"><i class="fa fa-check"></i><b>4.2.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualization.html"><a href="data-visualization.html#exercise-2"><i class="fa fa-check"></i><b>4.2.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualization.html"><a href="data-visualization.html#exercise-3"><i class="fa fa-check"></i><b>4.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualization.html"><a href="data-visualization.html#exercise-4"><i class="fa fa-check"></i><b>4.2.4</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualization.html"><a href="data-visualization.html#exercises-about-line-plots"><i class="fa fa-check"></i><b>4.3</b> Exercises about line plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise-1-1"><i class="fa fa-check"></i><b>4.3.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-visualization.html"><a href="data-visualization.html#exercise-2-1"><i class="fa fa-check"></i><b>4.3.2</b> Exercise 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-visualization.html"><a href="data-visualization.html#columns-and-boxplots"><i class="fa fa-check"></i><b>4.4</b> Columns and boxplots</a></li>
+<li class="chapter" data-level="4.5" data-path="data-visualization.html"><a href="data-visualization.html#preparing-the-data"><i class="fa fa-check"></i><b>4.5</b> Preparing the data</a></li>
+<li class="chapter" data-level="4.6" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i><b>4.6</b> Bar plots</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>4.7</b> Histograms</a></li>
+<li class="chapter" data-level="4.8" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>4.8</b> Boxplots</a></li>
+<li class="chapter" data-level="4.9" data-path="data-visualization.html"><a href="data-visualization.html#some-improvements"><i class="fa fa-check"></i><b>4.9</b> Some improvements</a></li>
+<li class="chapter" data-level="4.10" data-path="data-visualization.html"><a href="data-visualization.html#mixing-data"><i class="fa fa-check"></i><b>4.10</b> Mixing data</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="data-visualization.html"><a href="data-visualization.html#exercise"><i class="fa fa-check"></i><b>4.10.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="data-visualization.html"><a href="data-visualization.html#facets-the-basics"><i class="fa fa-check"></i><b>4.11</b> Facets: The basics</a></li>
+<li class="chapter" data-level="4.12" data-path="data-visualization.html"><a href="data-visualization.html#many-variables-in-just-one-plot"><i class="fa fa-check"></i><b>4.12</b> Many variables in just one plot</a></li>
+<li class="chapter" data-level="4.13" data-path="data-visualization.html"><a href="data-visualization.html#something-more"><i class="fa fa-check"></i><b>4.13</b> Something more</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="data-visualization.html"><a href="data-visualization.html#pivoting-data"><i class="fa fa-check"></i><b>4.13.1</b> Pivoting data</a></li>
+<li class="chapter" data-level="4.13.2" data-path="data-visualization.html"><a href="data-visualization.html#basic-scatter-plot"><i class="fa fa-check"></i><b>4.13.2</b> Basic scatter plot</a></li>
+<li class="chapter" data-level="4.13.3" data-path="data-visualization.html"><a href="data-visualization.html#facet-rows-accoding-to-vore"><i class="fa fa-check"></i><b>4.13.3</b> Facet rows accoding to vore</a></li>
+<li class="chapter" data-level="4.13.4" data-path="data-visualization.html"><a href="data-visualization.html#specify-scale-and-space-arguments-to-free-up-rows"><i class="fa fa-check"></i><b>4.13.4</b> Specify scale and space arguments to free up rows</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="data-visualization.html"><a href="data-visualization.html#united-nations-life-expectancy-data"><i class="fa fa-check"></i><b>4.14</b> United Nations life expectancy data</a></li>
+<li class="chapter" data-level="4.15" data-path="data-visualization.html"><a href="data-visualization.html#life-expectancy-of-men-vs.-women-by-country"><i class="fa fa-check"></i><b>4.15</b> Life expectancy of men vs. women by country</a></li>
+<li class="chapter" data-level="4.16" data-path="data-visualization.html"><a href="data-visualization.html#visualize-i"><i class="fa fa-check"></i><b>4.16</b> Visualize (I)</a></li>
+<li class="chapter" data-level="4.17" data-path="data-visualization.html"><a href="data-visualization.html#reference-lines-i"><i class="fa fa-check"></i><b>4.17</b> Reference lines (I)</a></li>
+<li class="chapter" data-level="4.18" data-path="data-visualization.html"><a href="data-visualization.html#plot-titles-and-axis-labels"><i class="fa fa-check"></i><b>4.18</b> Plot titles and axis labels</a></li>
+<li class="chapter" data-level="4.19" data-path="data-visualization.html"><a href="data-visualization.html#highlighting-remarkable-countries-i"><i class="fa fa-check"></i><b>4.19</b> Highlighting remarkable countries (I)</a></li>
+<li class="chapter" data-level="4.20" data-path="data-visualization.html"><a href="data-visualization.html#gif"><i class="fa fa-check"></i><b>4.20</b> GIF</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-concepts.html"><a href="programming-concepts.html"><i class="fa fa-check"></i><b>5</b> Programming concepts</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programming-concepts.html"><a href="programming-concepts.html#purpose-of-functions"><i class="fa fa-check"></i><b>5.1</b> Purpose of functions</a></li>
+<li class="chapter" data-level="5.2" data-path="programming-concepts.html"><a href="programming-concepts.html#the-arguments"><i class="fa fa-check"></i><b>5.2</b> The arguments</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="programming-concepts.html"><a href="programming-concepts.html#order-of-the-arguments"><i class="fa fa-check"></i><b>5.2.1</b> Order of the arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="programming-concepts.html"><a href="programming-concepts.html#the-value"><i class="fa fa-check"></i><b>5.3</b> The value</a></li>
+<li class="chapter" data-level="5.4" data-path="programming-concepts.html"><a href="programming-concepts.html#your-own-functions"><i class="fa fa-check"></i><b>5.4</b> Your own functions</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-concepts.html"><a href="programming-concepts.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="programming-concepts.html"><a href="programming-concepts.html#conditions"><i class="fa fa-check"></i><b>5.6</b> Conditions</a></li>
+<li class="chapter" data-level="5.7" data-path="programming-concepts.html"><a href="programming-concepts.html#joining-data-frames-with-dplyr"><i class="fa fa-check"></i><b>5.7</b> Joining data frames with dplyr</a></li>
+<li class="chapter" data-level="5.8" data-path="programming-concepts.html"><a href="programming-concepts.html#binding-data-frames"><i class="fa fa-check"></i><b>5.8</b> Binding data frames</a></li>
+<li class="chapter" data-level="5.9" data-path="programming-concepts.html"><a href="programming-concepts.html#exercises-3"><i class="fa fa-check"></i><b>5.9</b> Exercises</a></li>
+<li class="chapter" data-level="5.10" data-path="programming-concepts.html"><a href="programming-concepts.html#applying-the-same-function-to-several-elements-i"><i class="fa fa-check"></i><b>5.10</b> Applying the same function to several elements (I)</a></li>
+<li class="chapter" data-level="5.11" data-path="programming-concepts.html"><a href="programming-concepts.html#lists"><i class="fa fa-check"></i><b>5.11</b> Lists</a></li>
+<li class="chapter" data-level="5.12" data-path="programming-concepts.html"><a href="programming-concepts.html#applying-the-same-function-to-several-elements-ii"><i class="fa fa-check"></i><b>5.12</b> Applying the same function to several elements (II)</a></li>
+<li class="chapter" data-level="5.13" data-path="programming-concepts.html"><a href="programming-concepts.html#exercise-5"><i class="fa fa-check"></i><b>5.13</b> Exercise</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">LiDaViR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-tables" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Working with tables</h1>
+<p>The main library we’ll use is dplyr. We are also using readr for reading files onto R.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="working-with-tables.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb238-2"><a href="working-with-tables.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div id="creating-and-selecting-columns" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Creating and selecting columns</h2>
+<div id="mtcars-dataset" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> mtcars dataset</h3>
+<p>Let us begin creating columns or redefining existing ones. For this, we use the <code>mutate()</code> function. It receives a data frame or tibble (mainly via the <em>pipe</em> operator, <code>%&gt;%</code>) and performs a formula for calculating new or existing columns.</p>
+<p>We read the data with the <code>read_csv()</code> function from the <code>readr</code> package.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="working-with-tables.html#cb239-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/mtcars.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )</code></pre>
+<p>The data has been obtained from R base and you can read the documentation with <code>? mtcars</code>.</p>
+<p><code>read_csv()</code> gives us some information about the reading. We can see that all columns belong to class <code>numeric</code>. We can have a more detailed look at the tibble with <code>glimpse()</code>, which shows us the first rows and some info.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="working-with-tables.html#cb241-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 32
+## Columns: 11
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,…
+## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,…
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,…
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18…
+## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,…
+## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,…
+## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,…
+## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,…</code></pre>
+<p><strong>Exercise.</strong> What are the differences between <code>glimpse(df_mtcars)</code> and <code>df_mtcars %&gt;% glimpse()</code>?</p>
+<p>With the first rows we can confirm that all the columns are numerical but we can detect some differences among them. For instance, <code>cyl</code> and the last ones are integer numbers, so they can represent countings, or even categories, since values at <code>vs</code> or <code>am</code> seem only 0 and 1.</p>
+<p>We can have more numerical information with <code>summary()</code>, from R base.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-tables.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_mtcars)</span></code></pre></div>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<p>For calculating new or existing rows we use <code>mutate()</code>, as mentiobed before. If we only use <code>mutate()</code>, R shows us the data frame with the new calculations on the console, but does not overwrite it. We need to assing the result to the data frame to overwrite the result.</p>
+<p>For intance, the weight is given in 1000 lbs. Let’s change the units.</p>
+<p>First, we can have a look at the first rows of this column with the function <code>select()</code>.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="working-with-tables.html#cb245-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb245-2"><a href="working-with-tables.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wt)</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 1
+##       wt
+##    &lt;dbl&gt;
+##  1  2.62
+##  2  2.88
+##  3  2.32
+##  4  3.22
+##  5  3.44
+##  6  3.46
+##  7  3.57
+##  8  3.19
+##  9  3.15
+## 10  3.44
+## # … with 22 more rows</code></pre>
+<p>Now let’s make the calculation.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-tables.html#cb247-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb247-2"><a href="working-with-tables.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt =</span> wt <span class="sc">*</span> <span class="dv">1000</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2620  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2875  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2320  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3215  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3440  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3460  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3570  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3190  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3150  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3440  18.3     1     0     4     4
+## # … with 22 more rows</code></pre>
+<p>If there are too many columns is uncomfortable seeing the results. We can use <code>select()</code> and make the pipeline longer.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-tables.html#cb249-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb249-2"><a href="working-with-tables.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt =</span> wt <span class="sc">*</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb249-3"><a href="working-with-tables.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wt)</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 1
+##       wt
+##    &lt;dbl&gt;
+##  1  2620
+##  2  2875
+##  3  2320
+##  4  3215
+##  5  3440
+##  6  3460
+##  7  3570
+##  8  3190
+##  9  3150
+## 10  3440
+## # … with 22 more rows</code></pre>
+<p>The calculation seems correct. Now, instead of showing the result on the console, we overwrite the result (we don’t use <code>select()</code> now because we want the entire tibble).</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="working-with-tables.html#cb251-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="ot">&lt;-</span> df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb251-2"><a href="working-with-tables.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt =</span> wt <span class="sc">*</span> <span class="dv">1000</span>)</span></code></pre></div>
+<p>We don’t see anything on the screen but R has changed the column <code>wt</code>. Had we made a mistake and wanted to go back, we would have to execute again the reading of the file or make the opposite calculation.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="working-with-tables.html#cb252-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb252-2"><a href="working-with-tables.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt =</span> wt <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb252-3"><a href="working-with-tables.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wt)</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 1
+##       wt
+##    &lt;dbl&gt;
+##  1  2.62
+##  2  2.88
+##  3  2.32
+##  4  3.22
+##  5  3.44
+##  6  3.46
+##  7  3.57
+##  8  3.19
+##  9  3.15
+## 10  3.44
+## # … with 22 more rows</code></pre>
+<p>The documentation explains that <code>vs</code> represents the shape of the engine. It is 0 or 1. Imagine you don’t like this numbers and you want to use 1 and 2. You can easily add 1 to the column.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="working-with-tables.html#cb254-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb254-2"><a href="working-with-tables.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vs =</span> vs <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb254-3"><a href="working-with-tables.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vs)</span></code></pre></div>
+<pre><code>##                     vs
+## Mazda RX4            1
+## Mazda RX4 Wag        1
+## Datsun 710           2
+## Hornet 4 Drive       2
+## Hornet Sportabout    1
+## Valiant              2
+## Duster 360           1
+## Merc 240D            2
+## Merc 230             2
+## Merc 280             2
+## Merc 280C            2
+## Merc 450SE           1
+## Merc 450SL           1
+## Merc 450SLC          1
+## Cadillac Fleetwood   1
+## Lincoln Continental  1
+## Chrysler Imperial    1
+## Fiat 128             2
+## Honda Civic          2
+## Toyota Corolla       2
+## Toyota Corona        2
+## Dodge Challenger     1
+## AMC Javelin          1
+## Camaro Z28           1
+## Pontiac Firebird     1
+## Fiat X1-9            2
+## Porsche 914-2        1
+## Lotus Europa         2
+## Ford Pantera L       1
+## Ferrari Dino         1
+## Maserati Bora        1
+## Volvo 142E           2</code></pre>
+<p><strong>Remark.</strong> Remember to assign the result to the tibble with <code>&lt;-</code> if you want to keep the results. Don’t forget to erase <code>select()</code> in this case.</p>
+<p>This change on the column may not seem very useful. It can be more interesting changing the numbers with the real meaning: V-shaped and straight. For this, we need the column to be a character, but it is numeric.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="working-with-tables.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_mtcars<span class="sc">$</span>vs)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>We want to assign these meaning to the numbers and, therefore, the column will be a character, but R will take care of this for us. For changing the values, we use <code>if_else()</code>. We want to say: ‘if vs equals 0, then it will equal “V-shaped”, else “straight”’. We can create and auxiliar column <code>vs_aux</code> for making the change more clear.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="working-with-tables.html#cb258-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb258-2"><a href="working-with-tables.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vs_aux =</span> <span class="fu">if_else</span>(vs <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;V-shaped&quot;</span>, <span class="st">&quot;straight&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb258-3"><a href="working-with-tables.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vs, vs_aux)</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 2
+##       vs vs_aux  
+##    &lt;dbl&gt; &lt;chr&gt;   
+##  1     0 V-shaped
+##  2     0 V-shaped
+##  3     1 straight
+##  4     1 straight
+##  5     0 V-shaped
+##  6     1 straight
+##  7     0 V-shaped
+##  8     1 straight
+##  9     1 straight
+## 10     1 straight
+## # … with 22 more rows</code></pre>
+<p><strong>Remark.</strong> Choose whatever names you want for the columns: it is not necessary to call the auxiliar one <code>vs_aux</code>. And you can overwrite the tibble or not: you are programming, you can always run everything again! =D</p>
+<p>The idea of keeping the numbers instead of the character column is that numbers require less space on your computer’s memory. So storing the shape with a numerical code is more efficient. In fact, you have already checked that the column is numerical but it would be better if it were integer.</p>
+<p><strong>Exercise.</strong> Decide what columns can be stored as integer without losing information and change them. For changing the type of an object or vector you can use <code>as.integer()</code>. For instance:</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="working-with-tables.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="working-with-tables.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.integer</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="working-with-tables.html#cb264-1" aria-hidden="true" tabindex="-1"></a>df_mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb264-2"><a href="working-with-tables.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb264-3"><a href="working-with-tables.html#cb264-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cyl =</span> <span class="fu">as.integer</span>(cyl), </span>
+<span id="cb264-4"><a href="working-with-tables.html#cb264-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">vs =</span> <span class="fu">as.integer</span>(vs), </span>
+<span id="cb264-5"><a href="working-with-tables.html#cb264-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">am =</span> <span class="fu">as.integer</span>(am), </span>
+<span id="cb264-6"><a href="working-with-tables.html#cb264-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gear =</span> <span class="fu">as.integer</span>(gear), </span>
+<span id="cb264-7"><a href="working-with-tables.html#cb264-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">carb =</span> <span class="fu">as.integer</span>(carb)</span>
+<span id="cb264-8"><a href="working-with-tables.html#cb264-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1  21       6  160    110  3.9   2620  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2875  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2320  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3215  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3440  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3460  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3570  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3190  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3150  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3440  18.3     1     0     4     4
+## # … with 22 more rows</code></pre>
+</div>
+<div id="invented-dataset" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Invented dataset</h3>
+<div id="why-this-is-useful" class="section level4" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> Why this is useful</h4>
+<p>Being able to simulate some random data is useful when you are developing some code but you haven’t receive the final data yet. Nonetheless, because of the project’s timing, you need to keep on working so that you’ll have some code already prepared when you’re data arrives and you don’t need to begin from scratch by then.</p>
+</div>
+<div id="simulating-data" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> Simulating data</h4>
+<p>This branch of Statistics takes several months at University to studying it. But for our purpose we just need some basics concepts.</p>
+<!-- **Question.** Have you already seen `ALEATORIO()` function in Excel? -->
+<p>Imaging you are betting on something and you need a coin. You can use a calculator or R to simulate the results. There is always some function that allows you to get a <em>random</em> number between 0 and 1 (I emphasized <em>random</em> because it requires some time to explain what that means, since nothing is random but controlled by the laws of physics, except maybe the location of an electron). Mathematically, you can use to simulate the results of a coin flip.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="working-with-tables.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] 0.27027242 0.81227629 0.54010531 0.04858727 0.42873700 0.87733248
+##  [7] 0.45718757 0.85463644 0.85779978 0.12140436</code></pre>
+<p>If you run that on your computer, you’re results will be different (because they are random). Long story short, we can get the same numbers if we fix one thing called seed:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="working-with-tables.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb268-2"><a href="working-with-tables.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] 0.113703411 0.622299405 0.609274733 0.623379442 0.860915384 0.640310605
+##  [7] 0.009495756 0.232550506 0.666083758 0.514251141</code></pre>
+<p>Now you can say that lower than 0.5 results will represent tails and the rest, heads:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="working-with-tables.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb270-2"><a href="working-with-tables.html#cb270-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10</span>)</span>
+<span id="cb270-3"><a href="working-with-tables.html#cb270-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb270-4"><a href="working-with-tables.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb270-5"><a href="working-with-tables.html#cb270-5" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(results <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="st">&quot;tails&quot;</span>, <span class="st">&quot;heads&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;tails&quot; &quot;heads&quot; &quot;heads&quot; &quot;heads&quot; &quot;heads&quot; &quot;heads&quot; &quot;tails&quot; &quot;tails&quot; &quot;heads&quot;
+## [10] &quot;heads&quot;</code></pre>
+</div>
+<div id="creating-a-data-frame" class="section level4" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> Creating a data frame</h4>
+<p>You should know that what we have just created is a vector. And vectors can be used as columns on a data frame or tibble. Therefore, we’ll invent some data following this methodology and take advantage of the data for some calculations.</p>
+<p>Imagine we have 20 stores, with two dimensions, length and width, the number of customers we receive per day, the daily income and the colors of the walls (between green, red, blue and white (yes, wonderful colors for walls)). Let’s simulate this.</p>
+<p>For creating a tibble we use the function <code>tibble()</code>, from the tibble package but available on dplyr. Inside the function we will introduce the vectors with the simulations and the names of the columns. First, the vectors.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="working-with-tables.html#cb272-1" aria-hidden="true" tabindex="-1"></a>number_of_stores <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb272-2"><a href="working-with-tables.html#cb272-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-3"><a href="working-with-tables.html#cb272-3" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>number_of_stores <span class="co"># Index: 1, 2, 3, 4, ..., 20</span></span>
+<span id="cb272-4"><a href="working-with-tables.html#cb272-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-5"><a href="working-with-tables.html#cb272-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For the random data we can do the seed thing so that the results will be the same</span></span>
+<span id="cb272-6"><a href="working-with-tables.html#cb272-6" aria-hidden="true" tabindex="-1"></a><span class="co"># for all of us</span></span>
+<span id="cb272-7"><a href="working-with-tables.html#cb272-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2718</span>)</span>
+<span id="cb272-8"><a href="working-with-tables.html#cb272-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-9"><a href="working-with-tables.html#cb272-9" aria-hidden="true" tabindex="-1"></a>length_sim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(number_of_stores, <span class="at">mean =</span> <span class="dv">7</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb272-10"><a href="working-with-tables.html#cb272-10" aria-hidden="true" tabindex="-1"></a>width_sim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(number_of_stores, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.1</span>)</span>
+<span id="cb272-11"><a href="working-with-tables.html#cb272-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-12"><a href="working-with-tables.html#cb272-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For the customers, we assume that the average will be 50. </span></span>
+<span id="cb272-13"><a href="working-with-tables.html#cb272-13" aria-hidden="true" tabindex="-1"></a><span class="co"># You&#39;ll learn what a Poisson distribution is later on</span></span>
+<span id="cb272-14"><a href="working-with-tables.html#cb272-14" aria-hidden="true" tabindex="-1"></a>customers_daily <span class="ot">&lt;-</span> <span class="fu">rpois</span>(number_of_stores, <span class="at">lambda =</span> <span class="dv">50</span>)</span>
+<span id="cb272-15"><a href="working-with-tables.html#cb272-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-16"><a href="working-with-tables.html#cb272-16" aria-hidden="true" tabindex="-1"></a>income_daily <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(number_of_stores, <span class="at">mean =</span> <span class="dv">2000</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
+<span id="cb272-17"><a href="working-with-tables.html#cb272-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-18"><a href="working-with-tables.html#cb272-18" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>), </span>
+<span id="cb272-19"><a href="working-with-tables.html#cb272-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> number_of_stores, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb272-20"><a href="working-with-tables.html#cb272-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-21"><a href="working-with-tables.html#cb272-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-22"><a href="working-with-tables.html#cb272-22" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb272-23"><a href="working-with-tables.html#cb272-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">ind =</span> indices, </span>
+<span id="cb272-24"><a href="working-with-tables.html#cb272-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">long =</span> length_sim, </span>
+<span id="cb272-25"><a href="working-with-tables.html#cb272-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">ancho =</span> width_sim, </span>
+<span id="cb272-26"><a href="working-with-tables.html#cb272-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">clientes =</span> customers_daily, </span>
+<span id="cb272-27"><a href="working-with-tables.html#cb272-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">euros =</span> income_daily, </span>
+<span id="cb272-28"><a href="working-with-tables.html#cb272-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> colors</span>
+<span id="cb272-29"><a href="working-with-tables.html#cb272-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="working-with-tables.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_inventado)</span></code></pre></div>
+<pre><code>## Rows: 20
+## Columns: 6
+## $ ind      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…
+## $ long     &lt;dbl&gt; 7.727768, 5.241214, 8.033535, 6.067075, 5.908894, 6.080340, 8…
+## $ ancho    &lt;dbl&gt; 12.958071, 10.644176, 10.474705, 7.838526, 11.020973, 9.76414…
+## $ clientes &lt;int&gt; 50, 38, 52, 42, 58, 47, 45, 39, 42, 49, 57, 59, 46, 57, 47, 4…
+## $ euros    &lt;dbl&gt; 2016.820, 1979.281, 1771.956, 2158.435, 1951.960, 1988.361, 2…
+## $ col      &lt;chr&gt; &quot;white&quot;, &quot;blue&quot;, &quot;white&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;green&quot;, &quot;…</code></pre>
+<p><strong>Exercises.</strong> Now you make some calculations. You will need <code>mutate()</code>. Remember what has already been explained above. You can decide when to overwrite the data frame with the new calculations or just print them on the console.</p>
+<ol style="list-style-type: decimal">
+<li><p>Compute the total area of each store.</p></li>
+<li><p>Calculate how many euros each customer spends, per store.</p></li>
+<li><p>Calculate how many euros each customer spends on average, in total. <em>Hint.</em> For doing this, <code>summarise()</code> is very useful and you can read the documentation for learning how to use it. However, you can also use an approach with vectors using <code>$</code> and the functions <code>sum()</code> or <code>mean()</code>.</p></li>
+<li><p>If the store is white or blue, reduce its length in 5 meters; else, increase it 10 meters. <em>Hint.</em> <code>? if_else()</code>. You should also write the condition with <code>%in%</code>. For learning how to do this, play in the console with <code>"white" %in% c("white", "blue")</code> or <code>"red" %in% c("white", "blue")</code> and try to understand what’s happening and how you can use it inside <code>mutate()</code>.</p></li>
+<li><p>If all the customers in a day went to the store at the same time, how many squared meters per customer would there be in each store?</p></li>
+</ol>
+<p><strong>Solutions.</strong></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="working-with-tables.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 1</span></span>
+<span id="cb275-2"><a href="working-with-tables.html#cb275-2" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="sc">%&gt;%</span> </span>
+<span id="cb275-3"><a href="working-with-tables.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area =</span> ancho <span class="sc">*</span> long)</span>
+<span id="cb275-4"><a href="working-with-tables.html#cb275-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-5"><a href="working-with-tables.html#cb275-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 2</span></span>
+<span id="cb275-6"><a href="working-with-tables.html#cb275-6" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="sc">%&gt;%</span> </span>
+<span id="cb275-7"><a href="working-with-tables.html#cb275-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(euros <span class="sc">/</span> clientes)</span>
+<span id="cb275-8"><a href="working-with-tables.html#cb275-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-9"><a href="working-with-tables.html#cb275-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 3</span></span>
+<span id="cb275-10"><a href="working-with-tables.html#cb275-10" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="sc">%&gt;%</span> </span>
+<span id="cb275-11"><a href="working-with-tables.html#cb275-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">sum</span>(euros) <span class="sc">/</span> <span class="fu">sum</span>(clientes))</span>
+<span id="cb275-12"><a href="working-with-tables.html#cb275-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-13"><a href="working-with-tables.html#cb275-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df_inventado<span class="sc">$</span>euros) <span class="sc">/</span> <span class="fu">sum</span>(df_inventado<span class="sc">$</span>clientes)</span>
+<span id="cb275-14"><a href="working-with-tables.html#cb275-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-15"><a href="working-with-tables.html#cb275-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-16"><a href="working-with-tables.html#cb275-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4</span></span>
+<span id="cb275-17"><a href="working-with-tables.html#cb275-17" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="sc">%&gt;%</span> </span>
+<span id="cb275-18"><a href="working-with-tables.html#cb275-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nueva_long =</span> <span class="fu">if_else</span>(col <span class="sc">%in%</span>  <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;blue&quot;</span>), long <span class="sc">-</span> <span class="dv">5</span>, long <span class="sc">+</span> <span class="dv">10</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-19"><a href="working-with-tables.html#cb275-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nueva_long, long)</span>
+<span id="cb275-20"><a href="working-with-tables.html#cb275-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb275-21"><a href="working-with-tables.html#cb275-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5</span></span>
+<span id="cb275-22"><a href="working-with-tables.html#cb275-22" aria-hidden="true" tabindex="-1"></a>df_inventado <span class="sc">%&gt;%</span> </span>
+<span id="cb275-23"><a href="working-with-tables.html#cb275-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area =</span> long <span class="sc">*</span> ancho, <span class="at">sqm_per_cust =</span> area <span class="sc">/</span> clientes) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-24"><a href="working-with-tables.html#cb275-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(clientes, area, sqm_per_cust)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="filtering-rows" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Filtering rows</h2>
+<p>You may know how to apply filters in Excel. In R you can do this too. The goal is to access the rows of a data frame that fulfill certain conditions. We’ll work with an example.</p>
+<p><strong>If you have already run <code>library(dplyr)</code></strong>, you will be able to use the <code>starwars</code> data frame. You can have a look a it with <code>glimpse()</code> (as you should know by now).</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="working-with-tables.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N…
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;…
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,…
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,…
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini…
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T…
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma…
+## $ films      &lt;list&gt; &lt;&quot;The Empire Strikes Back&quot;, &quot;Revenge of the Sith&quot;, &quot;Return…
+## $ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, &quot;Imp…
+## $ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanced x1&quot;,…</code></pre>
+<p><strong>Exercise.</strong></p>
+<ul>
+<li>What are the names of the columns?</li>
+<li>What are the classes of each column?</li>
+<li>What are the dimensions of the data frame (number of rows and columns)?</li>
+</ul>
+<p><strong>Remark.</strong> Remember to use <code>? starwars</code> to access the documentation.</p>
+<p>We can set a condition a take only the rows under this condition. For instance, we want all the character taller than 175cms. You may remember from vector that you can do create a logical vector with this condition doing something like this:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="working-with-tables.html#cb278-1" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">175</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+## [13]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+## [25] FALSE  TRUE FALSE    NA FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+## [37]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+## [49]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+## [61] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+## [73] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE    NA    NA    NA
+## [85]    NA    NA FALSE</code></pre>
+<p>Now we could see the names of the characters whose associated value in this vector is <code>TRUE</code>. The names of the characters are stored on the first column, <code>name</code>.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="working-with-tables.html#cb280-1" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>name[starwars<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">175</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;Darth Vader&quot;         &quot;Owen Lars&quot;           &quot;Biggs Darklighter&quot;  
+##  [4] &quot;Obi-Wan Kenobi&quot;      &quot;Anakin Skywalker&quot;    &quot;Wilhuff Tarkin&quot;     
+##  [7] &quot;Chewbacca&quot;           &quot;Han Solo&quot;            &quot;Jek Tono Porkins&quot;   
+## [10] &quot;Boba Fett&quot;           &quot;IG-88&quot;               &quot;Bossk&quot;              
+## [13] &quot;Lando Calrissian&quot;    &quot;Ackbar&quot;              NA                   
+## [16] &quot;Qui-Gon Jinn&quot;        &quot;Nute Gunray&quot;         &quot;Jar Jar Binks&quot;      
+## [19] &quot;Roos Tarpals&quot;        &quot;Rugor Nass&quot;          &quot;Ric Olié&quot;           
+## [22] &quot;Quarsh Panaka&quot;       &quot;Bib Fortuna&quot;         &quot;Ayla Secura&quot;        
+## [25] &quot;Mace Windu&quot;          &quot;Ki-Adi-Mundi&quot;        &quot;Kit Fisto&quot;          
+## [28] &quot;Adi Gallia&quot;          &quot;Saesee Tiin&quot;         &quot;Yarael Poof&quot;        
+## [31] &quot;Plo Koon&quot;            &quot;Mas Amedda&quot;          &quot;Gregar Typho&quot;       
+## [34] &quot;Cliegg Lars&quot;         &quot;Poggle the Lesser&quot;   &quot;Dooku&quot;              
+## [37] &quot;Bail Prestor Organa&quot; &quot;Jango Fett&quot;          &quot;Dexter Jettster&quot;    
+## [40] &quot;Lama Su&quot;             &quot;Taun We&quot;             &quot;Wat Tambor&quot;         
+## [43] &quot;San Hill&quot;            &quot;Shaak Ti&quot;            &quot;Grievous&quot;           
+## [46] &quot;Tarfful&quot;             &quot;Raymus Antilles&quot;     &quot;Sly Moore&quot;          
+## [49] &quot;Tion Medon&quot;          NA                    NA                   
+## [52] NA                    NA                    NA</code></pre>
+<p>Yes, there are some <code>NA</code> things. We’ll talk about than in a few minutes.</p>
+<p>Working with vector is efficient but the sintax is verbose. dplyr provide us with a different sintax, data frame - orientated (remember that when doing statistics, data will be mainly stored in tables, therefore we love data frames and working with them &lt;3).</p>
+<p>Let’s see how to do this with data frames.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="working-with-tables.html#cb282-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb282-2"><a href="working-with-tables.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">175</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 48 x 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Darth …    202 136   none        white      yellow          41.9 male  mascu…
+##  2 Owen L…    178 120   brown, grey light      blue            52   male  mascu…
+##  3 Biggs …    183  84   black       light      brown           24   male  mascu…
+##  4 Obi-Wa…    182  77   auburn, wh… fair       blue-gray       57   male  mascu…
+##  5 Anakin…    188  84   blond       fair       blue            41.9 male  mascu…
+##  6 Wilhuf…    180  NA   auburn, gr… fair       blue            64   male  mascu…
+##  7 Chewba…    228 112   brown       unknown    blue           200   male  mascu…
+##  8 Han So…    180  80   brown       fair       brown           29   male  mascu…
+##  9 Jek To…    180 110   brown       fair       blue            NA   male  mascu…
+## 10 Boba F…    183  78.2 black       fair       brown           31.5 male  mascu…
+## # … with 38 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Doing this we keep all the information about the characters: we have only removed the rows about characters we’re not interested on because of their height.</p>
+<p>We can also extend the pipeline and also select only the column of names.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="working-with-tables.html#cb284-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb284-2"><a href="working-with-tables.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">175</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-3"><a href="working-with-tables.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 48 x 1
+##    name             
+##    &lt;chr&gt;            
+##  1 Darth Vader      
+##  2 Owen Lars        
+##  3 Biggs Darklighter
+##  4 Obi-Wan Kenobi   
+##  5 Anakin Skywalker 
+##  6 Wilhuff Tarkin   
+##  7 Chewbacca        
+##  8 Han Solo         
+##  9 Jek Tono Porkins 
+## 10 Boba Fett        
+## # … with 38 more rows</code></pre>
+<p><strong>Remark.</strong> Note that we haven’t used the <code>$</code> notation here. When working with dplyr, R knows where to look for the columns: it knows they are in the data frame. Thus, there is no need to write the name of the data frame followed by <code>$</code> for accessing columns. Careful with this: it is not a mistake doing it, but works differently and it can lead to errors in some situations. Best practice: don’t do it. Never.</p>
+<p>For numerical columns you can use all the comparisons you know: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>==</code> and <code>!=</code> (for distinct). Notice that you cannot use one single equal sign for comparing. It is very common this mistake but dplyr will properly warn you: just read the messages.</p>
+<p>Another example:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="working-with-tables.html#cb286-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb286-2"><a href="working-with-tables.html#cb286-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">!=</span> <span class="dv">202</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-3"><a href="working-with-tables.html#cb286-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 80</code></pre>
+<p>You can work with character columns:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="working-with-tables.html#cb288-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb288-2"><a href="working-with-tables.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 18 x 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Leia Or…    150    49 brown      light      brown             19 fema… femin…
+##  2 Beru Wh…    165    75 brown      light      blue              47 fema… femin…
+##  3 Chewbac…    228   112 brown      unknown    blue             200 male  mascu…
+##  4 Han Solo    180    80 brown      fair       brown             29 male  mascu…
+##  5 Wedge A…    170    77 brown      fair       hazel             21 male  mascu…
+##  6 Jek Ton…    180   110 brown      fair       blue              NA male  mascu…
+##  7 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…
+##  8 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  9 Qui-Gon…    193    89 brown      fair       blue              92 male  mascu…
+## 10 Ric Olié    183    NA brown      fair       blue              NA &lt;NA&gt;  &lt;NA&gt;  
+## 11 Cordé       157    NA brown      light      brown             NA fema… femin…
+## 12 Cliegg …    183    NA brown      fair       blue              82 male  mascu…
+## 13 Dormé       165    NA brown      light      brown             NA fema… femin…
+## 14 Tarfful     234   136 brown      brown      blue              NA male  mascu…
+## 15 Raymus …    188    79 brown      light      brown             NA male  mascu…
+## 16 Rey          NA    NA brown      light      hazel             NA fema… femin…
+## 17 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
+## 18 Padmé A…    165    45 brown      light      brown             46 fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>And you can combine rules. With commas if you want to have all the rules at the same time: <em>‘people whose skin color is light and height is greater or equal than 165:’</em></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="working-with-tables.html#cb290-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb290-2"><a href="working-with-tables.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span>, height <span class="sc">&gt;=</span> <span class="dv">165</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
+## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
+## 3 Biggs D…    183    84 black       light      brown             24 male  mascu…
+## 4 Lobot       175    79 none        light      blue              37 male  mascu…
+## 5 Dormé       165    NA brown       light      brown             NA fema… femin…
+## 6 Raymus …    188    79 brown       light      brown             NA male  mascu…
+## 7 Padmé A…    165    45 brown       light      brown             46 fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>If you want say <em>‘or’</em> you need to use the <code>|</code> symbol: <em>‘people whose skin color is light or whose height is lower than 100:’</em></p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="working-with-tables.html#cb292-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb292-2"><a href="working-with-tables.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(skin_color <span class="sc">==</span> <span class="st">&quot;light&quot;</span> <span class="sc">|</span> height <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 18 x 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+##  2 Leia Or…    150    49 brown      light      brown             19 fema… femin…
+##  3 Owen La…    178   120 brown, gr… light      blue              52 male  mascu…
+##  4 Beru Wh…    165    75 brown      light      blue              47 fema… femin…
+##  5 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  6 Biggs D…    183    84 black      light      brown             24 male  mascu…
+##  7 Yoda         66    17 white      green      brown            896 male  mascu…
+##  8 Lobot       175    79 none       light      blue              37 male  mascu…
+##  9 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+## 10 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+## 11 Cordé       157    NA brown      light      brown             NA fema… femin…
+## 12 Dormé       165    NA brown      light      brown             NA fema… femin…
+## 13 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+## 14 R4-P17       96    NA none       silver, r… red, blue         NA none  femin…
+## 15 Raymus …    188    79 brown      light      brown             NA male  mascu…
+## 16 Rey          NA    NA brown      light      hazel             NA fema… femin…
+## 17 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
+## 18 Padmé A…    165    45 brown      light      brown             46 fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div id="distinct" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Distinct</h2>
+<p>In Excel you can easily get the different values from a column when selecting it. Imaging that you want all the hair colors available in the Starwars universe, no matter whose hair it is. In this case, you would be interested on the distinct values of the <code>hair_color</code> of the data frame.</p>
+<p>There are two ways of doing this: the vectorial way and the dplyr way. Depending on the situation you will need one or the other, so learn both.</p>
+<div id="r-base" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> R base</h3>
+<p><strong>Exercise.</strong> Get the unique values for the <code>hair_color</code> columns. Remember to use the <code>$</code> notation for getting the vector and then apply the function <code>unique()</code> to it. You will have a vector with no repeated values.</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="working-with-tables.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(starwars<span class="sc">$</span>hair_color)</span></code></pre></div>
+<pre><code>##  [1] &quot;blond&quot;         NA              &quot;none&quot;          &quot;brown&quot;        
+##  [5] &quot;brown, grey&quot;   &quot;black&quot;         &quot;auburn, white&quot; &quot;auburn, grey&quot; 
+##  [9] &quot;white&quot;         &quot;grey&quot;          &quot;auburn&quot;        &quot;blonde&quot;       
+## [13] &quot;unknown&quot;</code></pre>
+<p>Don’t worry too much about that <code>NA</code> thing: we’ll get into that in the next section.</p>
+</div>
+<div id="dplyr" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> dplyr</h3>
+<p>As you have seen, applying <code>unique()</code> to a vector you obtain a vector of the different values of the input. But when dealing with exploratory analysis you may want to preserve the tabular format, since it is easy to glance through it as well as export to Excel. For doing this, we use the dplyr function <code>distinct()</code>, which receives a data frame or tibble via the pipe <code>%&gt;%</code> and the name of the columns whose unique values we want to obtain within the brackets.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="working-with-tables.html#cb296-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb296-2"><a href="working-with-tables.html#cb296-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(hair_color)</span></code></pre></div>
+<pre><code>## # A tibble: 13 x 1
+##    hair_color   
+##    &lt;chr&gt;        
+##  1 blond        
+##  2 &lt;NA&gt;         
+##  3 none         
+##  4 brown        
+##  5 brown, grey  
+##  6 black        
+##  7 auburn, white
+##  8 auburn, grey 
+##  9 white        
+## 10 grey         
+## 11 auburn       
+## 12 blonde       
+## 13 unknown</code></pre>
+<p>We can do the same with several columns at the same time:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="working-with-tables.html#cb298-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb298-2"><a href="working-with-tables.html#cb298-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(hair_color, skin_color)</span></code></pre></div>
+<pre><code>## # A tibble: 50 x 2
+##    hair_color    skin_color 
+##    &lt;chr&gt;         &lt;chr&gt;      
+##  1 blond         fair       
+##  2 &lt;NA&gt;          gold       
+##  3 &lt;NA&gt;          white, blue
+##  4 none          white      
+##  5 brown         light      
+##  6 brown, grey   light      
+##  7 &lt;NA&gt;          white, red 
+##  8 black         light      
+##  9 auburn, white fair       
+## 10 auburn, grey  fair       
+## # … with 40 more rows</code></pre>
+<p>In this data frame you have all the different existing combinations between <code>hair_color</code> and <code>skin_color</code>. There is no way of doing this only with <code>unique()</code>, in a vectorial way.</p>
+<p><strong>Exercise (also for readr).</strong> Get the distinct combinations between <code>eye_color</code> and <code>gender</code> and create a data frame with them. Export this data frame or tibble to a csv file using a function from the readr library. <em>Hint.</em> After running <code>library(readr)</code>, write on the console or the script <code>write_</code> and let the autocompletion propose you some alternatives. Decide which function you should use. <em>Another hint.</em> There are several solutions for exporting the file. Anyway, remember to use <code>?</code> for reading the help of a function.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="working-with-tables.html#cb300-1" aria-hidden="true" tabindex="-1"></a>new_df <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb300-2"><a href="working-with-tables.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(eye_color, gender)</span>
+<span id="cb300-3"><a href="working-with-tables.html#cb300-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-4"><a href="working-with-tables.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb300-5"><a href="working-with-tables.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(new_df, <span class="st">&quot;new_file_super_cool.csv&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="some-comments-about-na" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Some comments about <code>NA</code></h2>
+<p>When having a look at the values of <code>hair_color</code> you can see there is something written like <code>NA</code>. This is a symbol used for specifying the generally named missing values and its direct meaning is <em>not available</em>. In several programming languages, like R, this symbol is very important because R works with it in a particular way.</p>
+<p>Missing values cannot easily be replace by some other because it will often have meaning. We will mention some examples during the sessions.</p>
+<p>Let’s extract the distinct values of that column.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="working-with-tables.html#cb301-1" aria-hidden="true" tabindex="-1"></a>unique_hair_color <span class="ot">&lt;-</span> <span class="fu">unique</span>(starwars<span class="sc">$</span>hair_color)</span>
+<span id="cb301-2"><a href="working-with-tables.html#cb301-2" aria-hidden="true" tabindex="-1"></a>unique_hair_color</span></code></pre></div>
+<pre><code>##  [1] &quot;blond&quot;         NA              &quot;none&quot;          &quot;brown&quot;        
+##  [5] &quot;brown, grey&quot;   &quot;black&quot;         &quot;auburn, white&quot; &quot;auburn, grey&quot; 
+##  [9] &quot;white&quot;         &quot;grey&quot;          &quot;auburn&quot;        &quot;blonde&quot;       
+## [13] &quot;unknown&quot;</code></pre>
+<p>This <code>NA</code> is the only value not written within <code>"</code>. But the vector is a character vector.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="working-with-tables.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(unique_hair_color)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>If take the first value of the vector, <code>"blonde"</code>, it is a character:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="working-with-tables.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(unique_hair_color[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>What about the second, which is <code>NA</code>?</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="working-with-tables.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(unique_hair_color[<span class="dv">2</span>])</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Exercise.</strong> Repeat the same procedure with <code>height</code> column and see what class <code>NA</code> belong to this time.</p>
+<p><strong>Exercise.</strong> Apply the <code>class()</code> function to <code>NA</code> and see the result.</p>
+<p><strong>This is very important. <code>NA</code> class is not fixed and can lead you to a lot of problems when reading data.</strong></p>
+<p>It is mandatory knowing how to deal with <code>NA</code> values since it can change everything you analyse. For instance, let’s calculate the average height of the characters from Starwars.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="working-with-tables.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(starwars<span class="sc">$</span>height)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>The result of that calculation is <code>NA</code> because when operating with <code>NA</code> the result is always <code>NA</code>, even the most simple thing:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="working-with-tables.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="cn">NA</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p><strong>You cannot operate with <code>NA</code></strong> so you need to get rid of it. Some R functions allow you to exclude them adding some commands:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="working-with-tables.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(starwars<span class="sc">$</span>height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 174.358</code></pre>
+<p>We will now focus on dealing with them in dplyr.</p>
+<p><code>is.na()</code> is a R base function that allows us detecting <code>NA</code> values. Simple example:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="working-with-tables.html#cb315-1" aria-hidden="true" tabindex="-1"></a>vector_with_NA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>)</span>
+<span id="cb315-2"><a href="working-with-tables.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(vector_with_NA)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
+<p>You can also work denying it, in logical terms:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="working-with-tables.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(vector_with_NA)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<p>Working with dplyr is similar:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="working-with-tables.html#cb319-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb319-2"><a href="working-with-tables.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 14
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 Arvel C…     NA    NA brown      fair       brown             NA male   mascu…
+## 2 Finn         NA    NA black      dark       dark              NA male   mascu…
+## 3 Rey          NA    NA brown      light      hazel             NA female femin…
+## 4 Poe Dam…     NA    NA brown      light      brown             NA male   mascu…
+## 5 BB8          NA    NA none       none       black             NA none   mascu…
+## 6 Captain…     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;   &lt;NA&gt;  
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>The contrary:</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="working-with-tables.html#cb321-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb321-2"><a href="working-with-tables.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 81 x 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 71 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>It is possible to combine rules, as we previously saw.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="working-with-tables.html#cb323-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb323-2"><a href="working-with-tables.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(height) <span class="sc">|</span> <span class="fu">is.na</span>(hair_color))</span></code></pre></div>
+<pre><code>## # A tibble: 11 x 14
+##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 C-3PO      167    75 &lt;NA&gt;       gold        yellow           112 none  mascu…
+##  2 R2-D2       96    32 &lt;NA&gt;       white, blue red               33 none  mascu…
+##  3 R5-D4       97    32 &lt;NA&gt;       white, red  red               NA none  mascu…
+##  4 Greedo     173    74 &lt;NA&gt;       green       black             44 male  mascu…
+##  5 Jabba …    175  1358 &lt;NA&gt;       green-tan,… orange           600 herm… mascu…
+##  6 Arvel …     NA    NA brown      fair        brown             NA male  mascu…
+##  7 Finn        NA    NA black      dark        dark              NA male  mascu…
+##  8 Rey         NA    NA brown      light       hazel             NA fema… femin…
+##  9 Poe Da…     NA    NA brown      light       brown             NA male  mascu…
+## 10 BB8         NA    NA none       none        black             NA none  mascu…
+## 11 Captai…     NA    NA unknown    unknown     unknown           NA &lt;NA&gt;  &lt;NA&gt;  
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>This is useful for making sure that you have all the information you need for an analysis. Suppose you are asked to calculate the BMI (explained during the second session). You need both the height and the mass, so you should check both columns are available.</p>
+<p><strong>Exercise.</strong> Keep only the rows with both height and mass available and create a new column with the BMI (<span class="math inline">\(m / h^2\)</span>). Finally select the name of the character and the new column.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="working-with-tables.html#cb325-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb325-2"><a href="working-with-tables.html#cb325-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(height), <span class="sc">!</span><span class="fu">is.na</span>(mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb325-3"><a href="working-with-tables.html#cb325-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(mass <span class="sc">/</span> (height <span class="sc">^</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 59 x 15
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 49 more rows, and 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;, mass/(height^2) &lt;dbl&gt;</code></pre>
+<p><strong>Exercise.</strong> Read the help of <code>na.omit()</code> function for removing all the rows with at least one <code>NA</code> value from the <code>starwars</code> data frame. Create a new dataframe with the data. Export the new data frame to a csv file (separated with <strong>comma</strong>).</p>
+</div>
+<div id="row-numbers" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Row numbers</h2>
+<p>Another way for selecting rows is using a numerical index instead of conditions. Thus, you could access directly the first, third and fifth column of a data frame. This can be done with <code>slice()</code> (also with R base, but we’re not getting into that).</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="working-with-tables.html#cb327-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb327-2"><a href="working-with-tables.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">100</span><span class="sc">:</span><span class="dv">103</span>)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1          5.1         3.5          1.4         0.2     setosa
+## 2          4.9         3.0          1.4         0.2     setosa
+## 3          4.7         3.2          1.3         0.2     setosa
+## 4          5.7         2.8          4.1         1.3 versicolor
+## 5          6.3         3.3          6.0         2.5  virginica
+## 6          5.8         2.7          5.1         1.9  virginica
+## 7          7.1         3.0          5.9         2.1  virginica</code></pre>
+</div>
+<div id="exercises" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Read the file <code>volpre2019.csv</code> and create a data frame with its data. Name it however you like. It stores data about the volume and the price of lots of products at MercaMadrid.</p></li>
+<li><p>Call the library janitor (install it if needed) and use the <code>clean_names()</code> function on the data frame (overwrite it).</p></li>
+<li><p>Explore the data frame with the functions you know. <code>nrow</code>, <code>ncol</code> (you can use <code>dim()</code> instead), <code>glimpse()</code>. Remember to use <code>summary()</code> too.</p></li>
+<li><p>Count how many <code>NA</code> values there are in the <code>fecha_desde</code> column. <em>Hint.</em> For now it is OK if you just use <code>is.na()</code> for building a logical vector and then <code>sum()</code> for adding the number of cases with <code>NA</code>.</p></li>
+<li><p>Exclude the cases with <code>fecha_desde</code> as <code>NA</code> and overwrite the data frame.</p></li>
+<li><p>Get the distinct origins (<code>desc_origin</code> column) of <code>"VACUNO"</code> productos (<code>desc_variedad_2</code>).</p></li>
+<li><p>Select four products from the <code>desc_variedad_2</code> column and extract the months when they are available (<code>fecha_desde</code>) and the origin. Do it separately for each of them. The final data frame for each product should have two columns. Arrange that data frame by <code>desc_origin</code>. The function you need is <code>arrange()</code>. <em>Suggestion.</em> For selecting the products, I used <code>distinct()</code> on the column and then <code>sample_n(4)</code>, everything linked with pipes <code>%&gt;%</code>. Read the documentation on <code>sample_n()</code> if needed.</p></li>
+</ol>
+<p><strong>Solutions.</strong></p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="working-with-tables.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 1</span></span>
+<span id="cb329-2"><a href="working-with-tables.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb329-3"><a href="working-with-tables.html#cb329-3" aria-hidden="true" tabindex="-1"></a>df_merca <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;data/volpre2019.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   `Fecha Desde` = col_double(),
+##   `Fecha Hasta` = col_double(),
+##   `Cod variedad` = col_character(),
+##   `Desc variedad` = col_character(),
+##   `Cod Origen` = col_double(),
+##   `Desc Origen` = col_character(),
+##   Kilos = col_double(),
+##   `Precio frecuente` = col_double(),
+##   `Precio maximo` = col_double(),
+##   `Precio minimo` = col_double(),
+##   `Desc Variedad 2` = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="working-with-tables.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 2</span></span>
+<span id="cb332-2"><a href="working-with-tables.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="working-with-tables.html#cb335-1" aria-hidden="true" tabindex="-1"></a>df_merca <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df_merca)</span>
+<span id="cb335-2"><a href="working-with-tables.html#cb335-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-3"><a href="working-with-tables.html#cb335-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4</span></span>
+<span id="cb335-4"><a href="working-with-tables.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df_merca<span class="sc">$</span>fecha_desde))</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="working-with-tables.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5</span></span>
+<span id="cb337-2"><a href="working-with-tables.html#cb337-2" aria-hidden="true" tabindex="-1"></a>df_merca <span class="ot">&lt;-</span> df_merca <span class="sc">%&gt;%</span> </span>
+<span id="cb337-3"><a href="working-with-tables.html#cb337-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(fecha_desde))</span>
+<span id="cb337-4"><a href="working-with-tables.html#cb337-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-5"><a href="working-with-tables.html#cb337-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 6</span></span>
+<span id="cb337-6"><a href="working-with-tables.html#cb337-6" aria-hidden="true" tabindex="-1"></a>df_merca <span class="sc">%&gt;%</span> </span>
+<span id="cb337-7"><a href="working-with-tables.html#cb337-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(desc_variedad_2 <span class="sc">==</span> <span class="st">&quot;VACUNO&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb337-8"><a href="working-with-tables.html#cb337-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(desc_origen)</span></code></pre></div>
+<pre><code>## # A tibble: 59 x 1
+##    desc_origen
+##    &lt;chr&gt;      
+##  1 BADAJOZ    
+##  2 BARCELONA  
+##  3 CACERES    
+##  4 CUENCA     
+##  5 LUGO       
+##  6 MADRID     
+##  7 NAVARRA    
+##  8 ORENSE     
+##  9 PONTEVEDRA 
+## 10 SALAMANCA  
+## # … with 49 more rows</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="working-with-tables.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 7</span></span>
+<span id="cb339-2"><a href="working-with-tables.html#cb339-2" aria-hidden="true" tabindex="-1"></a>df_merca <span class="sc">%&gt;%</span> </span>
+<span id="cb339-3"><a href="working-with-tables.html#cb339-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(desc_variedad_2) <span class="sc">%&gt;%</span> </span>
+<span id="cb339-4"><a href="working-with-tables.html#cb339-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 1
+##   desc_variedad_2
+##   &lt;chr&gt;          
+## 1 JUREL          
+## 2 PRECOCINADOS   
+## 3 BERROS         
+## 4 POMELO</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="working-with-tables.html#cb341-1" aria-hidden="true" tabindex="-1"></a>df_merca <span class="sc">%&gt;%</span> </span>
+<span id="cb341-2"><a href="working-with-tables.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(desc_variedad_2 <span class="sc">==</span> <span class="st">&quot;CONCHA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb341-3"><a href="working-with-tables.html#cb341-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fecha_desde, desc_origen) <span class="sc">%&gt;%</span> </span>
+<span id="cb341-4"><a href="working-with-tables.html#cb341-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(desc_origen)</span></code></pre></div>
+<pre><code>## # A tibble: 17 x 2
+##    fecha_desde desc_origen 
+##          &lt;dbl&gt; &lt;chr&gt;       
+##  1    20190201 CADIZ       
+##  2    20190501 CADIZ       
+##  3    20190601 CADIZ       
+##  4    20190101 FRANCIA     
+##  5    20190601 GRAN BRETAÑA
+##  6    20190501 GUIPUZCOA   
+##  7    20190601 GUIPUZCOA   
+##  8    20190101 HUELVA      
+##  9    20190501 HUELVA      
+## 10    20190301 LA CORUÑA   
+## 11    20190501 LA CORUÑA   
+## 12    20190101 PONTEVEDRA  
+## 13    20190201 PONTEVEDRA  
+## 14    20190301 PONTEVEDRA  
+## 15    20190401 PONTEVEDRA  
+## 16    20190501 PONTEVEDRA  
+## 17    20190601 PONTEVEDRA</code></pre>
+</div>
+<div id="summarizing-tables" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Summarizing tables</h2>
+<p>The main library we’ll use is dplyr.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="working-with-tables.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<p>We will be working with the storm dataset, stored on the <code>storms.txt</code> file.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="working-with-tables.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb344-2"><a href="working-with-tables.html#cb344-2" aria-hidden="true" tabindex="-1"></a>df_storms <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/storms.txt&quot;</span>, </span>
+<span id="cb344-3"><a href="working-with-tables.html#cb344-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb344-4"><a href="working-with-tables.html#cb344-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">name =</span> <span class="fu">col_character</span>(), </span>
+<span id="cb344-5"><a href="working-with-tables.html#cb344-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">year =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb344-6"><a href="working-with-tables.html#cb344-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">month =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb344-7"><a href="working-with-tables.html#cb344-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">day =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb344-8"><a href="working-with-tables.html#cb344-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">hour =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb344-9"><a href="working-with-tables.html#cb344-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">status =</span> <span class="fu">col_character</span>(), </span>
+<span id="cb344-10"><a href="working-with-tables.html#cb344-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">category =</span> <span class="fu">col_factor</span>(), </span>
+<span id="cb344-11"><a href="working-with-tables.html#cb344-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">wind =</span> <span class="fu">col_integer</span>(), </span>
+<span id="cb344-12"><a href="working-with-tables.html#cb344-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pressure =</span> <span class="fu">col_integer</span>(), </span>
+<span id="cb344-13"><a href="working-with-tables.html#cb344-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ts_diameter =</span> <span class="fu">col_double</span>(), </span>
+<span id="cb344-14"><a href="working-with-tables.html#cb344-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">hu_diameter =</span> <span class="fu">col_double</span>()</span>
+<span id="cb344-15"><a href="working-with-tables.html#cb344-15" aria-hidden="true" tabindex="-1"></a>                      ))</span>
+<span id="cb344-16"><a href="working-with-tables.html#cb344-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb344-17"><a href="working-with-tables.html#cb344-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_storms)</span></code></pre></div>
+<pre><code>## Rows: 10,010
+## Columns: 11
+## $ name        &lt;chr&gt; &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;A…
+## $ year        &lt;dbl&gt; 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975…
+## $ month       &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7…
+## $ day         &lt;dbl&gt; 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 30, 30, 30…
+## $ hour        &lt;dbl&gt; 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18, 0,…
+## $ status      &lt;chr&gt; &quot;tropical depression&quot;, &quot;tropical depression&quot;, &quot;tropical de…
+## $ category    &lt;fct&gt; -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+## $ wind        &lt;int&gt; 25, 25, 25, 25, 25, 25, 25, 30, 35, 40, 45, 50, 50, 55, 60…
+## $ pressure    &lt;int&gt; 1013, 1013, 1013, 1013, 1012, 1012, 1011, 1006, 1004, 1002…
+## $ ts_diameter &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ hu_diameter &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+<div id="exercises-1" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>What can you learn applying <code>summary()</code> to the tibble?</li>
+<li>Which are the different values at the <code>name</code> column? These are the storms and hurricanes we wil be working with. Create a tibble with one column containing this unique names.</li>
+<li>Which are the different available status? Don’t create the tibble: just print it on the console.</li>
+<li>Which are the different combinations between status and pressure?</li>
+</ol>
+</div>
+</div>
+<div id="aggregating-the-data" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Aggregating the data</h2>
+<p><strong>Exercise 1.</strong> How would you calculate the average wind for each status?</p>
+<pre><code>## [1] &quot;Tropical depression: 27.2691552062868&quot;</code></pre>
+<pre><code>## [1] &quot;Tropical storm: 45.8058984910837&quot;</code></pre>
+<pre><code>## [1] &quot;Hurricane: 85.9689420899385&quot;</code></pre>
+<p>Taking into account only what has been studied so far about dplyr, we would need to jump into vectors again to calculate the mean for these cases. However we have another function in dplyr for simplifying this: <code>summarise()</code>.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="working-with-tables.html#cb349-1" aria-hidden="true" tabindex="-1"></a>df_storms <span class="sc">%&gt;%</span> </span>
+<span id="cb349-2"><a href="working-with-tables.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;tropical depression&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb349-3"><a href="working-with-tables.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_wind =</span> <span class="fu">mean</span>(wind))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   avg_wind
+##      &lt;dbl&gt;
+## 1     27.3</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="working-with-tables.html#cb351-1" aria-hidden="true" tabindex="-1"></a>df_storms <span class="sc">%&gt;%</span> </span>
+<span id="cb351-2"><a href="working-with-tables.html#cb351-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;tropical storm&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb351-3"><a href="working-with-tables.html#cb351-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_wind =</span> <span class="fu">mean</span>(wind))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   avg_wind
+##      &lt;dbl&gt;
+## 1     45.8</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="working-with-tables.html#cb353-1" aria-hidden="true" tabindex="-1"></a>df_storms <span class="sc">%&gt;%</span> </span>
+<span id="cb353-2"><a href="working-with-tables.html#cb353-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;hurricane&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb353-3"><a href="working-with-tables.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_wind =</span> <span class="fu">mean</span>(wind))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   avg_wind
+##      &lt;dbl&gt;
+## 1     86.0</code></pre>
+<p>You can calculate several columns on the fly.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="working-with-tables.html#cb355-1" aria-hidden="true" tabindex="-1"></a>df_storms <span class="sc">%&gt;%</span> </span>
+<span id="cb355-2"><a href="working-with-tables.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;hurricane&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb355-3"><a href="working-with-tables.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_wind =</span> <span class="fu">mean</span>(wind), </span>
+<span id="cb355-4"><a href="working-with-tables.html#cb355-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_wind =</span> <span class="fu">sd</span>(wind))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   avg_wind sd_wind
+##      &lt;dbl&gt;   &lt;dbl&gt;
+## 1     86.0    20.3</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="working-with-tables.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_storms)</span></code></pre></div>
+<pre><code>## Rows: 10,010
+## Columns: 11
+## $ name        &lt;chr&gt; &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;Amy&quot;, &quot;A…
+## $ year        &lt;dbl&gt; 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975, 1975…
+## $ month       &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7…
+## $ day         &lt;dbl&gt; 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 30, 30, 30…
+## $ hour        &lt;dbl&gt; 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18, 0,…
+## $ status      &lt;chr&gt; &quot;tropical depression&quot;, &quot;tropical depression&quot;, &quot;tropical de…
+## $ category    &lt;fct&gt; -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+## $ wind        &lt;int&gt; 25, 25, 25, 25, 25, 25, 25, 30, 35, 40, 45, 50, 50, 55, 60…
+## $ pressure    &lt;int&gt; 1013, 1013, 1013, 1013, 1012, 1012, 1011, 1006, 1004, 1002…
+## $ ts_diameter &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ hu_diameter &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+<p><strong>Exercise 2.</strong> For the storms, depressions and hurricanes that took place between 1975 and 1980, create a new column with the mean and standard deviation of the wind. Create a new column substacting the mean from wind and then divide by the standard deviation. Calculate with <code>summarise()</code> the mean and the standard deviation of this new column. What happened?</p>
+<pre><code>## # A tibble: 1 x 2
+##   `mean(new_column)` `sd(new_column)`
+##                &lt;dbl&gt;            &lt;dbl&gt;
+## 1          -2.07e-17                1</code></pre>
+<p><strong>Exercise 3.</strong></p>
+<ol style="list-style-type: decimal">
+<li>For the registers where <code>hu_diameter</code> is not <code>NA</code>, calculate the minimun pressure, the median, the average and the maximum</li>
+</ol>
+<pre><code>## # A tibble: 1 x 4
+##     min media mediana   max
+##   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+## 1   882  991.     998  1017</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Are there more registers below the average or above?</li>
+</ol>
+<pre><code>## # A tibble: 1 x 2
+##   above_avg below_avg
+##       &lt;int&gt;     &lt;int&gt;
+## 1      2254      1228</code></pre>
+<p><strong>Exercise 4.</strong> For the hurricane, calculate the average <code>ts_diameter</code>. <em>Hint.</em> It is not <code>NA</code>.</p>
+<pre><code>## # A tibble: 1 x 1
+##   media
+##   &lt;dbl&gt;
+## 1  288.</code></pre>
+</div>
+<div id="a-summary" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> A summary</h2>
+<p>We are now working with an example from the official dplyr documentation, available on <a href="https://dplyr.tidyverse.org/articles/dplyr.html#patterns-of-operations">the tidyverse site</a>. This notes are just a summary of that page, consisting mainly in copy-pasted paragraphs. The original website may be too technical for our purposes.</p>
+<p>The data will used is a dataset containing all 336776 flights that departed from New York City in 2013. The data comes from the US Bureau of Transportation Statistics, it is available in the <code>nycflights13</code> package and is documented in <code>? nycflights13</code>.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="working-with-tables.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb363-2"><a href="working-with-tables.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb363-3"><a href="working-with-tables.html#cb363-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-4"><a href="working-with-tables.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights)</span></code></pre></div>
+<pre><code>## [1] 336776     19</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="working-with-tables.html#cb365-1" aria-hidden="true" tabindex="-1"></a>flights</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="dplyr-verbs" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Dplyr verbs</h2>
+<p>Dplyr aims to provide a function for each basic verb of data manipulation:</p>
+<ul>
+<li><code>filter()</code> to select cases based on their values.</li>
+<li><code>arrange()</code> to reorder the cases.</li>
+<li><code>select()</code> and <code>rename()</code> to select variables based on their names.</li>
+<li><code>mutate()</code> and <code>transmute()</code> to add new variables that are functions of existing variables.</li>
+<li><code>summarise()</code> to condense multiple values to a single value.</li>
+<li><code>sample_n()</code> and <code>sample_frac()</code> to take random samples.</li>
+</ul>
+<div id="filter-rows-with-filter" class="section level3" number="3.10.1">
+<h3><span class="header-section-number">3.10.1</span> Filter rows with filter()</h3>
+<p><code>filter()</code> allows you to select a subset of rows in a data frame. Firstly, the function receives a tibble (we are doing during the sessions via the <code>%&gt;%</code> command but it is not necessary). Then we also have to write inside the brackets the expression used for rows selection. This expression will be <code>TRUE</code> for the selected rows.</p>
+<p><strong>Exercise 1.</strong> Select all flights on January 1st.</p>
+<pre><code>## # A tibble: 842 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 832 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p><strong>Exercise 2.</strong> How many flights departed from JFK airport?</p>
+<pre><code>## [1] 111279</code></pre>
+<p><strong>Exercise 3.</strong> How many delayed flights were there?</p>
+<pre><code>## [1] 133004</code></pre>
+<p><strong>Exercise 4.</strong> Select the flights with no NA data on the <code>dep_delay</code> column.</p>
+<pre><code>## # A tibble: 328,521 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 328,511 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="arrange-rows-with-arrange" class="section level3" number="3.10.2">
+<h3><span class="header-section-number">3.10.2</span> Arrange rows with <code>arrange()</code></h3>
+<p><code>arrange()</code> reorders the rows. It takes a data frame, and a set of column names to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="working-with-tables.html#cb371-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(year, month, day)</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="working-with-tables.html#cb373-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(arr_delay))</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     9      641            900      1301     1242           1530
+##  2  2013     6    15     1432           1935      1137     1607           2120
+##  3  2013     1    10     1121           1635      1126     1239           1810
+##  4  2013     9    20     1139           1845      1014     1457           2210
+##  5  2013     7    22      845           1600      1005     1044           1815
+##  6  2013     4    10     1100           1900       960     1342           2211
+##  7  2013     3    17     2321            810       911      135           1020
+##  8  2013     7    22     2257            759       898      121           1026
+##  9  2013    12     5      756           1700       896     1058           2020
+## 10  2013     5     3     1133           2055       878     1250           2215
+## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="select-columns-with-select" class="section level3" number="3.10.3">
+<h3><span class="header-section-number">3.10.3</span> Select columns with <code>select()</code></h3>
+<p>Often you work with large datasets with many columns but only a few are actually of interest to you. <code>select()</code> allows you to rapidly zoom in on a useful subset, even using operations.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="working-with-tables.html#cb375-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">select</span>(year, month, day)</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 3
+##     year month   day
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1  2013     1     1
+##  2  2013     1     1
+##  3  2013     1     1
+##  4  2013     1     1
+##  5  2013     1     1
+##  6  2013     1     1
+##  7  2013     1     1
+##  8  2013     1     1
+##  9  2013     1     1
+## 10  2013     1     1
+## # … with 336,766 more rows</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="working-with-tables.html#cb377-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">select</span>(year<span class="sc">:</span>day) <span class="co"># Everything between year and day</span></span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 3
+##     year month   day
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1  2013     1     1
+##  2  2013     1     1
+##  3  2013     1     1
+##  4  2013     1     1
+##  5  2013     1     1
+##  6  2013     1     1
+##  7  2013     1     1
+##  8  2013     1     1
+##  9  2013     1     1
+## 10  2013     1     1
+## # … with 336,766 more rows</code></pre>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="working-with-tables.html#cb379-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>(year<span class="sc">:</span>day)) <span class="co"># Everything except year, day and what is in the middle</span></span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 16
+##    dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier
+##       &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;  
+##  1      517            515         2      830            819        11 UA     
+##  2      533            529         4      850            830        20 UA     
+##  3      542            540         2      923            850        33 AA     
+##  4      544            545        -1     1004           1022       -18 B6     
+##  5      554            600        -6      812            837       -25 DL     
+##  6      554            558        -4      740            728        12 UA     
+##  7      555            600        -5      913            854        19 B6     
+##  8      557            600        -3      709            723       -14 EV     
+##  9      557            600        -3      838            846        -8 B6     
+## 10      558            600        -2      753            745         8 AA     
+## # … with 336,766 more rows, and 9 more variables: flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>There are a number of helper functions you can use within <code>select()</code>, like <code>starts_with()</code>, <code>ends_with()</code> and <code>contains()</code>. These let you quickly match larger blocks of variables that meet some criterion. See ?select for more details.</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="working-with-tables.html#cb381-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb381-2"><a href="working-with-tables.html#cb381-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;Petal&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb381-3"><a href="working-with-tables.html#cb381-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)  <span class="co"># Used for limiting the number of printed rows</span></span></code></pre></div>
+<pre><code>##   Petal.Length Petal.Width
+## 1          1.4         0.2
+## 2          1.4         0.2
+## 3          1.3         0.2
+## 4          1.5         0.2
+## 5          1.4         0.2
+## 6          1.7         0.4</code></pre>
+<p><strong>Exercise 5.</strong> From <code>flights</code> tibble, select all the columns related to delays (containing something about delays in the name).</p>
+<pre><code>## # A tibble: 336,776 x 2
+##    dep_delay arr_delay
+##        &lt;dbl&gt;     &lt;dbl&gt;
+##  1         2        11
+##  2         4        20
+##  3         2        33
+##  4        -1       -18
+##  5        -6       -25
+##  6        -4        12
+##  7        -5        19
+##  8        -3       -14
+##  9        -3        -8
+## 10        -2         8
+## # … with 336,766 more rows</code></pre>
+<p></br></p>
+<p>You can rename columns while selecting:</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="working-with-tables.html#cb384-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">tail_num =</span> tailnum)</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 1
+##    tail_num
+##    &lt;chr&gt;   
+##  1 N14228  
+##  2 N24211  
+##  3 N619AA  
+##  4 N804JB  
+##  5 N668DN  
+##  6 N39463  
+##  7 N516JB  
+##  8 N829AS  
+##  9 N593JB  
+## 10 N3ALAA  
+## # … with 336,766 more rows</code></pre>
+<p>But this is not useful when you want to keep all the variables. For just renaming we use <code>rename()</code>.</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="working-with-tables.html#cb386-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;year&quot;           &quot;month&quot;          &quot;day&quot;            &quot;dep_time&quot;      
+##  [5] &quot;sched_dep_time&quot; &quot;dep_delay&quot;      &quot;arr_time&quot;       &quot;sched_arr_time&quot;
+##  [9] &quot;arr_delay&quot;      &quot;carrier&quot;        &quot;flight&quot;         &quot;tailnum&quot;       
+## [13] &quot;origin&quot;         &quot;dest&quot;           &quot;air_time&quot;       &quot;distance&quot;      
+## [17] &quot;hour&quot;           &quot;minute&quot;         &quot;time_hour&quot;</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="working-with-tables.html#cb388-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb388-2"><a href="working-with-tables.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">tail_num =</span> tailnum) <span class="sc">%&gt;%</span> </span>
+<span id="cb388-3"><a href="working-with-tables.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;year&quot;           &quot;month&quot;          &quot;day&quot;            &quot;dep_time&quot;      
+##  [5] &quot;sched_dep_time&quot; &quot;dep_delay&quot;      &quot;arr_time&quot;       &quot;sched_arr_time&quot;
+##  [9] &quot;arr_delay&quot;      &quot;carrier&quot;        &quot;flight&quot;         &quot;tail_num&quot;      
+## [13] &quot;origin&quot;         &quot;dest&quot;           &quot;air_time&quot;       &quot;distance&quot;      
+## [17] &quot;hour&quot;           &quot;minute&quot;         &quot;time_hour&quot;</code></pre>
+</div>
+<div id="add-new-columns-with-mutate" class="section level3" number="3.10.4">
+<h3><span class="header-section-number">3.10.4</span> Add new columns with <code>mutate()</code></h3>
+<p>The job of <code>mutate()</code> is redefining existing columns or adding new ones.</p>
+<p><strong>Exercise 6.</strong></p>
+<ul>
+<li>Define a new column called gain, consisting on substracting <code>dep_delay</code> to <code>arr_delay</code>.</li>
+<li>Define another one as the average speed (<code>distance</code> divided by <code>air_time</code>). Multiply it by 60 to have the result in minutes.</li>
+</ul>
+<pre><code>## # A tibble: 336,776 x 21
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 336,766 more rows, and 13 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
+## #   gain &lt;dbl&gt;, speed &lt;dbl&gt;</code></pre>
+<p><code>mutate()</code> allows you to refer to columns that you’ve just created:</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="working-with-tables.html#cb391-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb391-2"><a href="working-with-tables.html#cb391-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb391-3"><a href="working-with-tables.html#cb391-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> arr_delay <span class="sc">-</span> dep_delay,</span>
+<span id="cb391-4"><a href="working-with-tables.html#cb391-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain_per_hour =</span> gain <span class="sc">/</span> (air_time <span class="sc">/</span> <span class="dv">60</span>)</span>
+<span id="cb391-5"><a href="working-with-tables.html#cb391-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 21
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 336,766 more rows, and 13 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
+## #   gain &lt;dbl&gt;, gain_per_hour &lt;dbl&gt;</code></pre>
+</div>
+<div id="summarise-values-with-summarise" class="section level3" number="3.10.5">
+<h3><span class="header-section-number">3.10.5</span> Summarise values with <code>summarise()</code></h3>
+<p>The last verb is <code>summarise()</code>. It collapses a data frame to a single row.</p>
+<p><strong>Exercise 7.</strong> Calculate the mean of the delay in the departure. Mind the NAs.</p>
+<pre><code>## # A tibble: 1 x 1
+##   delay
+##   &lt;dbl&gt;
+## 1  12.6</code></pre>
+<p>This is very powerful when combined with <code>group_by()</code>, not seen yet.</p>
+</div>
+<div id="randomly-sample-rows-with-sample_n-and-sample_frac" class="section level3" number="3.10.6">
+<h3><span class="header-section-number">3.10.6</span> Randomly sample rows with <code>sample_n()</code> and <code>sample_frac()</code></h3>
+<p>You can use <code>sample_n()</code> and <code>sample_frac()</code> to take a random sample of rows: use <code>sample_n()</code> for a fixed number and <code>sample_frac()</code> for a fixed fraction.</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="working-with-tables.html#cb394-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013    11    21      616            610         6      918            915
+##  2  2013    11    26     1942           1830        72     2134           2046
+##  3  2013     5    25      951            959        -8     1142           1203
+##  4  2013    10    15     1600           1559         1     1859           1943
+##  5  2013     2    27      554            600        -6      835            837
+##  6  2013     9    26     1709           1710        -1     1827           1835
+##  7  2013     9    17      835            840        -5      950           1022
+##  8  2013     3    16     2056           2040        16     2356           2344
+##  9  2013    11    10      755            746         9     1052           1050
+## 10  2013    10    14     1049           1059       -10     1236           1254
+## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="working-with-tables.html#cb396-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> <span class="fu">sample_frac</span>(<span class="fl">0.01</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3,368 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     5      950            904        46     1318           1210
+##  2  2013     5    30     1741           1732         9     2148           2114
+##  3  2013     1    22     1458           1459        -1     1723           1656
+##  4  2013    10     4     1245           1249        -4     1459           1512
+##  5  2013     2    15      603            600         3      913            906
+##  6  2013     2    13      800            810       -10     1009           1007
+##  7  2013     7    10      759            800        -1     1008           1021
+##  8  2013    10     7     1822           1715        67     2021           1937
+##  9  2013     3    28      724            730        -6     1028           1100
+## 10  2013     2    13      843            840         3     1154           1143
+## # … with 3,358 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="commonalities" class="section level3" number="3.10.7">
+<h3><span class="header-section-number">3.10.7</span> Commonalities</h3>
+<p>Notice that all the functions return data frames. Therefore, you can link them all with <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="working-with-tables.html#cb398-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb398-2"><a href="working-with-tables.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arr_delay, dep_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb398-3"><a href="working-with-tables.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">|</span> dep_delay <span class="sc">&gt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-4"><a href="working-with-tables.html#cb398-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb398-5"><a href="working-with-tables.html#cb398-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb398-6"><a href="working-with-tables.html#cb398-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb398-7"><a href="working-with-tables.html#cb398-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##     arr   dep
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  76.3  72.1</code></pre>
+</div>
+</div>
+<div id="grouped-operations" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> Grouped operations</h2>
+<p>The dplyr verbs are useful on their own, but they become even more powerful when you apply them to groups of observations within a dataset. In dplyr, you do this with the <code>group_by()</code> function. It breaks down a dataset into specified groups of rows. When you then apply the verbs above on the resulting object they’ll be automatically applied “by group”.</p>
+<p>Grouping affects the verbs as follows:</p>
+<ul>
+<li>grouped <code>select()</code> is the same as ungrouped <code>select()</code>, except that grouping variables are always retained.</li>
+<li>grouped <code>arrange()</code> is the same as ungrouped; unless you set <code>.by_group = TRUE</code>, in which case it orders first by the grouping variables</li>
+<li><code>mutate()</code> and <code>filter()</code> are most useful in conjunction with window functions (like <code>rank()</code>, or <code>min(x) == x</code>). They are described in detail in <code>vignette("window-functions")</code>.</li>
+<li><code>sample_n()</code> and <code>sample_frac()</code> sample the specified number/fraction of rows in each group.</li>
+<li><code>summarise()</code> computes the summary for each group.</li>
+</ul>
+<p><strong>Exercise 8.</strong> Split the complete dataset into individual planes (<code>tailnum</code>) and then summarise each plane by counting the number of flights (<code>count = n()</code>) and computing the average distance (<code>distance</code>) and arrival delay (<code>arr_delay</code>). Create a tibble with that result and then use the provided ggplot code to make a plot with the distribution.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="working-with-tables.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb400-2"><a href="working-with-tables.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(delay, <span class="fu">aes</span>(dist, delay)) <span class="sc">+</span></span>
+<span id="cb400-3"><a href="working-with-tables.html#cb400-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> count), <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb400-4"><a href="working-with-tables.html#cb400-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb400-5"><a href="working-with-tables.html#cb400-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p>You use <code>summarise()</code> with aggregate functions, which take a vector of values and return a single number. There are many useful examples of such functions in base R like <code>min()</code>, <code>max()</code>, <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, <code>median()</code>, and <code>IQR()</code>. dplyr provides a handful of others:</p>
+<ul>
+<li><code>n()</code>: the number of observations in the current group</li>
+<li><code>n_distinct(x)</code>:the number of unique values in x.</li>
+<li><code>first(x)</code>, <code>last(x)</code> and <code>nth(x, n)</code> - these work similarly to <code>x[1]</code>, <code>x[length(x)]</code>, and <code>x[n]</code> but give you more control over the result if the value is missing.</li>
+</ul>
+<p><strong>Exercise 9.</strong> Find the number of planes and the number of flights that go to each possible destination (<code>dest</code>).</p>
+<pre><code>## # A tibble: 105 x 3
+##    dest  planes flights
+##    &lt;chr&gt;  &lt;int&gt;   &lt;int&gt;
+##  1 ABQ      108     254
+##  2 ACK       58     265
+##  3 ALB      172     439
+##  4 ANC        6       8
+##  5 ATL     1180   17215
+##  6 AUS      993    2439
+##  7 AVL      159     275
+##  8 BDL      186     443
+##  9 BGR       46     375
+## 10 BHM       45     297
+## # … with 95 more rows</code></pre>
+<blockquote>
+<p>There is more information about dplyr on the website but it may be too advanced for what we need in the course.</p>
+</blockquote>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reading-data-with-readr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
